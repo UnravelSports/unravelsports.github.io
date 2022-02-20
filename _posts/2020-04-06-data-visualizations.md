@@ -4,8 +4,8 @@ Back in April 2020 Tyler Heaps (former Director of Sporting Analytics at U.S. So
 automated post-match reports Kevin Shank, Rishi Kowalski (YNT Performance Analysts) and I had built prior to that time using R's ggplot library. 
 
 <p float="left">
-  <img src="/imgs/relative_heatmap.png" width="400" />
-  <img src="/imgs/relative_heatmap2.png" width="400" />
+  <img src="/imgs/relative_heatmap.png" width="350" />
+  <img src="/imgs/relative_heatmap2.png" width="367.5" />
 </p>
 
 
