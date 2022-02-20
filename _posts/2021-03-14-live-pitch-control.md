@@ -1,4 +1,4 @@
-## Real Time Pitch Control Multi-Platform App
+## 💻 Real Time Pitch Control Multi-Platform App
 
 Today was the release day of my proof-of-concept multi-platform phone & tablet app (iOS/[Android](https://play.google.com/store/apps/details?id=com.unravelsports.base_app)) 
 to showcase the use of synchronized tracking data from a live streamed feed using a game of [Metrica Sports](https://github.com/metrica-sports/sample-data) 
