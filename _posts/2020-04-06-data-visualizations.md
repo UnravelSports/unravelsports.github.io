@@ -1,7 +1,7 @@
-## Heatmaps
+## Custom Visualizations in R with ggplot
 
 Back in April 2020 Tyler Heaps (former Director of Sporting Analytics at U.S. Soccer) shared some of the visualizations from 
-automated post-match reports Kevin Shank, Rishi Kowalski (YNT Performance Analysts) and I had built prior to that time. 
+automated post-match reports Kevin Shank, Rishi Kowalski (YNT Performance Analysts) and I had built prior to that time using R's ggplot library. 
 
 ![Messi's Flow Motif Style Radar Graph](/imgs/messi.jpg){: style="width:300px; float:right;"}
 
