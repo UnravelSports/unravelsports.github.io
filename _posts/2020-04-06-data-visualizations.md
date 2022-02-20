@@ -1,4 +1,4 @@
-## internal Tyler Heaps visualizations
+## Heatmaps
 
 https://twitter.com/tjheaps/status/1247247143045382144
 
