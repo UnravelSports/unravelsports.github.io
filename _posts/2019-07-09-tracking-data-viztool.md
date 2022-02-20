@@ -1,6 +1,6 @@
 ## Women World Cup 2019 Tracking Data Tool
 
-In the weeks leading up to the 2019 FIFA Women's World Cup, we (at the U.S. Soccer Federation) developed an in-house tracking data visualization tool to help with the pre-match analysis of the coaching staff.
+In the weeks leading up to the 2019 FIFA Women's World Cup, we (at the U.S. Soccer Federation in collaboration with [Peak6](https://peak6.com/)) developed a tracking data visualization tool to help with the pre-match analysis of the coaching staff.
 
 Tyler Heaps (former Director of Sporting Analytics) shared a video of the World Cup winning 2-0 goal by Rose Lavelle.
 
