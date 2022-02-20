@@ -8,6 +8,8 @@ description: "Sports Analytics Engineering" # This will show up in places like t
 twitter_username: "@unravelsports"
 linkedin_username: "joris-bekkers-33138288"
 
+list_title: "Not Posts"
+
 #########################################################################################
 ######### Nothing below needs to be changed (unless you know what you're doing) #########
 #########################################################################################
@@ -20,7 +22,7 @@ kramdown:
     disable: true
     
 plugins:
-#  - jekyll-feed
+  - jekyll-feed
   - jekyll-sitemap
 
 titles_from_headings:
