@@ -7,7 +7,7 @@ designing end-user centered custom and novel data visualizations, and building &
 
 Below is an overview of some of my public work including football analytics research, a proof-of-concept multi-platform mobile/tablet app, data visualizations and interviews.
 
-For questions or inquiries feel free to contact me on the links below.
+For inquiries feel free to contact me on the links below.
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
