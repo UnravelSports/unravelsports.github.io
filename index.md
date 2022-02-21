@@ -40,8 +40,6 @@ For questions or inquiries feel free to contact me on the links below.
 }
 
 </style>
-</head>
-<body>
 
 <div class="center">
   <a href="#" class="fa fa-twitter"></a>
