@@ -13,7 +13,7 @@ For questions or inquiries feel free to contact me on the links below.
 .fa {
   padding: 20px;
   font-size: 30px;
-  width: 50px;
+  width: 35px;
   text-align: center;
   text-decoration: none;
   margin: 5px 2px;
@@ -46,6 +46,10 @@ For questions or inquiries feel free to contact me on the links below.
   <a href="#" class="fa fa-linkedin"></a>
 </div>
 
-------
 
+------
+<br>
+<br>
+
+## Blogs
 
