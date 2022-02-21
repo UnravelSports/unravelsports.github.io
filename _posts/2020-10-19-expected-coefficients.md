@@ -1,4 +1,4 @@
-## 💻 Expected UEFA Coefficient Country Rank Model
+## 🔬 Expected UEFA Coefficient Country Rank Model
 
 Before the start of the 2020 European football season I created an model to simulate the
 Expected UEFA Coefficient Country Rank for the up-coming season with the primary objective
