@@ -1,4 +1,4 @@
-## 💻 Real Time Pitch Control Multi-Platform App
+## 📱 Real Time Pitch Control Multi-Platform App
 
 <a href='https://play.google.com/store/apps/details?id=com.unravelsports.base_app&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
 <img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style="width:200px; float:right;"/></a>
