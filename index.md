@@ -12,7 +12,6 @@ For inquiries feel free to contact me on the links below.
 <a href="https://twitter.com/unravelsports" class="fa fa-twitter"></a>
 <a href="https://www.linkedin.com/in/joris-bekkers-33138288" class="fa fa-linkedin"></a>
 
-
 ------
 <br>
 <br>
