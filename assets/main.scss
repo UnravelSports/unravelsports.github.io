@@ -5,9 +5,10 @@
 
 :root {
   --clr-primary: rgba(230, 182, 17, 1);
-  --clr-secondary: rgba(40, 204, 204, 1);
+  --clr-secondary: rgba(40, 204, 204, 1); // TODO: change color
   --clr-bg: rgba(36,38,39, 1);
   --clr-highlight: rgba(154,144,131,1);
+  --clr-white: rgba(255, 255, 255, 1);
 }
 
 body {
@@ -33,7 +34,19 @@ a {
 }
 
 .post-link {
-  color: var(--clr-secondary);
+  color: var(--clr-white);
+}
+
+.post-link:hover {
+  color: var(--clr-primary);
+}
+
+.page-link {
+  color: var(--clr-highlight);
+}
+
+.page-link:hover {
+  color: var(--clr-primary);
 }
 
 .fa {
