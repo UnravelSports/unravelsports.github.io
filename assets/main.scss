@@ -3,12 +3,24 @@
 
 @import "{{ site.theme }}";
 
+:root {
+  --clr-primary: rgba(230, 182, 17, 1);
+}
+
 body {
   font-family: 'Titillium Web', sans-serif;
 }
 
 p {
-  font-size: 1.2em;
+  font-size: 1.15em;
+}
+
+.site-title {
+  color: var(--clr-primary);
+}
+
+h2 {
+  color: var(--clr-primary);
 }
 
 .fa {
