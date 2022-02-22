@@ -29,6 +29,18 @@ a {
   transition: all 0.2s ease-out;
 }
 
+a.post-link:link {
+  color: red;
+}
+
+a.post-link:visited {
+  color: green;
+}
+
+a.post-link:hover, a:active {
+  color: hotpink;
+}
+
 .site-logo {
   max-width: 100px;
 }
