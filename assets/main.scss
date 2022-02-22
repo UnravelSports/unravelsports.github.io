@@ -5,6 +5,7 @@
 
 :root {
   --clr-primary: rgba(230, 182, 17, 1);
+  --clr-secondary: rgba(40, 204, 204, 1);
 }
 
 body {
@@ -19,6 +20,14 @@ h2 {
   color: var(--clr-primary);
 }
 
+a {
+  transition: all 0.2s ease-out;
+}
+
+.post-link {
+  color: var(--clr-secondary);
+}
+
 .fa {
   padding: 15px;
   font-size: 30px;
@@ -27,6 +36,7 @@ h2 {
   text-decoration: none;
   margin: 5px 2px;
   transition: all 0.2s ease-out;
+  color: var(--clr-secondary);
 }
 
 .fa:hover {
