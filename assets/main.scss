@@ -24,6 +24,10 @@ a {
   transition: all 0.2s ease-out;
 }
 
+.site-logo {
+  max-width: 100px;
+}
+
 .post-link {
   color: var(--clr-secondary);
 }
