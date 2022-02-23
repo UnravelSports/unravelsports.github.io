@@ -70,27 +70,15 @@ a {
   opacity: 0.85;
 }
 
-a:link {
+a.post-link:link, a:link {
   color: var(--clr-primary-font);
 }
 
-a:hover {
-  color: var(--clr-primary);
-}
-
-a:visited {
+a.post-link:visited, a:visited {
   color: var(--clr-highlight);
 }
 
-a.post-link:link {
-  color: var(--clr-primary-font);
-}
-
-a.post-link:visited {
-  color: var(--clr-highlight);
-}
-
-a.post-link:hover, a:active {
+a.post-link:hover, a:active, a:hover {
   color: var(--clr-primary);
 }
 
