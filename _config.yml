@@ -13,13 +13,14 @@ description: "Sports Data Analytics Research & Engineering Consultancy"
 ######### Nothing below needs to be changed (unless you know what you're doing) #########
 #########################################################################################
 theme: "minima"
+permalink: pretty
 
 # rss: rss
 
 kramdown:
   syntax_highlighter_opts:
     disable: true
-    
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap
