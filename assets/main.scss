@@ -3,14 +3,6 @@
 
 @import "{{ site.theme }}";
 
-// TODO: Hover color twitter/linkedin
-// TODO: share on: => hover, color
-// TODO: footer needs own style too
-// TODO: convert all .md to .html
-// TODO: blog archive link colors different
-// TODO: twitter threads black
-// TODO: links on clicked not blue (links in .md files are different)
-
 :root {
   --clr-primary: rgba(230, 182, 17, 1); // yellow
   --clr-secondary: rgba(40, 204, 204, 1); // TODO: change color
@@ -68,7 +60,7 @@ figcaption {
   margin-top: -5px;
 }
 
-blockquote {
+blockquote.twitter-tweet {
   background-color: var(--clr-highlight);
 }
 
@@ -125,15 +117,15 @@ a.page-link:hover {
   color: var(--clr-secondary);
 }
 
+.fa-twitter, .fa-linkedin {
+  background: var(--clr-primary-font);
+  color: var(--clr-primary-font);
+}
+
 .fa:hover, .fa-twitter:hover, .fa-linkedin:hover {
     background: var(--clr-primary);
     color: var(--clr-primary-font);
     text-decoration: none;
-}
-
-.fa-twitter, .fa-linkedin {
-  background: var(--clr-primary-font);
-  color: var(--clr-primary-font);
 }
 
 .fa-twitter::before, .fa-linkedin::before {
