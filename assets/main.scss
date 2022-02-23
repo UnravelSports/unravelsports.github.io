@@ -83,10 +83,6 @@ a.post-link:hover, a:active, a:hover {
   color: var(--clr-primary);
 }
 
-path {
-  color: var(--clr-highlight);
-}
-
 path:hover {
   color: var(--clr-primary);
 }
@@ -182,4 +178,8 @@ div.trigger {
 
 .twitter:hover, .linkedin:hover {
   color: var(--clr-primary);
+}
+
+#share-buttons {
+  color: var(--clr-highlight);
 }
