@@ -5,11 +5,12 @@
 
 :root {
   --clr-primary: rgba(230, 182, 17, 1); // yellow
-  --clr-secondary: rgba(40, 204, 204, 1); // TODO: change color
+  --clr-secondary: rgba(98, 106, 103, 1); // TODO: change color
   --clr-bg: rgba(36,38,39, 1); // blackish
   --clr-highlight: rgba(154,144,131,1); // goldish brown
   --clr-white: rgba(255, 255, 255, 1); // white
   --clr-primary-font: rgba(255, 255, 255, 1); // white
+  --clr-fields: rgba(98, 106, 103, 1);
 }
 
 body {
@@ -151,9 +152,9 @@ nav.site-nav {
 }
 
 .text-paperclip {
-  color: var(--clr-highlight);
+  color: var(--clr-primary-font);
   padding: 10px;
-  background-color: green;
+  background-color: var(--clr-fields);
   border-radius: 5px;
   margin: 25px;
 }
