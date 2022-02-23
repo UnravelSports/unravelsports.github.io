@@ -1,4 +1,4 @@
-<b>UnravelSports</b> is a Sports Data Analytics Research & Engineering Consultancy run by Joris Bekkers, primarily focused on football.
+<b>UnravelSports</b> is a Sports Data Analytics Research & Engineering Consultancy run by Joris Bekkers.
 
 I have about five years of industry experience conducting football analytics research, developing state-of-the-art analytics models,
 designing end-user centered custom and novel data visualizations, and building & integrating data analytics into day-to-day work flows

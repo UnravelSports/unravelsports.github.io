@@ -13,7 +13,6 @@ description: "Sports Data Analytics Research & Engineering Consultancy"
 ######### Nothing below needs to be changed (unless you know what you're doing) #########
 #########################################################################################
 theme: "minima"
-permalink: pretty
 
 # rss: rss
 
