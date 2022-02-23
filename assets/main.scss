@@ -142,8 +142,8 @@ div.share-links {
   fill: var(--clr-highlight);
 }
 
-div.share-links:hover {
-  fill: var(--clr-primary);
+#share-links .twitter svg {
+  fill: red;
 }
 
 div.post_navi-label {
@@ -173,8 +173,8 @@ nav.site-nav {
   margin: 25px;
 }
 
-.text-paperclip.a:link {
-  color: red;
+.paperclip-link:link {
+  color: green;
 }
 
 div.trigger {

@@ -1,6 +1,6 @@
 ## 🔬 Expected Pass Model
 
-<div class="text-paperclip"> 📎 This blog was written as an explanation/addendum to an Interactive Pass Expectation Visualization Tool built with <a href="https://bokeh.org/">Bokeh</a>, unfortunately this tool has been lost to the ages. Figure 3 & 4 shown in this blog are screenshots of this tool</div>
+<div class="text-paperclip"> 📎 This blog was written as an explanation/addendum to an Interactive Pass Expectation Visualization Tool built with <a href="https://bokeh.org/" class="paperclip-link">Bokeh</a>, unfortunately this tool has been lost to the ages. Figure 3 & 4 shown in this blog are screenshots of this tool</div>
 
 
 During the break of the friendly international match between The Netherlands and Belgium on November 9th 2016 Jordi Clasie was subject to several unfriendly tweets asking Dutch head coach Blind to substitute him. The reason? His pass success rate was just 66% in the first half.
