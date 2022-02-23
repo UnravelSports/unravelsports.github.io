@@ -168,14 +168,14 @@ nav.site-nav {
   margin: 25px;
 }
 
+.text-paperclip.a:link {
+  color: red;
+}
+
 div.trigger {
   background-color: var(--clr-bg);
 }
 
-.twitter, .linkedin {
-  fill: var(--clr-highlight);
-}
-
-.twitter:hover, .linkedin:hover {
-  fill: var(--clr-primary);
+#share-buttons > div > svg {
+  fill: red;
 }
