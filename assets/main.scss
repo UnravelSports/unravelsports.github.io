@@ -45,6 +45,7 @@ h4 {
   color: var(--clr-primary);
   font-weight: bold;
   margin-top: 30px;
+  margin-bottom: 10px;
   opacity: 0.85;
 }
 
@@ -157,8 +158,10 @@ nav.site-nav {
 .text-quote {
   font-style: italic;
   color: var(--clr-highlight);
+  margin: 25px;
 }
 
 .text-paperclip {
   color: var(--clr-highlight);
+  margin: 25px;
 }
