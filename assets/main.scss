@@ -4,11 +4,11 @@
 @import "{{ site.theme }}";
 
 // TODO: Hover color twitter/linkedin
-// TODO: quotes and paperclips need their own style => fontsize, color, margin etc.
 // TODO: footer needs own style too
 // TODO: share on: => hover, color
 // TODO: convert all .md to .html
 // TODO: mobile menu color
+// TODO: blog archive link colors different
 
 :root {
   --clr-primary: rgba(230, 182, 17, 1); // yellow
@@ -57,10 +57,6 @@ figcaption {
   color: var(--clr-highlight);
   margin-bottom: 35px;
   margin-top: -5px;
-}
-
-path:hover {
-  color: var(--clr-primary);
 }
 
 a {
@@ -164,4 +160,16 @@ nav.site-nav {
 .text-paperclip {
   color: var(--clr-highlight);
   margin: 25px;
+}
+
+div.trigger {
+  background-color: var(--clr-bg);
+}
+
+#share-buttons {
+  color: var(--clr-highlight);
+}
+
+#share-buttons:hover {
+  color: var(--clr-primary);
 }
