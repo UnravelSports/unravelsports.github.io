@@ -4,10 +4,9 @@
 @import "{{ site.theme }}";
 
 // TODO: Hover color twitter/linkedin
-// TODO: footer needs own style too
 // TODO: share on: => hover, color
+// TODO: footer needs own style too
 // TODO: convert all .md to .html
-// TODO: mobile menu color
 // TODO: blog archive link colors different
 
 :root {
@@ -166,10 +165,10 @@ div.trigger {
   background-color: var(--clr-bg);
 }
 
-#share-buttons {
+div#share-buttons {
   color: var(--clr-highlight);
 }
 
-#share-buttons:hover {
+div#share-buttons:hover {
   color: var(--clr-primary);
 }
