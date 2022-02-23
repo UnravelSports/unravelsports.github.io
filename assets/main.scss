@@ -125,6 +125,10 @@ a.page-link:hover {
     text-decoration: none;
 }
 
+a.fa.fa-twitter::before, a.fa.fa-linkedin::before {
+    color: var(--clr-primary);
+}
+
 div.share-links {
   margin-bottom: 20px;
   text-align: right;
@@ -152,10 +156,12 @@ nav.site-nav {
 }
 
 .text-paperclip {
-  color: var(--clr-primary-font);
+  color: var(--clr-bg);
   padding: 10px;
-  background-color: var(--clr-fields);
+  background-color: var(--clr-white);
   border-radius: 5px;
+  border-color: var(--clr-primary);
+  border-width: 1px;
   margin: 25px;
 }
 
