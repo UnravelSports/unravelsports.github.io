@@ -33,7 +33,7 @@ a {
 }
 
 a.post-link:link {
-  color: var(--clr-highlight);
+  color: var(--clr-primary-font);
 }
 
 a.post-link:visited {
@@ -44,19 +44,11 @@ a.post-link:hover, a:active {
   color: var(--clr-primary);
 }
 
-.site-logo {
+img.site-logo {
   max-width: 100px;
 }
 
-.post-link {
-  color: var(--clr-white);
-}
-
-.post-link:hover {
-  color: var(--clr-primary);
-}
-
-.post-meta {
+span.post-meta {
   color: var(--clr-highlight);
 }
 
@@ -85,6 +77,10 @@ a.page-link:hover {
 }
 
 .fa-twitter, .fa-linkedin {
-  background: #B5B6AB;
-  color: white;
+  background: var(--clr-primary-font);
+  color: var(--clr-primary-font);
+}
+
+.fa-twitter::before, .fa-linkedin::before{
+  color: var(--clr-primary);
 }
