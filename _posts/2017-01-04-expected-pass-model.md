@@ -1,6 +1,6 @@
 ## 🔬 Expected Pass Model
 
-<div class="text-paperclip"> 📎 This blog was written as an explanation/addendum to an Interactive Pass Expectation Visualization Tool built with [Bokeh](https://bokeh.org/), unfortunately this tool has been lost to the ages. Figure 3 & 4 shown in this blog are screenshots of this tool</div>
+<div class="text-paperclip"> 📎 This blog was written as an explanation/addendum to an Interactive Pass Expectation Visualization Tool built with <a href="https://bokeh.org/">Bokeh</a>, unfortunately this tool has been lost to the ages. Figure 3 & 4 shown in this blog are screenshots of this tool</div>
 
 
 During the break of the friendly international match between The Netherlands and Belgium on November 9th 2016 Jordi Clasie was subject to several unfriendly tweets asking Dutch head coach Blind to substitute him. The reason? His pass success rate was just 66% in the first half.
@@ -18,14 +18,13 @@ To do this we first analyzed 7,000,000 passes played during 23 seasons in the Er
         Figure 1. Pass success rate given pass direction
     </figcaption>
 </figure>
-<br>
+
 <figure>    
     <p><img src="/imgs/pass_success_2.png" width="200"></p>  
     <figcaption>
         Figure 2. Pass success rate given pass length
     </figcaption>
 </figure>
-<br>
 
 Now that we’ve got this out the way, we can create a model wherein every pass made by a player during a match is compared to passes with similar characteristics (direction, length, location). This gives us an expected pass value for each type of pass - the average of all similar passes made within the 7,000,000 pass data set. Now we compared each pass made in the current season of the English Premier League to between 28,000 and 50 historical passes that are similar to the pass in question. This expected pass value is compared to the success of the actual pass (either 0 [failed] or 1 [success]) to see whether or not a player passed better or worse than could be expected from him during a game (or season) given the exact type of passes he made.
 
@@ -35,7 +34,6 @@ Now that we’ve got this out the way, we can create a model wherein every pass 
         Figure 3. Cesar Azpilicueta’s Pass Performance in the first 18 matches of the Premier League '16/17
     </figcaption>
 </figure>
-<br>
 
 #### Interactive Analysis Tool
 
@@ -49,7 +47,6 @@ From this graph we can furthermore gather that Azpilicueta is a very consistent 
         Figure 4. Pass performance of all players in the English Premier League ('16/17) with Azpilicueta's stats highlighted.
     </figcaption>
 </figure>
-<br>
 
 Now that we know the pass performance for every player in every match during the season we can take the weighted average of both the expected and actual pass success rates and plot them on a scatter plot. Figure 4 shows 303 players in the English Premier League. Every circle indicates the average actual/expected success percentage over the whole season for one player. The nodes in the green part of the graph perform better than expected and all the squares in the red part of the graph perform worse than expected.
 
