@@ -68,6 +68,10 @@ figcaption {
   margin-top: -5px;
 }
 
+blockquote.twitter-tweet {
+  background-color: var(--clr-highlight);
+}
+
 a {
   transition: all 0.2s ease-out;
   color: var(--clr-primary);
@@ -121,7 +125,7 @@ a.page-link:hover {
   color: var(--clr-secondary);
 }
 
-.fa:hover {
+.fa:hover, .fa-twitter:hover, .fa-linkedin:hover {
     background: var(--clr-primary);
     color: var(--clr-primary-font);
     text-decoration: none;
