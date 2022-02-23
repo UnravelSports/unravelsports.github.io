@@ -83,6 +83,14 @@ a.post-link:hover, a:active, a:hover {
   color: var(--clr-primary);
 }
 
+path {
+  color: var(--clr-highlight);
+}
+
+path:hover {
+  color: var(--clr-primary);
+}
+
 img.site-logo {
   max-width: 100px;
 }
@@ -159,9 +167,8 @@ nav.site-nav {
   color: var(--clr-bg);
   padding: 10px;
   background-color: var(--clr-white);
-  border-radius: 5px;  
+  border-radius: 5px;
   border-width: 1px;
-  border-color: var(--clr-primary);
   margin: 25px;
 }
 
