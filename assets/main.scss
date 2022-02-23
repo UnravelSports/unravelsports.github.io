@@ -83,10 +83,6 @@ a.post-link:hover, a:active, a:hover {
   color: var(--clr-primary);
 }
 
-path:hover {
-  color: var(--clr-primary);
-}
-
 img.site-logo {
   max-width: 100px;
 }
@@ -174,8 +170,18 @@ nav.site-nav {
 }
 
 .paperclip-link:link {
-  color: green;
+  color: var(--clr-primary);
 }
+
+.paperclip-link:link:visited, .paperclip-link:link:active {
+  color: var(--clr-fields);
+}
+
+.paperclip-link:link:hover {
+  color: var(--clr-highlight);
+}
+
+
 
 div.trigger {
   background-color: var(--clr-bg);
