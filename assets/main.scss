@@ -43,6 +43,11 @@ h4 {
 
 a {
   transition: all 0.2s ease-out;
+  color: var(--clr-primary);
+}
+
+a:hover {
+  color: var(--clr-highlight);
 }
 
 a.post-link:link {
@@ -112,4 +117,8 @@ div.share-links {
 
 code {
   background-color: var(--clr-highlight);
+}
+
+figcaption {
+  color: var(--clr-highlight);
 }
