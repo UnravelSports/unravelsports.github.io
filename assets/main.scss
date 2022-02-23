@@ -172,14 +172,14 @@ div.trigger {
   background-color: var(--clr-bg);
 }
 
-.twitter, .linkedin {
-  color: var(--clr-highlight);
-}
+// .twitter, .linkedin {
+//   color: var(--clr-highlight);
+// }
+//
+// .twitter:hover, .linkedin:hover {
+//   color: var(--clr-primary);
+// }
 
-.twitter:hover, .linkedin:hover {
-  color: var(--clr-primary);
-}
-
-#share-buttons {
-  color: var(--clr-highlight);
+#share-buttons.twitter svg {
+  fill: var(--clr-highlight);
 }
