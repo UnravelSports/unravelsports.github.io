@@ -4,11 +4,10 @@
 @import "{{ site.theme }}";
 
 // TODO: Hover color twitter/linkedin
-// TODO: Not all links are yellow
 // TODO: opacity = 0.85 for links?
-// TODO: Blog archive color
 // TODO: quotes and paperclips need their own style
 // TODO: footer needs own style too
+// TODO: share on: => hover, color
 
 :root {
   --clr-primary: rgba(230, 182, 17, 1); // yellow
@@ -51,6 +50,7 @@ h4 {
 a {
   transition: all 0.2s ease-out;
   color: var(--clr-primary);
+  opacity: 0.85;
 }
 
 a:hover {
@@ -137,4 +137,5 @@ code {
 
 figcaption {
   color: var(--clr-highlight);
+  margin-bottom: 25px;
 }
