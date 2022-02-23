@@ -82,6 +82,10 @@ a.page-link:hover {
   color: var(--clr-primary-font);
 }
 
-.fa-twitter::before, .fa-linkedin::before{
+.fa-twitter::before, .fa-linkedin::before {
   color: var(--clr-primary);
+}
+
+.fa-twitter::after, .fa-linkedin::after {
+  color: var(--clr-primary-font);
 }
