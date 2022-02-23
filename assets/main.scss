@@ -142,6 +142,10 @@ div.share-links {
   fill: var(--clr-highlight);
 }
 
+div.share-links:hover {
+  fill: var(--clr-primary);
+}
+
 div.post_navi-label {
   color: var(--clr-highlight);
 }
@@ -175,8 +179,4 @@ nav.site-nav {
 
 div.trigger {
   background-color: var(--clr-bg);
-}
-
-.twitter svg {
-  fill: red;
 }
