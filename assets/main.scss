@@ -4,10 +4,11 @@
 @import "{{ site.theme }}";
 
 // TODO: Hover color twitter/linkedin
-// TODO: opacity = 0.85 for links?
-// TODO: quotes and paperclips need their own style
+// TODO: quotes and paperclips need their own style => fontsize, color, margin etc.
 // TODO: footer needs own style too
 // TODO: share on: => hover, color
+// TODO: convert all .md to .html
+// TODO: mobile menu color
 
 :root {
   --clr-primary: rgba(230, 182, 17, 1); // yellow
@@ -45,6 +46,20 @@ h4 {
   font-weight: bold;
   margin-top: 30px;
   opacity: 0.85;
+}
+
+code {
+  background-color: var(--clr-highlight);
+}
+
+figcaption {
+  color: var(--clr-highlight);
+  margin-bottom: 35px;
+  margin-top: -5px;
+}
+
+path:hover {
+  color: var(--clr-primary);
 }
 
 a {
@@ -129,16 +144,6 @@ div.share-links {
 
 div.post_navi-label {
   color: var(--clr-highlight);
-}
-
-code {
-  background-color: var(--clr-highlight);
-}
-
-figcaption {
-  color: var(--clr-highlight);
-  margin-bottom: 35px;
-  margin-top: -5px;
 }
 
 .text-quote {
