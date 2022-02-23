@@ -165,10 +165,10 @@ div.trigger {
   background-color: var(--clr-bg);
 }
 
-div#share-buttons {
+.twitter, .linkedin {
   color: var(--clr-highlight);
 }
 
-div#share-buttons:hover {
+.twitter:hover, .linkedin:hover {
   color: var(--clr-primary);
 }
