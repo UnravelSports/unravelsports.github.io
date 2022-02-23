@@ -1,7 +1,6 @@
 ## 🎙 Industria Podcast: Using data analytics in professional football
 
-<div class="text-quote">"The [Industria](https://industria.tue.nl/about/) Podcast invites inspiring people who have a background in
-Industrial Engineering. More specifically, a background in (Industrial Engineering) in Eindhoven.
+<div class="text-quote">"The <a href="https://industria.tue.nl/about/">Industria</a> Podcast invites inspiring people who have a background in Industrial Engineering. More specifically, a background in (Industrial Engineering) in Eindhoven.
  Together they cover interesting and relevant topics to provide you with all kinds
   of knowledge and insights within the field of Industrial Engineering."</div>
 

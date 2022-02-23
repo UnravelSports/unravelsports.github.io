@@ -1,7 +1,7 @@
 ## 🔬 Expected Pass Model
 
-📎 <i>This blog was written as an explanation/addendum to an Interactive Pass Expectation Visualization Tool built with [Bokeh](https://bokeh.org/), unfortunately this tool has been lost to the ages. Figure 3 & 4 shown in this blog are screenshots of this tool</i>
-<br>
+<div class="text-paperclip"> 📎 This blog was written as an explanation/addendum to an Interactive Pass Expectation Visualization Tool built with [Bokeh](https://bokeh.org/), unfortunately this tool has been lost to the ages. Figure 3 & 4 shown in this blog are screenshots of this tool</div>
+
 
 During the break of the friendly international match between The Netherlands and Belgium on November 9th 2016 Jordi Clasie was subject to several unfriendly tweets asking Dutch head coach Blind to substitute him. The reason? His pass success rate was just 66% in the first half.
 
@@ -16,14 +16,14 @@ To do this we first analyzed 7,000,000 passes played during 23 seasons in the Er
     <p><img src="/imgs/pass_success.png" width="200"></p>  
     <figcaption>
         Figure 1. Pass success rate given pass direction
-    </figcaption> 
+    </figcaption>
 </figure>
 <br>
 <figure>    
     <p><img src="/imgs/pass_success_2.png" width="200"></p>  
     <figcaption>
         Figure 2. Pass success rate given pass length
-    </figcaption> 
+    </figcaption>
 </figure>
 <br>
 
@@ -33,7 +33,7 @@ Now that we’ve got this out the way, we can create a model wherein every pass 
     <p><img src="/imgs/exp_v_reality.png" width="425"></p>  
     <figcaption>
         Figure 3. Cesar Azpilicueta’s Pass Performance in the first 18 matches of the Premier League '16/17
-    </figcaption> 
+    </figcaption>
 </figure>
 <br>
 
@@ -47,7 +47,7 @@ From this graph we can furthermore gather that Azpilicueta is a very consistent 
     <p><img src="/imgs/tool_view.png" width="425"></p>  
     <figcaption>
         Figure 4. Pass performance of all players in the English Premier League ('16/17) with Azpilicueta's stats highlighted.
-    </figcaption> 
+    </figcaption>
 </figure>
 <br>
 
