@@ -4,21 +4,24 @@
 @import "{{ site.theme }}";
 
 :root {
-  --clr-primary: rgba(230, 182, 17, 1);
+  --clr-primary: rgba(230, 182, 17, 1); // yellow
   --clr-secondary: rgba(40, 204, 204, 1); // TODO: change color
-  --clr-bg: rgba(36,38,39, 1);
-  --clr-highlight: rgba(154,144,131,1);
-  --clr-white: rgba(255, 255, 255, 1);
+  --clr-bg: rgba(36,38,39, 1); // blackish
+  --clr-highlight: rgba(154,144,131,1); // goldish brown
+  --clr-white: rgba(255, 255, 255, 1); // white
+  --clr-primary-font: rgba(255, 255, 255, 1); // white
 }
 
 body {
   font-family: 'Titillium Web', sans-serif;
   background: var(--clr-bg);
-  color: var(--clr-highlight);
+  color: var(--clr-primary-font);
+
 }
 
 p {
   font-size: 1.15em;
+  color: var(--clr-primary-font);
 }
 
 h2 {
@@ -30,15 +33,15 @@ a {
 }
 
 a.post-link:link {
-  color: red;
+  color: var(--clr-highlight);
 }
 
 a.post-link:visited {
-  color: green;
+  color: var(--clr-highlight);
 }
 
 a.post-link:hover, a:active {
-  color: hotpink;
+  color: var(--clr-primary);
 }
 
 .site-logo {
@@ -53,11 +56,15 @@ a.post-link:hover, a:active {
   color: var(--clr-primary);
 }
 
-.page-link {
+.post-meta {
+  color: var(--clr-highlight);
+}
+
+a.page-link {
   color: var(--clr-white);
 }
 
-.page-link:hover {
+a.page-link:hover {
   color: var(--clr-primary);
 }
 
