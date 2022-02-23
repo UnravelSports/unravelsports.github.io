@@ -3,6 +3,13 @@
 
 @import "{{ site.theme }}";
 
+// TODO: Hover color twitter/linkedin
+// TODO: Not all links are yellow
+// TODO: opacity = 0.85 for links?
+// TODO: Blog archive color
+// TODO: quotes and paperclips need their own style
+// TODO: footer needs own style too
+
 :root {
   --clr-primary: rgba(230, 182, 17, 1); // yellow
   --clr-secondary: rgba(40, 204, 204, 1); // TODO: change color
@@ -74,6 +81,10 @@ a.page-link:link {
   color: var(--clr-white);
 }
 
+a.page-link:visited {
+  color: var(--clr-white);
+}
+
 a.page-link:hover {
   color: var(--clr-primary);
 }
@@ -113,6 +124,11 @@ div.share-links {
   text-align: right;
   margin-left: auto;
   margin-right: 0;
+  color: var(--clr-highlight);
+}
+
+div.post_navi-label {
+  color: var(--clr-highlight);
 }
 
 code {
