@@ -7,6 +7,7 @@ designing end-user centered custom and novel data visualizations, and building &
 
 Below is an overview of some of my public work including football analytics research, a proof-of-concept multi-platform mobile/tablet app, data visualizations and interviews.
 
+<br>
 For inquiries feel free to contact me on the links below.
 
 <a href="https://twitter.com/unravelsports" class="fa fa-twitter"></a>

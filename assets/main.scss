@@ -70,7 +70,15 @@ a {
   opacity: 0.85;
 }
 
+a:link {
+  color: var(--clr-primary-font);
+}
+
 a:hover {
+  color: var(--clr-primary);
+}
+
+a:visited {
   color: var(--clr-highlight);
 }
 
