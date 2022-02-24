@@ -7,4 +7,4 @@ In the weeks leading up to the 2019 FIFA Women's World Cup, we (at the U.S. Socc
 
 Tyler Heaps (former Director of Sporting Analytics) shared a video of the World Cup winning 2-0 goal by Rose Lavelle.
 
-<blockquote class="twitter-tweet" data-theme="dark"><p lang="cy" dir="ltr">Mewis -&gt; Lavelle -&gt; ⭐️ ⭐️ ⭐️ ⭐️ <a href="https://t.co/hXTSbS2G07">pic.twitter.com/hXTSbS2G07</a></p>&mdash; Tyler Heaps (@tjheaps) <a href="https://twitter.com/tjheaps/status/1148642263637155842?ref_src=twsrc%5Etfw">July 9, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet tw-align-center" data-theme="dark"><p lang="cy" dir="ltr">Mewis -&gt; Lavelle -&gt; ⭐️ ⭐️ ⭐️ ⭐️ <a href="https://t.co/hXTSbS2G07">pic.twitter.com/hXTSbS2G07</a></p>&mdash; Tyler Heaps (@tjheaps) <a href="https://twitter.com/tjheaps/status/1148642263637155842?ref_src=twsrc%5Etfw">July 9, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
