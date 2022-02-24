@@ -1,6 +1,6 @@
 ## 💻 FIFA Women's World Cup 2019 Tracking Data Tool
 
-<img src="/imgs/vice1.png" class"center-img"/>
+<img src="/imgs/vice1.png" class="center-img"/>
 
 
 In the weeks leading up to the 2019 FIFA Women's World Cup, we (at the U.S. Soccer Federation in collaboration with [Peak6](https://peak6.com/)) developed a tracking data visualization tool to help with the pre-match analysis of the coaching staff.
