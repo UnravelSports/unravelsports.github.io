@@ -1,7 +1,7 @@
 ## 🎙 VICE Interview: My Journey into Football Analytics
 
 <a href="https://www.vice.com/nl/article/xg85vq/analist-amerikaanse-voetbalbond" target="_blank">
-  <img src="vice1.png" width="100%"/>
+  <img src="/imgs/vice1.png" width="100%"/>
  </a>
 
 Read about my journey into sports analytics, living and working in Chicago and ultimately returning back to Breda to work as a remote
