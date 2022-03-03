@@ -10,5 +10,6 @@ In this blog I want to showcase my ideas, but unfortunately I have to admit that
 
 
 
-https://user-images.githubusercontent.com/64530306/156655256-ef853757-dcfd-42cd-8582-7b00b63d1365.mov
+<video src="https://user-images.githubusercontent.com/64530306/156655256-ef853757-dcfd-42cd-8582-7b00b63d1365.mov" controls="controls" muted="muted" style="max-width: 730px;">
+</video>
 
