@@ -6,17 +6,7 @@ In this post I want to show an app that would allow coaches, and technical and a
 
 In this blog I want to showcase my ideas, but unfortunately I have to admit that this app has not (yet) made it's way to an app store. So, we'll have to make due with some screen capped videos.
 
-<!-- <video src="https://user-images.githubusercontent.com/64530306/156654314-2865dd29-539a-4ff8-b22d-ea8f06cdefc3.mp4" controls="controls" style="max-width: 730px;">
-</video> -->
 
 
+https://user-images.githubusercontent.com/64530306/156655083-9092e4fb-a2ac-4005-a15c-543ac46d3da6.mp4
 
-<!-- https://user-images.githubusercontent.com/64530306/156654305-4972b161-5986-4510-8da0-904642e14363.mp4
-
-
-
-https://user-images.githubusercontent.com/64530306/156654310-89894a67-8f1a-4557-a1e6-eafaeee0303b.mp4
-
-
-
-https://user-images.githubusercontent.com/64530306/156654312-e78d0f0c-a33d-4a4d-9de4-c5460269ad08.mp4 -->
