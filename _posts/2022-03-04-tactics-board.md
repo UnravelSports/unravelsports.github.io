@@ -18,13 +18,24 @@ Unfortunately this project has not (yet) made it's way to an app store. So, we'l
     <figcaption>
         Video 1. Real-time interactive Pitch Control
     </figcaption>
+
+
+
+
+
+
+
+
+
+
+
 </figure>
 
 Video 1. displays the main interface with players in an arbitrary tactical setup up. It also shows how interacting with the players, either by simply moving players or adding a velocity vector to them instantly updates the underlying pitch control model. The velocity vectors are scaled to represent the players new location after 1 second.
 
 <figure>    
     <p>
-      <video src="https://user-images.githubusercontent.com/64530306/156655256-ef853757-dcfd-42cd-8582-7b00b63d1365.mov" class="center-vid" controls="controls" style="max-width: 500px;"></video>
+      <video src="https://user-images.githubusercontent.com/64530306/156880560-0af7b687-66f2-4d6c-9331-0f8273251ec1.mov" class="center-vid" controls="controls" style="max-width: 500px;"></video>
     </p>  
     <figcaption>
         Video 2. Custom drawing tools and cover shadow feature
@@ -35,7 +46,7 @@ In Video 2. we see some of the custom built drawing tools, such as arrows, lines
 
 <figure>    
     <p>
-      <video src="https://user-images.githubusercontent.com/64530306/156655256-ef853757-dcfd-42cd-8582-7b00b63d1365.mov" class="center-vid" controls="controls" style="max-width: 500px;"></video>
+      <video src="https://user-images.githubusercontent.com/64530306/156880559-6d58d01f-44a8-4c42-8045-4a4acc3f7890.mov" class="center-vid" controls="controls" style="max-width: 500px;"></video>
     </p>  
     <figcaption>
         Video 3. Other playing surfaces (attacking/defending third, field hockey, tennis, volleyball etc.)
@@ -46,7 +57,7 @@ Video 3. we shows some other surfaces that can be accessed via the settings menu
 
 <figure>    
     <p>
-      <video src="https://user-images.githubusercontent.com/64530306/156655256-ef853757-dcfd-42cd-8582-7b00b63d1365.mov" class="center-vid" controls="controls" style="max-width: 500px;"></video>
+      <video src="https://user-images.githubusercontent.com/64530306/156880561-cb12f588-3933-4214-8a33-8828085c3de2.mov" class="center-vid" controls="controls" style="max-width: 500px;"></video>
     </p>  
     <figcaption>
         Video 4. Basic options
