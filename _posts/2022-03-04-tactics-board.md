@@ -5,7 +5,7 @@ To accomplish this I created an <b>"Interactive Digital Tactical Magnet Board"</
 
 In its current state users can interact with a real time implementation of [William Spearman's](https://www.researchgate.net/publication/334849056_Quantifying_Pitch_Control) Pitch Control model, but it's not difficult to imagine that the app can be further enhanced with the implementation of other models and/or the ability to load specific in-game situations from tracking data.
 
-In this blog I'll showcase the app and it's features and touch a little on how to go from [Laurie Shaw's](https://github.com/Friends-of-Tracking-Data-FoTD/LaurieOnTracking) implementation of Spearmans model, to a fully functional real time implementation in Python by leveraging the power of NumPy and vectorization.
+In this blog I'll showcase the app and it's features and in a subsequent blog I'll touch a little on how to go from [Laurie Shaw's](https://github.com/Friends-of-Tracking-Data-FoTD/LaurieOnTracking) implementation of Spearman's model, to a fully functional real time implementation in Python by leveraging the power of NumPy and vectorization.
 
 Unfortunately this project has not (yet) made it's way to an app store. So, we'll have to make due with some screen capped videos.
 
