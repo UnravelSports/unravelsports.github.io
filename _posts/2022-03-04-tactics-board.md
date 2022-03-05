@@ -1,7 +1,5 @@
 ## 📱 Interactive Digital Tactical Magnet Board
 
-<div class="text-paperclip"> 📎<a class="post_navi-item nav_prev" href="/2021/03/14/live-pitch-control.html">Last year</a> I released my first proof-of-concept multi-platform phone & tablet app (iOS/<a href="https://play.google.com/store/apps/details?id=com.unravelsports.base_app" class="paperclip-link">Android</a>) built in <a href="https://flutter.dev/" class="paperclip-link">Flutter</a> which show cased a dummy live streamed feed of <a href="https://github.com/metrica-sports/sample-data" class="paperclip-link">Metrica Sports</a> open source data.</div>
-
 Directly interacting with advanced analytics tools such as Pitch Control or Expected Pass and Expected Receiver models would allow coaches, technical and analytics staff, not only in soccer but in virtually any sport, to get a better understanding of the underlying tactical insights these models offer to improve player development and game model design.
 To accomplish this I created an <b>"Interactive Digital Tactical Magnet Board"</b> that allows its users to directly interface with such custom built models.
 
@@ -50,3 +48,5 @@ The third video shows some other surfaces that can be accessed via the settings 
 And finally the last video highlights some basic features, such as increasing player sizes and changing team colors.
 
 The app also has some other features not shown in the video, such as local storage of tactical setups, an option to change each players jersey number, or change their jersey number to initials or full name, the ability to measure distances between (multiple) players, an option to highlight individual players and options to change the attacking team and assign a different player the role of goalkeeper.
+
+<div class="text-paperclip"> 📎<a class="post_navi-item nav_prev" href="/2021/03/14/live-pitch-control.html">Last year</a> I released my first proof-of-concept multi-platform phone & tablet app (iOS/<a href="https://play.google.com/store/apps/details?id=com.unravelsports.base_app" class="paperclip-link">Android</a>) built in <a href="https://flutter.dev/" class="paperclip-link">Flutter</a> which show cased a dummy live streamed feed of <a href="https://github.com/metrica-sports/sample-data" class="paperclip-link">Metrica Sports</a> open source data.</div>
