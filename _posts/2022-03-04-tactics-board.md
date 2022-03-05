@@ -15,7 +15,9 @@ Unfortunately this project has not (yet) made it's way to an app store. So, we'l
     <p>
       <video src="https://user-images.githubusercontent.com/64530306/156655256-ef853757-dcfd-42cd-8582-7b00b63d1365.mov" class="center-vid" controls="controls" style="max-width: 500px;"></video>
     </p>  
-    <figcaption class="center-vid">
+    <figcaption>
         Video 1. Real-time interactive Pitch Control
     </figcaption>
 </figure>
+
+Video
