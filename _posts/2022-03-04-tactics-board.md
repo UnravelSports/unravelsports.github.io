@@ -1,7 +1,7 @@
-## 📱 Interactive Digital Tactical Magnet Board
+## 📱 Interactive Digital Tactics Board
 
 Directly interacting with advanced analytics tools such as Pitch Control or Expected Pass and Expected Receiver models would allow coaches, technical and analytics staff, not only in soccer but in virtually any sport, to get a better understanding of the underlying tactical insights these models offer to improve player development and game model design.
-To accomplish this I created an <b>"Interactive Digital Tactical Magnet Board"</b> that allows its users to directly interface with such custom built models.
+To accomplish this I created an <b>"Interactive Digital Tactics Board"</b> that allows its users to directly interface with such custom built models.
 
 In its current state users can interact with a real time implementation of [William Spearman's](https://www.researchgate.net/publication/334849056_Quantifying_Pitch_Control) Pitch Control model, but it's not difficult to imagine that the app can be further enhanced with the implementation of other models and/or the ability to load specific in-game situations from tracking data.
 
