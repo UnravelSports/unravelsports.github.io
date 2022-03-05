@@ -38,7 +38,7 @@ To further enhance the interactivity the app comes with custom built drawing too
 
 The third video shows some other surfaces that can be accessed via the settings menu. For example attacking/defending third (soccer), field hockey, tennis and volleyball. It's safe to say that the sky is the limit here when it comes to implementing playing surfaces and player number restrictions.
 
-#### Further options
+#### Additional options
 <figure>    
     <p>
       <video src="https://user-images.githubusercontent.com/64530306/156880561-cb12f588-3933-4214-8a33-8828085c3de2.mov" class="center-vid" controls="controls" style="max-width: 500px;"></video>
