@@ -13,14 +13,14 @@ To see if we can counter the ambiguity inherently present in the regular pass su
 To do this we first analyzed 7,000,000 passes played during 23 seasons in the Eredivisie, Premier League, Serie A, La Liga, Ligue 1 and the Bundesliga between 2012 and 2016 (unfortunately we do not have the specific match data for the international match between The Netherlands and Belgium). From this we can clearly see (Figure 1) that it is inherently harder to pass a ball forward than it is to pass a ball backwards (on an arbitrary location on the pitch) ánd in Figure 2 we can see that (very) long passes (above 30 meters) and very short passes (below 3 meters) are more than twice as unsuccessful as medium length passes.  Furthermore we found that it is also inherently more difficult to make passes on specific areas of the pitch (e.g. the closer the pass is made to the opponents’ goal, the lower the success rate). This implies that if Clasie passed all his balls forward, or perhaps longer than 30 meters, 66% might not even be such a bad number.
 
 <figure>    
-    <p><img src="/imgs/pass_success.png" width="200" class="center-img"></p>  
+    <p><img src="/imgs/pass_success.png" width="200" class="center-img-2"></p>  
     <figcaption>
         Figure 1. Pass success rate given pass direction
     </figcaption>
 </figure>
 
 <figure>    
-    <p><img src="/imgs/pass_success_2.png" width="200" class="center-img"></p>  
+    <p><img src="/imgs/pass_success_2.png" width="200" class="center-img-2"></p>  
     <figcaption>
         Figure 2. Pass success rate given pass length
     </figcaption>
