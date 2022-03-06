@@ -53,6 +53,4 @@ And finally the last video highlights some basic features, such as increasing pl
 
 The app also has some other features not shown in the video. There is an option to change each players jersey number, or change their jersey number to initials or full name, the ability to measure distances between (multiple) players, an option to highlight individual players and the ability to change the attacking team and assign a different player the role of goalkeeper.
 
-Unfortunately, currently I don't have any further plans for the release of this app. If you have any ideas on what I should do with it, feel free to send me a DM on Twitter.
-
 <div class="text-paperclip"> 📎 In <a class="post_navi-item nav_prev" href="/2021/03/14/live-pitch-control.html">this</a> blog you'll find a description of my first proof-of-concept multi-platform phone & tablet app (iOS/<a href="https://play.google.com/store/apps/details?id=com.unravelsports.base_app" class="paperclip-link">Android</a>) built in <a href="https://flutter.dev/" class="paperclip-link">Flutter</a> which show cased a dummy live streamed feed of <a href="https://github.com/metrica-sports/sample-data" class="paperclip-link">Metrica Sports</a> open source data.</div>
