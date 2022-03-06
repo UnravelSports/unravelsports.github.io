@@ -18,7 +18,7 @@ Unfortunately this project has not (yet) made it's way to an app store. So, we'l
     <figcaption>Interactive Pitch Control</figcaption>  
 </figure>
 
-The first video displays the main interface with players in an arbitrary tactical setup up. It shows how interacting with a player, either by simply moving it or adding a velocity vector to via its individual player menu, instantly updates the underlying pitch control model. The velocity vectors are scaled to represent the players new location after 1 second.
+The first video displays the main interface with players in an arbitrary tactical setup up. It shows how interacting with a player, either by simply moving it or adding a velocity vector to it via its individual player menu, instantly updates the underlying pitch control model. <br>The velocity vectors are scaled to represent the players new location after 1 second.
 
 #### Custom drawing tools and cover shadows
 <figure>    
@@ -46,12 +46,12 @@ The third video shows some of the other pitch surfaces, attacking/defending thir
     <p>
       <video src="https://user-images.githubusercontent.com/64530306/156880561-cb12f588-3933-4214-8a33-8828085c3de2.mov" class="center-vid" controls="controls" style="max-width: 500px;"></video>
     </p>  
-    <figcaption>Settings menu</figcaption> 
+    <figcaption>Settings menu</figcaption>
 </figure>
 
 And finally the last video highlights some basic features, such as increasing player sizes and changing team colors.
 
-The app also has some other features not shown in the video, an option to change each players jersey number, or change their jersey number to initials or full name, the ability to measure distances between (multiple) players, an option to highlight individual players and the ability to change the attacking team and assign a different player the role of goalkeeper.
+The app also has some other features not shown in the video. There is an option to change each players jersey number, or change their jersey number to initials or full name, the ability to measure distances between (multiple) players, an option to highlight individual players and the ability to change the attacking team and assign a different player the role of goalkeeper.
 
 Unfortunately, currently I don't have any further plans for the release of this app. If you have any ideas on what I should do with it, feel free to send me a DM on Twitter.
 
