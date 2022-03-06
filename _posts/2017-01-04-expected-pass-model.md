@@ -13,14 +13,14 @@ To see if we can counter the ambiguity inherently present in the regular pass su
 To do this we first analyzed 7,000,000 passes played during 23 seasons in the Eredivisie, Premier League, Serie A, La Liga, Ligue 1 and the Bundesliga between 2012 and 2016 (unfortunately we do not have the specific match data for the international match between The Netherlands and Belgium). From this we can clearly see (Figure 1) that it is inherently harder to pass a ball forward than it is to pass a ball backwards (on an arbitrary location on the pitch) ánd in Figure 2 we can see that (very) long passes (above 30 meters) and very short passes (below 3 meters) are more than twice as unsuccessful as medium length passes.  Furthermore we found that it is also inherently more difficult to make passes on specific areas of the pitch (e.g. the closer the pass is made to the opponents’ goal, the lower the success rate). This implies that if Clasie passed all his balls forward, or perhaps longer than 30 meters, 66% might not even be such a bad number.
 
 <figure>    
-    <p><img src="/imgs/pass_success.png" width="200"></p>  
+    <p><img src="/imgs/pass_success.png" width="200" class="center-img"></p>  
     <figcaption>
         Figure 1. Pass success rate given pass direction
     </figcaption>
 </figure>
 
 <figure>    
-    <p><img src="/imgs/pass_success_2.png" width="200"></p>  
+    <p><img src="/imgs/pass_success_2.png" width="200" class="center-img"></p>  
     <figcaption>
         Figure 2. Pass success rate given pass length
     </figcaption>
@@ -29,7 +29,7 @@ To do this we first analyzed 7,000,000 passes played during 23 seasons in the Er
 Now that we’ve got this out the way, we can create a model wherein every pass made by a player during a match is compared to passes with similar characteristics (direction, length, location). This gives us an expected pass value for each type of pass - the average of all similar passes made within the 7,000,000 pass data set. Now we compared each pass made in the current season of the English Premier League to between 28,000 and 50 historical passes that are similar to the pass in question. This expected pass value is compared to the success of the actual pass (either 0 [failed] or 1 [success]) to see whether or not a player passed better or worse than could be expected from him during a game (or season) given the exact type of passes he made.
 
 <figure>    
-    <p><img src="/imgs/exp_v_reality.png" width="425"></p>  
+    <p><img src="/imgs/exp_v_reality.png" width="425" class="center-img"></p>  
     <figcaption>
         Figure 3. Cesar Azpilicueta’s Pass Performance in the first 18 matches of the Premier League '16/17
     </figcaption>
@@ -42,7 +42,7 @@ Over a given season a players' specific pass performance might look something li
 From this graph we can furthermore gather that Azpilicueta is a very consistent risk taker, with an expected pass success of close to 80% across all but one match (72% against Tottenham Hotspur).
 
 <figure>    
-    <p><img src="/imgs/tool_view.png" width="425"></p>  
+    <p><img src="/imgs/tool_view.png" width="425" class="center-img"></p>  
     <figcaption>
         Figure 4. Pass performance of all players in the English Premier League ('16/17) with Azpilicueta's stats highlighted.
     </figcaption>
