@@ -95,7 +95,7 @@ row_idx, col_idx = linear_sum_assignment(
 Here are the results in a cleaned up table with the matched names side-by-side and the and their cosine similarity values.
 
 
-<table style="width:70%">
+<table class="center-table" style="width:70%">
     <thead>
         <tr>
             <td>ce_teams</td>
