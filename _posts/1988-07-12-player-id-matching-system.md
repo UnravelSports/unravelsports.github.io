@@ -96,105 +96,101 @@ Here are the results in a cleaned up table with the matched names side-by-side a
 
 
 <table class="center-table" style="width:70%">
-    <thead>
-        <tr>
-            <td>ce_teams</td>
-            <td>tm_teams</td>
-            <td>cosine_similarity </td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>arouca</td>
-            <td>fc arouca</td>
-            <td>0.86 </td>
-        </tr>
-        <tr>
-            <td>belenenses</td>
-            <td>belenenses sad</td>
-            <td>0.826 </td>
-        </tr>
-        <tr>
-            <td>benfica</td>
-            <td>sl benfica</td>
-            <td>0.805 </td>
-        </tr>
-        <tr>
-            <td>boavista</td>
-            <td>boavista fc</td>
-            <td>0.882 </td>
-        </tr>
-        <tr>
-            <td>braga</td>
-            <td>sc braga</td>
-            <td>0.719 </td>
-        </tr>
-        <tr>
-            <td>estoril</td>
-            <td>gd estoril praia</td>
-            <td>0.533 </td>
-        </tr>
-        <tr>
-            <td>famalicao</td>
-            <td>fc famalicao</td>
-            <td>0.847 </td>
-        </tr>
-        <tr>
-            <td>gil vicente</td>
-            <td>gil vicente fc</td>
-            <td>0.892 </td>
-        </tr>
-        <tr>
-            <td>guimaraes</td>
-            <td>vitoria guimaraes sc</td>
-            <td>0.678 </td>
-        </tr>
-        <tr>
-            <td>maritimo</td>
-            <td>cs maritimo</td>
-            <td>0.824 </td>
-        </tr>
-        <tr>
-            <td>moreirense</td>
-            <td>moreirense fc</td>
-            <td>0.86 </td>
-        </tr>
-        <tr>
-            <td>pacos ferreira</td>
-            <td>fc pacos de ferreira</td>
-            <td>0.65 </td>
-        </tr>
-        <tr>
-            <td>portimonense</td>
-            <td>portimonense sc</td>
-            <td>0.884 </td>
-        </tr>
-        <tr>
-            <td>porto</td>
-            <td>fc porto</td>
-            <td>0.658 </td>
-        </tr>
-        <tr>
-            <td>santa clara</td>
-            <td>cd santa clara</td>
-            <td>0.848 </td>
-        </tr>
-        <tr>
-            <td>sporting</td>
-            <td>sporting cp</td>
-            <td>0.717 </td>
-        </tr>
-        <tr>
-            <td>tondela</td>
-            <td>cd tondela</td>
-            <td>0.752 </td>
-        </tr>
-        <tr>
-            <td>vizela</td>
-            <td>fc vizela</td>
-            <td>0.84 </td>
-        </tr>
-    </tbody>
+	<tr>
+		<th>ce_teams</th>
+		<th>tm_teams</th>
+		<th>cosine_similarity </th>
+	</tr>
+	<tr>
+		<td>arouca</td>
+		<td>fc arouca</td>
+		<td>0.86 </td>
+	</tr>
+	<tr>
+		<td>belenenses</td>
+		<td>belenenses sad</td>
+		<td>0.826 </td>
+	</tr>
+	<tr>
+		<td>benfica</td>
+		<td>sl benfica</td>
+		<td>0.805 </td>
+	</tr>
+	<tr>
+		<td>boavista</td>
+		<td>boavista fc</td>
+		<td>0.882 </td>
+	</tr>
+	<tr>
+		<td>braga</td>
+		<td>sc braga</td>
+		<td>0.719 </td>
+	</tr>
+	<tr>
+		<td>estoril</td>
+		<td>gd estoril praia</td>
+		<td>0.533 </td>
+	</tr>
+	<tr>
+		<td>famalicao</td>
+		<td>fc famalicao</td>
+		<td>0.847 </td>
+	</tr>
+	<tr>
+		<td>gil vicente</td>
+		<td>gil vicente fc</td>
+		<td>0.892 </td>
+	</tr>
+	<tr>
+		<td>guimaraes</td>
+		<td>vitoria guimaraes sc</td>
+		<td>0.678 </td>
+	</tr>
+	<tr>
+		<td>maritimo</td>
+		<td>cs maritimo</td>
+		<td>0.824 </td>
+	</tr>
+	<tr>
+		<td>moreirense</td>
+		<td>moreirense fc</td>
+		<td>0.86 </td>
+	</tr>
+	<tr>
+		<td>pacos ferreira</td>
+		<td>fc pacos de ferreira</td>
+		<td>0.65 </td>
+	</tr>
+	<tr>
+		<td>portimonense</td>
+		<td>portimonense sc</td>
+		<td>0.884 </td>
+	</tr>
+	<tr>
+		<td>porto</td>
+		<td>fc porto</td>
+		<td>0.658 </td>
+	</tr>
+	<tr>
+		<td>santa clara</td>
+		<td>cd santa clara</td>
+		<td>0.848 </td>
+	</tr>
+	<tr>
+		<td>sporting</td>
+		<td>sporting cp</td>
+		<td>0.717 </td>
+	</tr>
+	<tr>
+		<td>tondela</td>
+		<td>cd tondela</td>
+		<td>0.752 </td>
+	</tr>
+	<tr>
+		<td>vizela</td>
+		<td>fc vizela</td>
+		<td>0.84 </td>
+	</tr>
 </table>
 
 The small caveat to this approach is matching team names across more than two datasets can be a bit more involved.
