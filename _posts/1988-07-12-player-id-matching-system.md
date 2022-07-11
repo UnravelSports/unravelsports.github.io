@@ -184,7 +184,7 @@ Luckily, there is an easier and faster way now that either wasn't available, or 
 
 Unfortunately, I have not done thorough testing on this and simply grabbing only the first result might not work for more obscure players.
 
-Below is some sample code trying to find the `pageid` for Ronaldinho, Hulk and Yago Pikachu. It works, even with wrong date of birth values.
+Below is some sample code to find the `pageid` for Ronaldinho, Hulk and Yago Pikachu. It works even with wrong date of birth values.
 
 ```python
 import wikipedia
@@ -211,7 +211,8 @@ It's safe to say that finding nickname and regular name matches this way can be 
 #### Hypocoristics
 An idea that I have not implemented is using hypocoristics. Hypocoristics are - and this comes straight from Google - "a pet name, nickname, or term of endearment — often a shortened form of a word or name". For example, Micheal might be called Mike or Robert might be called Bob. This happens in a lot of languages and our PMS should probably incorporate this. For now, I've only found lists of hypocoristics in English, Spanish and Portuguese, though I have no way of knowing if they are actually correct and/or useful.
 
-#### The PMS Funnel
+<br>
+### The Funnel
 Using combinations of the ideas discussed above we can construct a search funnel that will help us match players to one another with minimal risk of false positives.
 Below is a list of some of the options we have for matching player names. I've also highlighted some potential matching mechanisms that might more easily result in false positive matches, because we use too much incomplete information.
 
@@ -228,8 +229,9 @@ Below is a list of some of the options we have for matching player names. I've a
 8. Match on Wikipedia search for name and date of birth when two players with same TMS ID have the same date of birth range
 	- This can introduce some errors because we are "blindly" following the Wikipedia API results
 
-### Conclusions
-It's safe to say that building the actual code capable of doing all of this in a correct, effective and efficient way - all while juggling different sets of matched and unmatched player IDs, new incoming providers and new IDs - is a huge undertaking. I can only hope this blog has provided some clarity, some ideas and some insights into how to design a Player ID Matching System.
+<br>
+### Conclusion
+It's safe to say that building the actual code capable of doing all of this in a correct, effective and efficient way - all while juggling different sets of matched and unmatched player IDs, new incoming providers and new IDs - is a huge undertaking. I can only hope this blog has provided some clarity, some ideas and some insights into the design of a Player ID Matching System.
 
 
 
