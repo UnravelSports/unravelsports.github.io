@@ -43,7 +43,7 @@ vectorizer = TfidfVectorizer(min_df=1, analyzer=ngrams)
 vectorizer.fit(players) 
 ```
 
-After fitting this vectorizer on the whole standardized name dataset, we use the fitted vectorizer to transform a subset of standardized names (we'll discuss what this subset is later) and finally we'll get our cosine similarity matrix for that subset. 
+After fitting this vectorizer on the whole standardized name dataset, we use the fitted vectorizer to transform a subset of standardized names (we'll discuss what these subsets are later) and finally we'll get our cosine similarity matrix for that subset. 
 
 ```python
 # transform subset using vectorizer fit to whole dataset
