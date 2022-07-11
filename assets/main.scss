@@ -21,7 +21,7 @@ body {
 }
 
 pre, code {
-    background-color: var(--clr-secondary);
+    background-color: black;
 }
 
 p {
@@ -215,7 +215,7 @@ table th, table td {
 }
 
 table th {
-    background-color: var(--clr-bg);
+    background-color: black;
     border: 1px solid #dedede;
     border-bottom-color: #c9c9c9;
     color: var(--clr-primary);
@@ -223,10 +223,10 @@ table th {
 
 table tr:nth-child(even) {
     background-color: var(--clr-white);
-    color: var(--clr-bg);
+    color: black;
 }
 table tr:nth-child(odd) {
-    background-color: var(--clr-bg);
+    background-color: black;
     color: var(--clr-white);
 }
 
