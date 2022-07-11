@@ -52,23 +52,22 @@ tf_idf_subset_matrix = vectorizer.transform(subset)
 cosine_sim_matrix = cosine_similarity(tf_idf_subset_matrix, tf_idf_subset_matrix)
 ```
 
+<br>
 ### Matching Competitions, Teams and Games
 With this bit of similarity matching information out of the way we can start building our matching system. The matching system consists of four parts (competition, team, game and player). We'll build these parts in this order, because each new system depends on the previous system.
 
 #### 1. Competition Matching
 We start by matching competition names across datasets, depending on the amount of competitions available. This can be done either:
 - Manually (with just a couple competitions it's overkill to build an algorithm for it)
-- Semi-automatically, here we automatically match on a cosine similarity greater than a certain threshold\* and automatically disregard all matching options when the maximum cosine similarity doesn't go over a certain threshold.
+- Semi-automatically, here we automatically match on a cosine similarity greater than a certain threshold and automatically disregard all matching options when the maximum cosine similarity doesn't go over a certain threshold. This threshold depends on the _n_ in the `ngrams` function, because a lower _n_ leads to higher cosine similarity scores.
 
-_\*The threshold depends on the n in the ngrams function, becuase lower n results in higher cosine similarity overall_
+It's obviously important to have an accurate set of matches on the top level (in this case competitions) so it's important to keep the automatic matching threshold low, or just do this step manually once or twice every season. 
 
-Because it's important to have an accurate set of matches on the top level (in this case competitions) it's good to keep the automatic matching threshold low, or just do this step manually once or twice every season. 
-
-##### 1.1 Season Matching
+#### 1.1 Season Matching
 To get the correct amount of teams, and the correct team names per season we should also match the season IDs, but this can easily just be done by hand, or by some date range.
 
 #### 2. Team Matching
-Now that we have matched the competitions and seasons we can use the cosine similarity approach for team matching. Here we have the added benefit of filtering by competition name and season. This gives us a significantly reduced search space, going from thousands of options to approximately 20 per competition per season. In turn this means we can decrease the similarity threshold for automatic matching, or we can try some other approach where we assign each team in one dataset a team in another dataset via the Hungarian algorithm, maximizing the total cosine similarity in the cosine similarity matrix.
+Now that we have matched the competitions and seasons we can use the cosine similarity approach for team matching. Here we have the added benefit of filtering by competition name and season. This gives us a significantly reduced search space, going from thousands of options to approximately 20 per competition per season. In turn this means we can decrease the similarity threshold for automatic matching. Or, and this is one of the ideas I came up with when writing this blog, we can try some other approach where we assign each team in one dataset a team in another dataset by using the Hungarian algorithm, maximizing the total cosine similarity in the cosine similarity matrix.
 
 Below is some example code showing how to match two lists of Portuguese team names from the '21/22 season using the Hungarian algorithm (`linear_sum_assignment` in Scipy). These particular names come from [Clubelo.com](http://clubelo.com/POR) and [Transfermarkt.com](https://www.transfermarkt.com/liga-portugal/startseite/wettbewerb/PO1/plus/?saison_id=2021). 
 
@@ -95,62 +94,59 @@ row_idx, col_idx = linear_sum_assignment(
 
 Here are the results in a cleaned up table with the matched names side-by-side and the and their cosine similarity values.
 
-<div class="table>
-	<table>
-		<div class="table-header">
-			<tr>
-				<td>ce_teams</td>
-				<td>tm_teams</td>
-				<td>cosine_similarity </td>
-			</tr>
-		</div>
-		<tr>
-			<td>arouca</td>
-			<td>fc arouca</td>
-			<td>0.86 </td>
-		</tr>
-		<tr>
-			<td>belenenses</td>
-			<td>belenenses sad</td>
-			<td>0.826 </td>
-		</tr>
-		<tr>
-			<td>benfica</td>
-			<td>sl benfica</td>
-			<td>0.805 </td>
-		</tr>
-		<tr>
-			<td>boavista</td>
-			<td>boavista fc</td>
-			<td>0.882 </td>
-		</tr>
-		<tr>
-			<td>braga</td>
-			<td>sc braga</td>
-			<td>0.719 </td>
-		</tr>
-		<tr>
-			<td>estoril</td>
-			<td>gd estoril praia</td>
-			<td>0.533 </td>
-		</tr>
-		<tr>
-			<td>famalicao</td>
-			<td>fc famalicao</td>
-			<td>0.847 </td>
-		</tr>
-		<tr>
-			<td>gil vicente</td>
-			<td>gil vicente fc</td>
-			<td>0.892 </td>
-		</tr>
-		<tr>
-			<td>guimaraes</td>
-			<td>vitoria guimaraes sc</td>
-			<td>0.678 </td>
-		</tr>
-	</table>
-</div>
+
+<table>
+	<tr>
+		<td>ce_teams</td>
+		<td>tm_teams</td>
+		<td>cosine_similarity </td>
+	</tr>
+	<tr>
+		<td>arouca</td>
+		<td>fc arouca</td>
+		<td>0.86 </td>
+	</tr>
+	<tr>
+		<td>belenenses</td>
+		<td>belenenses sad</td>
+		<td>0.826 </td>
+	</tr>
+	<tr>
+		<td>benfica</td>
+		<td>sl benfica</td>
+		<td>0.805 </td>
+	</tr>
+	<tr>
+		<td>boavista</td>
+		<td>boavista fc</td>
+		<td>0.882 </td>
+	</tr>
+	<tr>
+		<td>braga</td>
+		<td>sc braga</td>
+		<td>0.719 </td>
+	</tr>
+	<tr>
+		<td>estoril</td>
+		<td>gd estoril praia</td>
+		<td>0.533 </td>
+	</tr>
+	<tr>
+		<td>famalicao</td>
+		<td>fc famalicao</td>
+		<td>0.847 </td>
+	</tr>
+	<tr>
+		<td>gil vicente</td>
+		<td>gil vicente fc</td>
+		<td>0.892 </td>
+	</tr>
+	<tr>
+		<td>guimaraes</td>
+		<td>vitoria guimaraes sc</td>
+		<td>0.678 </td>
+	</tr>
+</table>
 
 The small caveat to this approach is matching team names across more than two datasets can be a bit more involved.
 
