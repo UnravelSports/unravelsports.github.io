@@ -222,12 +222,13 @@ table th {
 }
 
 table tr:nth-child(even) {
-    background-color: var(--clr-highlight);
-    color: var(--clr-bg);
+    background-color: var(--clr-secondary);
+    color: var(--clr-white);
 }
 
 table tr:nth-child(odd) {
     background-color: var(--clr-white);
+    color: var(--clr-bg);
 }
 
 figure figcaption {

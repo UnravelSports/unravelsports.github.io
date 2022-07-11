@@ -1,13 +1,13 @@
 ## 🔬 Designing a Player ID Matching System
 
-This blog came about as a reaction to a Twitter thread (see below) started by [@FC_rstats](https://twitter.com/FC_rstats). One of the ideas brought up in that thread and the discussion that followed (by [Sam Gregory](https://twitter.com/GregorydSam/status/1542109972791808000) and [Koen Vossen](https://twitter.com/mr_le_fox/status/1542112502489747456)) was the creation of an (open-source) approach to Player ID matching across multiple data providers.
+This blog came about as a reaction to a Twitter thread (see below) started by [@FC_rstats](https://twitter.com/FC_rstats). One of the ideas brought up in that thread, and the discussion that followed (by [Sam Gregory](https://twitter.com/GregorydSam/status/1542109972791808000) and [Koen Vossen](https://twitter.com/mr_le_fox/status/1542112502489747456)) was the creation of an (open-source) approach to Player ID matching across multiple data providers.
 
 <blockquote class="twitter-tweet tw-align-center" data-theme="dark"><p lang="en" dir="ltr">Football analytics 💡:<br><br>People are building great open source packages but there is little to no coordination and therefore no interoperability<br><br>There needs to be a broader plan so these little lego peices naturally fit together <br><br>A broader plan can attract funding <br><br>Who&#39;s in?</p>&mdash; FC rSTATS (@FC_rstats) <a href="https://twitter.com/FC_rstats/status/1542106006209134592?ref_src=twsrc%5Etfw">June 29, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-The initial intent of this blog was to discuss an implementation of a Player ID matching system (PMS) that I built a couple years ago that could hopefully help inspire the creation of an open-source approach for Player ID matching. While writing this blog I had some new ideas on how to improve my approach. So, as a result, this blog has become a hybrid of implementation ideas and actual implemented design. 
+The initial intention of this blog was to discuss an implementation of a Player ID matching system (PMS) that I designed a couple of years ago. It was my hope this could help inspire the creation of an open-source approach for Player ID matching. While writing this blog I had some new ideas on how to improve my approach. So, as a result, this blog has become a hybrid of implementation ideas and actual implemented design. 
 
 To build a robust PMS we need the player name (preferably first name & last name) or nickname (ie. Hulk or Ronaldinho) and date of birth (although this is not strictly necessary).
-Because the ultimate goal is to do as little manual work as possible, and to improve the robustness of the PMS it's important to start by building systems for matching Team IDs (TMS), Game IDs (GMS) and Competition IDs (CMS) accross datasets.
+Because the ultimate goal is to do as little manual work as possible, and to improve the robustness of the PMS, it's important to start by building systems for matching Team IDs (TMS), Game IDs (GMS) and Competition IDs (CMS) across datasets.
 These systems will help decrease the search space per player from several thousands to between 1 and 30 at most.
 
 We'll first go over the basics of string similarity matching using [Cosine Similarity](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.cosine_similarity.html) [(Wiki)](https://en.wikipedia.org/wiki/Cosine_similarity). Then I will discuss some design ideas for the CMS, GMS and TMS, followed by an explanation of the PMS.
@@ -16,7 +16,7 @@ We'll first go over the basics of string similarity matching using [Cosine Simil
 ### Basics of Similarity Matching
 To do any kind of similarity matching we're going to make use of an approximate string matching technique. I propose the use of the Cosine Similarity to measure the similarity between sets of words (ie. the player or team names). I've also experimented briefly with a fuzzy matching algorithm [FuzzyWuzzy](https://pypi.org/project/fuzzywuzzy/), but I found the cosine similarity to give better results.
 
-To properly use `cosine_similarity()`, and to ensure better matching, we're first going to standardize our set of names by:
+To properly use `cosine_similarity()` - part of `sklearn.metrics.pairwise` - and to ensure better matching, we're going to standardize our set of names by:
 1. [Removing any accents and using only letters from the Roman/Latin alphabet](https://stackoverflow.com/questions/45497312/how-to-apply-a-function-with-argument-to-a-pandas-dataframe)
 2. [Removing any non-alphanumeric charaters, like dashes, using regex](https://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python)
 3. [Removing double spaces using regex](https://stackoverflow.com/questions/43071415/remove-multiple-blanks-in-dataframe)
@@ -92,7 +92,7 @@ row_idx, col_idx = linear_sum_assignment(
 )
 ```
 
-Here are the results in a cleaned up table with the matched names side-by-side and the and their cosine similarity values.
+Here are the results in a cleaned up table, with the matched names side-by-side, and their associated cosine similarity values.
 
 
 <table class="center-table" style="width:70%">
