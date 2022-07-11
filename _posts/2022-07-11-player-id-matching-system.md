@@ -18,7 +18,7 @@ To do any kind of similarity matching we're going to make use of an approximate 
 
 To properly use `cosine_similarity()` - part of `sklearn.metrics.pairwise` - and to ensure better matching, we're going to standardize our set of names by:
 1. [Removing any accents and using only letters from the Roman/Latin alphabet](https://stackoverflow.com/questions/45497312/how-to-apply-a-function-with-argument-to-a-pandas-dataframe)
-2. [Removing any non-alphanumeric charaters, like dashes, using regex](https://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python)
+2. [Removing any non-alphanumeric characters, like dashes, using regex](https://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python)
 3. [Removing double spaces using regex](https://stackoverflow.com/questions/43071415/remove-multiple-blanks-in-dataframe)
 4. Lower case all characters
 
@@ -200,7 +200,7 @@ With the team names matched up it now becomes really easy to match fixtures. We 
 
 <br>
 ### Matching Players
-Now that we've discussed the prerequisit systems that will help us reduce the search space, we can finally discuss the design of the actual Player Matching System.
+Now that we've discussed the prerequisite systems that will help us reduce the search space, we can finally discuss the design of the actual Player Matching System.
 The main objective should be to leverage the TMS (and potentially the GMS) to drastically reduce the search space, increase accuracy, and decrease false positive matches for each player by creating a matching funnel. This matching funnel will match players by a set of rules decreasing in strictness. 
 
 Using the Hungarian algorithm in the PMS was not in my initial design (it wasn't either for TMS), and because of possible differences in number of players given per data source (ie. some source might have 32 players for a squad whereas others might only have 25 for the same team) I don't see a straightforward way to use it in the PMS.
@@ -208,7 +208,7 @@ Using the Hungarian algorithm in the PMS was not in my initial design (it wasn't
 Before describing how we're going to leverage everything discussed before to build our matching funnel we need to take note of two potential data issues, and one idea I have not implemented in my design that might prove helpful.
 
 #### Wrong Birthdays
-One important issue, that is easy to overlook in a name matching system, is wrong birthdays. From debugging my own implemenation I've noticed erros in birthdays can be simple typos, a translation error from MM-DD-YY to DD-MM-YY or they might just be a day of, for whatever reason.
+One important issue, that is easy to overlook in a name matching system, is wrong birthdays. From debugging my own implementation I've noticed errors in birthdays can be simple typos, a translation error from MM-DD-YY to DD-MM-YY or they might just be a day of, for whatever reason.
 
 This means that we will need to handle cases where birthdays are approximately correct by specifying a date of birth range. From some trial and error I've found that adding the following dates to the date of birth range will help improve matching:
 - The original birth date
@@ -219,7 +219,7 @@ This means that we will need to handle cases where birthdays are approximately c
 We will not adjust the year, for fear of matching too many false positives.
 
 #### Nicknames
-The second issue worth discussing is how every data provider uses their own judgement for using nicknames, full names or a combination of both. (It's highly adviced to add both nickname and full name to the matching system when both are provided). 
+The second issue worth discussing is how every data provider uses their own judgement for using nicknames, full names or a combination of both. (It's highly advised to add both nickname and full name to the matching system when both are provided). 
 
 In my initial implementation this issue was resolved by using a Python package called `gsearch` which allowed Google searches via Python. This would have allowed search queries like `f"{player_name} (footballer) wiki (date_of_birth)"`. This google search would almost always - 99% of the time, even for obscure players - give us the Wikipedia article for the player. Using the Wikidata Q-code of the article - which we could obtain with a simple web request -  could then match up search queries like "Ronaldo de Assis Moreira (footballer) wiki 03-21-1980" and "Ronaldinho (footballer) wiki 03-21-1980", because they both link to the same Wikidata page with Q-code [Q39444](https://www.wikidata.org/wiki/Q39444).
 
