@@ -178,9 +178,9 @@ The second issue worth discussing is how every data provider uses their own judg
 
 In my initial implementation this issue was resolved by using a Python package called `gsearch` which allowed Google searches via Python. This would have allowed search queries like `f"{player_name} (footballer) wiki (date_of_birth)"`. This google search would almost always - 99% of the time, even for obscure players - give us the Wikipedia article for the player. Using the Wikidata Q-code of the article - which we could obtain with a simple web request -  could then match up search queries like "Ronaldo de Assis Moreira (footballer) wiki 03-21-1980" and "Ronaldinho (footballer) wiki 03-21-1980", because they both link to the same Wikidata page with Q-code [Q39444](https://www.wikidata.org/wiki/Q39444). Eventhough this seems quite cumbersome - and it probably was - while trying to replicate this for this blog I found that the `gsearch` package doesn't quite work anymore. To get similar results you'd need to get a paid Google Search API Key. 
 
-#####_As an aside, you can find the Wikidata page for any Wikipedia article in the left menu on Wikipedia under "Tools"._
+##### As an aside, you can find the Wikidata page for any Wikipedia article in the left menu on Wikipedia under "Tools".
 
-Luckily, I think there is an easier and faster way now that either wasn't available, or I probably just didn't find it back then, using a combination of `search` and `page` from the [Wikipedia Python package](https://pypi.org/project/wikipedia/). This combination will give us a Wikipedia page's `pageid` that we can use to identify identical players that came about from different search terms.
+Luckily, there is an easier and faster way now that either wasn't available, or I probably just didn't find it back then, using a combination of `search` and `page` from the [Wikipedia Python package](https://pypi.org/project/wikipedia/). This combination will give us a Wikipedia page's `pageid` that we can use to identify identical players that came about from different search terms.
 
 Unfortunately, I have not done thorough testing on this and simply grabbing only the first result might not work for more obscure players.
 
