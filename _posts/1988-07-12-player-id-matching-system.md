@@ -256,11 +256,12 @@ search_footballer(player_name="Glaybson Yago Souza Lisboa", date_of_birth="05-06
 It's safe to say that finding nickname and regular name matches this way can be time consuming (it takes about 700ms to get a result back from Wikipedia with the above code). This approach should probably only be used when we have players in the same team with the same data of birth (range) that are no simple match.
 
 #### Hypocoristics
-An idea that I have not implemented is using hypocoristics. Hypocoristics are - and this comes straight from Google - "a pet name, nickname, or term of endearment — often a shortened form of a word or name". For example, Micheal might be called Mike or Robert might be called Bob. This happens in a lot of languages and our PMS should probably incorporate this. For now, I've only found/compiled lists (I can't remember the sources at this point) of hypocoristics in English, Spanish and Portuguese [(See .txt files on GitHub)](https://github.com/UnravelSports/hypocoristics), though I have no way of knowing if they are actually correct and/or useful.
+An idea that I have not implemented is using hypocoristics. Hypocoristics are - and this comes straight from Google - "a pet name, nickname, or term of endearment — often a shortened form of a word or name". For example, Micheal might be called Mike or Robert might be called Bob. This happens in a lot of languages and our PMS should probably incorporate this. For now, I've only compiled lists (coming mostly from Wikipedia) of hypocoristics in English, Spanish and Portuguese [(see .txt files on GitHub)](https://github.com/UnravelSports/hypocoristics), though I have no way of knowing if they are actually correct and/or useful.
 
 <br>
 ### The Funnel
 Using combinations of the ideas discussed above we can construct a search funnel that will help us match players to one another with minimal risk of false positives.
+
 Below is a list of some of the options we have for matching player names. I've also highlighted some potential matching mechanisms that might more easily result in false positive matches, because we use too much incomplete information.
 
 1. Match on exact name, exact date of birth and TMS ID of a team this player played for in both datasets.
