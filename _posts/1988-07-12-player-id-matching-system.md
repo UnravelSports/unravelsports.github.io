@@ -95,7 +95,7 @@ row_idx, col_idx = linear_sum_assignment(
 Here are the results in a cleaned up table with the matched names side-by-side and the and their cosine similarity values.
 
 
-<table>
+<table style="width:70%">
     <thead>
         <tr>
             <td>ce_teams</td>
@@ -148,6 +148,51 @@ Here are the results in a cleaned up table with the matched names side-by-side a
             <td>guimaraes</td>
             <td>vitoria guimaraes sc</td>
             <td>0.678 </td>
+        </tr>
+        <tr>
+            <td>maritimo</td>
+            <td>cs maritimo</td>
+            <td>0.824 </td>
+        </tr>
+        <tr>
+            <td>moreirense</td>
+            <td>moreirense fc</td>
+            <td>0.86 </td>
+        </tr>
+        <tr>
+            <td>pacos ferreira</td>
+            <td>fc pacos de ferreira</td>
+            <td>0.65 </td>
+        </tr>
+        <tr>
+            <td>portimonense</td>
+            <td>portimonense sc</td>
+            <td>0.884 </td>
+        </tr>
+        <tr>
+            <td>porto</td>
+            <td>fc porto</td>
+            <td>0.658 </td>
+        </tr>
+        <tr>
+            <td>santa clara</td>
+            <td>cd santa clara</td>
+            <td>0.848 </td>
+        </tr>
+        <tr>
+            <td>sporting</td>
+            <td>sporting cp</td>
+            <td>0.717 </td>
+        </tr>
+        <tr>
+            <td>tondela</td>
+            <td>cd tondela</td>
+            <td>0.752 </td>
+        </tr>
+        <tr>
+            <td>vizela</td>
+            <td>fc vizela</td>
+            <td>0.84 </td>
         </tr>
     </tbody>
 </table>
