@@ -205,9 +205,30 @@ div.trigger {
   margin-right: auto;
 }
 
-.table th { border-collapse: collapse; width:300px; }
-.table th, .table td { padding: 5px; border: solid 1px #777; }
-.table th { background-color: lightblue; }
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table th, table td {
+    padding: 10px 15px;
+}
+
+table th {
+    background-color: var(--clr-primary-font);
+    border: 1px solid #dedede;
+    border-bottom-color: #c9c9c9;
+    color: var(--clr-primary);
+}
+
+table tr:nth-child(even) {
+    background-color: var(--clr-highlight);
+    color: var(--clr-bg);
+}
+
+table tr:nth-child(odd) {
+    background-color: var(--clr-white);
+}
 
 figure figcaption {
     text-align: center;
