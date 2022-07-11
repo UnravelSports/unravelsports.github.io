@@ -5,7 +5,7 @@
 
 :root {
   --clr-primary: rgba(230, 182, 17, 1); // yellow
-  --clr-secondary: rgba(98, 106, 103, 1); // TODO: change color
+  --clr-secondary: #757558; // yellowish grey
   --clr-bg: rgba(36,38,39, 1); // blackish
   --clr-highlight: rgba(154,144,131,1); // goldish brown
   --clr-white: rgba(255, 255, 255, 1); // white
@@ -21,7 +21,7 @@ body {
 }
 
 pre, code {
-    background-color: transparent;
+    background-color: var(--clr-secondary);
 }
 
 p {
