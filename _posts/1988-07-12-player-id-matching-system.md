@@ -96,56 +96,60 @@ Here are the results in a cleaned up table with the matched names side-by-side a
 
 
 <table>
-	<tr>
-		<td>ce_teams</td>
-		<td>tm_teams</td>
-		<td>cosine_similarity </td>
-	</tr>
-	<tr>
-		<td>arouca</td>
-		<td>fc arouca</td>
-		<td>0.86 </td>
-	</tr>
-	<tr>
-		<td>belenenses</td>
-		<td>belenenses sad</td>
-		<td>0.826 </td>
-	</tr>
-	<tr>
-		<td>benfica</td>
-		<td>sl benfica</td>
-		<td>0.805 </td>
-	</tr>
-	<tr>
-		<td>boavista</td>
-		<td>boavista fc</td>
-		<td>0.882 </td>
-	</tr>
-	<tr>
-		<td>braga</td>
-		<td>sc braga</td>
-		<td>0.719 </td>
-	</tr>
-	<tr>
-		<td>estoril</td>
-		<td>gd estoril praia</td>
-		<td>0.533 </td>
-	</tr>
-	<tr>
-		<td>famalicao</td>
-		<td>fc famalicao</td>
-		<td>0.847 </td>
-	</tr>
-	<tr>
-		<td>gil vicente</td>
-		<td>gil vicente fc</td>
-		<td>0.892 </td>
-	</tr>
-	<tr>
-		<td>guimaraes</td>
-		<td>vitoria guimaraes sc</td>
-		<td>0.678 </td>
-	</tr>
+    <thead>
+        <tr>
+            <td>ce_teams</td>
+            <td>tm_teams</td>
+            <td>cosine_similarity </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>arouca</td>
+            <td>fc arouca</td>
+            <td>0.86 </td>
+        </tr>
+        <tr>
+            <td>belenenses</td>
+            <td>belenenses sad</td>
+            <td>0.826 </td>
+        </tr>
+        <tr>
+            <td>benfica</td>
+            <td>sl benfica</td>
+            <td>0.805 </td>
+        </tr>
+        <tr>
+            <td>boavista</td>
+            <td>boavista fc</td>
+            <td>0.882 </td>
+        </tr>
+        <tr>
+            <td>braga</td>
+            <td>sc braga</td>
+            <td>0.719 </td>
+        </tr>
+        <tr>
+            <td>estoril</td>
+            <td>gd estoril praia</td>
+            <td>0.533 </td>
+        </tr>
+        <tr>
+            <td>famalicao</td>
+            <td>fc famalicao</td>
+            <td>0.847 </td>
+        </tr>
+        <tr>
+            <td>gil vicente</td>
+            <td>gil vicente fc</td>
+            <td>0.892 </td>
+        </tr>
+        <tr>
+            <td>guimaraes</td>
+            <td>vitoria guimaraes sc</td>
+            <td>0.678 </td>
+        </tr>
+    </tbody>
 </table>
 
 The small caveat to this approach is matching team names across more than two datasets can be a bit more involved.
