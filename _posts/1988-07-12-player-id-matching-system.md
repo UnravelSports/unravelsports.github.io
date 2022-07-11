@@ -97,8 +97,8 @@ Here are the results in a cleaned up table, with the matched names side-by-side,
 
 <table class="center-table" style="width:70%">
 	<tr>
-		<th>ce_teams</th>
-		<th>tm_teams</th>
+		<th>clubelo</th>
+		<th>transfermarkt</th>
 		<th>cosine_similarity </th>
 	</tr>
 	<tr>
