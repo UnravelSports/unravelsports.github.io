@@ -12,7 +12,7 @@ These systems will help decrease the search space per player from several thousa
 
 We'll first go over the basics of string similarity matching using [Cosine Similarity](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.cosine_similarity.html) [(Wiki)](https://en.wikipedia.org/wiki/Cosine_similarity). Then I will discuss some design ideas for the CMS, GMS and TMS, followed by an explanation of the PMS.
 
-
+<br>
 ### Basics of Similarity Matching
 To do any kind of similarity matching we're going to make use of an approximate string matching technique. I propose the use of the Cosine Similarity to measure the similarity between sets of words (ie. the player or team names). I've also experimented briefly with a fuzzy matching algorithm [FuzzyWuzzy](https://pypi.org/project/fuzzywuzzy/), but I found the cosine similarity to give better results.
 
@@ -153,6 +153,7 @@ The small caveat to this approach is matching team names across more than two da
 #### 3. Game Matching
 With the team names matched up it now becomes really easy to match fixtures. We can do this by creating a new Game ID (GMS ID) that is a combination of the Home Team TMS ID (the newly created team ID we assigned to every matched set of teams), the Away Team ID TMS ID and the timezone adjusted date of the match. If we do not have the timezone date, but only the date, it's still possible to do this, if we work under the assumption that no two teams will play each other more than once per 48 hours. 
 
+<br>
 ### Matching Players
 Now that we've discussed the prerequisit systems that will help us reduce the search space, we can finally discuss the design of the actual Player Matching System.
 The main objective should be to leverage the TMS (and potentially the GMS) to drastically reduce the search space, increase accuracy, and decrease false positive matches for each player by creating a matching funnel. This matching funnel will match players by a set of rules decreasing in strictness. 
@@ -161,7 +162,7 @@ Using the Hungarian algorithm in the PMS was not in my initial design (neither w
 
 Before describing how we're going to levarege everything discussed before to build our matching funnel we need to take note of two potential data issues, and one idea I have not implemented in my design that might prove be helpful.
 
-##### Wrong Birthdays
+#### Wrong Birthdays
 One important issue, that is easy to overlook in a name matching system, is wrong birthdays. From debugging my own implemenation I've noticed erros in birthdays can be simple typos, a translation error from MM-DD-YY to DD-MM-YY or they might just be a day of, for whatever reason.
 This means that we will need to handle cases where birthdays are approximately correct by specifying a date of birth range. From some trial and error I've found that adding the following dates to the date of birth range will help improve matching:
 - The original birth date
@@ -171,7 +172,7 @@ This means that we will need to handle cases where birthdays are approximately c
 
 We will not adjust the year, for fear of matching too many false positives.
 
-##### Nicknames
+#### Nicknames
 The second issue worth discussing is how every data provider uses their own judgement for using nicknames, full names or a combination of both. (It's highly adviced to add both nickname and full name to the matching system when both are provided). 
 
 In my initial implementation this issue was resolved by using a Python package called `gsearch` which let me search Google via Python with a query like `f"{player_name} (footballer) wiki (date_of_birth)"`. This google search would almost always - 99% of the time, even for obscure players - give us the Wikipedia article for the player. Using the Wikidata Q-code of the article - which we could obtain with a simple web request -  could then match up search queries like "Ronaldo de Assis Moreira (footballer) wiki 03-21-1980" and "Ronaldinho (footballer) wiki 03-21-1980", because they both link to the same Wikidata page with Q-code [Q39444](https://www.wikidata.org/wiki/Q39444). Eventhough this seems quite cumbersome - and it probably was - while trying to replicate this for this blog I found that the `gsearch` package doesn't quite work anymore. To get similar results you'd need to get a paid Google Search API Key. As an aside, you can find the Wikidata page for any Wikipedia article in the left menu on Wikipedia under "Tools".
@@ -204,7 +205,7 @@ search_footballer(player_name="Glaybson Yago Souza Lisboa", date_of_birth="05-06
 
 It's safe to say that finding nickname and regular name matches this way can be time consuming (it takes about 700ms to get a result back from Wikipedia with the above code), so this approach should be used when we have players in the same team with the same data of birth (range) that are no simple match.
 
-##### Hypocoristics
+#### Hypocoristics
 An idea that I have not implemented is using hypocoristics. Hypocoristics are - and this comes straight from Google - "a pet name, nickname, or term of endearment — often a shortened form of a word or name". For example, Micheal might be called Mike or Robert might be called Bob. This happens in a lot of languages and our PMS should probably incorporate this. For now, I've only found lists of hypocoristics in English, Spanish and Portuguese, though I have no way of knowing if they are actually correct and/or useful.
 
 #### The PMS Funnel
