@@ -158,12 +158,13 @@ With the team names matched up it now becomes really easy to match fixtures. We 
 Now that we've discussed the prerequisit systems that will help us reduce the search space, we can finally discuss the design of the actual Player Matching System.
 The main objective should be to leverage the TMS (and potentially the GMS) to drastically reduce the search space, increase accuracy, and decrease false positive matches for each player by creating a matching funnel. This matching funnel will match players by a set of rules decreasing in strictness. 
 
-Using the Hungarian algorithm in the PMS was not in my initial design (neither was it for the TMS), and because of possible differences in number of players given per data source (ie. some source might have 32 players for a squad whereas others might only have 25 for the same team) I don't see a straightforward way to use it in the PMS.
+Using the Hungarian algorithm in the PMS was not in my initial design (it wasn't either for TMS), and because of possible differences in number of players given per data source (ie. some source might have 32 players for a squad whereas others might only have 25 for the same team) I don't see a straightforward way to use it in the PMS.
 
-Before describing how we're going to levarege everything discussed before to build our matching funnel we need to take note of two potential data issues, and one idea I have not implemented in my design that might prove be helpful.
+Before describing how we're going to levarege everything discussed before to build our matching funnel we need to take note of two potential data issues, and one idea I have not implemented in my design that might prove helpful.
 
 #### Wrong Birthdays
 One important issue, that is easy to overlook in a name matching system, is wrong birthdays. From debugging my own implemenation I've noticed erros in birthdays can be simple typos, a translation error from MM-DD-YY to DD-MM-YY or they might just be a day of, for whatever reason.
+
 This means that we will need to handle cases where birthdays are approximately correct by specifying a date of birth range. From some trial and error I've found that adding the following dates to the date of birth range will help improve matching:
 - The original birth date
 - The date with +1 or -1 for the month, but within the same year
@@ -175,7 +176,9 @@ We will not adjust the year, for fear of matching too many false positives.
 #### Nicknames
 The second issue worth discussing is how every data provider uses their own judgement for using nicknames, full names or a combination of both. (It's highly adviced to add both nickname and full name to the matching system when both are provided). 
 
-In my initial implementation this issue was resolved by using a Python package called `gsearch` which let me search Google via Python with a query like `f"{player_name} (footballer) wiki (date_of_birth)"`. This google search would almost always - 99% of the time, even for obscure players - give us the Wikipedia article for the player. Using the Wikidata Q-code of the article - which we could obtain with a simple web request -  could then match up search queries like "Ronaldo de Assis Moreira (footballer) wiki 03-21-1980" and "Ronaldinho (footballer) wiki 03-21-1980", because they both link to the same Wikidata page with Q-code [Q39444](https://www.wikidata.org/wiki/Q39444). Eventhough this seems quite cumbersome - and it probably was - while trying to replicate this for this blog I found that the `gsearch` package doesn't quite work anymore. To get similar results you'd need to get a paid Google Search API Key. As an aside, you can find the Wikidata page for any Wikipedia article in the left menu on Wikipedia under "Tools".
+In my initial implementation this issue was resolved by using a Python package called `gsearch` which allowed Google searches via Python. This would have allowed search queries like `f"{player_name} (footballer) wiki (date_of_birth)"`. This google search would almost always - 99% of the time, even for obscure players - give us the Wikipedia article for the player. Using the Wikidata Q-code of the article - which we could obtain with a simple web request -  could then match up search queries like "Ronaldo de Assis Moreira (footballer) wiki 03-21-1980" and "Ronaldinho (footballer) wiki 03-21-1980", because they both link to the same Wikidata page with Q-code [Q39444](https://www.wikidata.org/wiki/Q39444). Eventhough this seems quite cumbersome - and it probably was - while trying to replicate this for this blog I found that the `gsearch` package doesn't quite work anymore. To get similar results you'd need to get a paid Google Search API Key. 
+
+_As an aside, you can find the Wikidata page for any Wikipedia article in the left menu on Wikipedia under "Tools"._
 
 Luckily, I think there is an easier and faster way now that either wasn't available, or I probably just didn't find it back then, using a combination of `search` and `page` from the [Wikipedia Python package](https://pypi.org/project/wikipedia/). This combination will give us a Wikipedia page's `pageid` that we can use to identify identical players that came about from different search terms.
 
