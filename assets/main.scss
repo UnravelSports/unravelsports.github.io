@@ -11,7 +11,9 @@
   --clr-white: rgba(255, 255, 255, 1); // white
   --clr-primary-font: rgba(255, 255, 255, 1); // white
   --clr-fields: rgba(98, 106, 103, 1);
+  --clr-windows: #010001;
 }
+
 
 body {
   font-family: 'Titillium Web', sans-serif;
@@ -21,7 +23,7 @@ body {
 }
 
 pre, code {
-    background-color: black;
+    background-color: var(--clr-windows);
 }
 
 p {
@@ -215,7 +217,7 @@ table th, table td {
 }
 
 table th {
-    background-color: black;
+    background-color: var(--clr-windows);
     border: 1px solid #dedede;
     border-bottom-color: #c9c9c9;
     color: var(--clr-primary);
@@ -223,10 +225,10 @@ table th {
 
 table tr:nth-child(even) {
     background-color: var(--clr-white);
-    color: black;
+    color: var(--clr-windows);
 }
 table tr:nth-child(odd) {
-    background-color: black;
+    background-color: var(--clr-windows);
     color: var(--clr-white);
 }
 
