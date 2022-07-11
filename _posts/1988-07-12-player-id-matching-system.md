@@ -61,7 +61,7 @@ We start by matching competition names across datasets, depending on the amount 
 - Manually (with just a couple competitions it's overkill to build an algorithm for it)
 - Semi-automatically, here we automatically match on a cosine similarity greater than a certain threshold and automatically disregard all matching options when the maximum cosine similarity doesn't go over a certain threshold. This threshold depends on the _n_ in the `ngrams` function, because a lower _n_ leads to higher cosine similarity scores.
 
-It's obviously important to have an accurate set of matches on the top level (in this case competitions) so it's important to keep the automatic matching threshold low, or just do this step manually once or twice every season. 
+It's obviously important to have an accurate set of matches on the top level (in this case competitions). This means we should probably keep the automatic matching threshold low, or just do this step manually once or twice every season. 
 
 #### 1.1 Season Matching
 To get the correct amount of teams, and the correct team names per season we should also match the season IDs, but this can easily just be done by hand, or by some date range.
@@ -205,7 +205,7 @@ The main objective should be to leverage the TMS (and potentially the GMS) to dr
 
 Using the Hungarian algorithm in the PMS was not in my initial design (it wasn't either for TMS), and because of possible differences in number of players given per data source (ie. some source might have 32 players for a squad whereas others might only have 25 for the same team) I don't see a straightforward way to use it in the PMS.
 
-Before describing how we're going to levarege everything discussed before to build our matching funnel we need to take note of two potential data issues, and one idea I have not implemented in my design that might prove helpful.
+Before describing how we're going to leverage everything discussed before to build our matching funnel we need to take note of two potential data issues, and one idea I have not implemented in my design that might prove helpful.
 
 #### Wrong Birthdays
 One important issue, that is easy to overlook in a name matching system, is wrong birthdays. From debugging my own implemenation I've noticed erros in birthdays can be simple typos, a translation error from MM-DD-YY to DD-MM-YY or they might just be a day of, for whatever reason.
@@ -221,7 +221,9 @@ We will not adjust the year, for fear of matching too many false positives.
 #### Nicknames
 The second issue worth discussing is how every data provider uses their own judgement for using nicknames, full names or a combination of both. (It's highly adviced to add both nickname and full name to the matching system when both are provided). 
 
-In my initial implementation this issue was resolved by using a Python package called `gsearch` which allowed Google searches via Python. This would have allowed search queries like `f"{player_name} (footballer) wiki (date_of_birth)"`. This google search would almost always - 99% of the time, even for obscure players - give us the Wikipedia article for the player. Using the Wikidata Q-code of the article - which we could obtain with a simple web request -  could then match up search queries like "Ronaldo de Assis Moreira (footballer) wiki 03-21-1980" and "Ronaldinho (footballer) wiki 03-21-1980", because they both link to the same Wikidata page with Q-code [Q39444](https://www.wikidata.org/wiki/Q39444). Eventhough this seems quite cumbersome - and it probably was - while trying to replicate this for this blog I found that the `gsearch` package doesn't quite work anymore. To get similar results you'd need to get a paid Google Search API Key. 
+In my initial implementation this issue was resolved by using a Python package called `gsearch` which allowed Google searches via Python. This would have allowed search queries like `f"{player_name} (footballer) wiki (date_of_birth)"`. This google search would almost always - 99% of the time, even for obscure players - give us the Wikipedia article for the player. Using the Wikidata Q-code of the article - which we could obtain with a simple web request -  could then match up search queries like "Ronaldo de Assis Moreira (footballer) wiki 03-21-1980" and "Ronaldinho (footballer) wiki 03-21-1980", because they both link to the same Wikidata page with Q-code [Q39444](https://www.wikidata.org/wiki/Q39444).
+
+All in all, this seems quite cumbersome - and it probably was. While trying to replicate this for this blog I found that the `gsearch` package doesn't quite work anymore. To get similar results you'd need to get a paid Google Search API Key. 
 
 ##### As an aside, you can find the Wikidata page for any Wikipedia article in the left menu on Wikipedia under "Tools".
 
@@ -251,10 +253,10 @@ search_footballer(player_name="Yago Pikachu", date_of_birth="06-05-1992")
 search_footballer(player_name="Glaybson Yago Souza Lisboa", date_of_birth="05-06-1992")  # wrong date of birth
 ```
 
-It's safe to say that finding nickname and regular name matches this way can be time consuming (it takes about 700ms to get a result back from Wikipedia with the above code), so this approach should be used when we have players in the same team with the same data of birth (range) that are no simple match.
+It's safe to say that finding nickname and regular name matches this way can be time consuming (it takes about 700ms to get a result back from Wikipedia with the above code). This approach should probably only be used when we have players in the same team with the same data of birth (range) that are no simple match.
 
 #### Hypocoristics
-An idea that I have not implemented is using hypocoristics. Hypocoristics are - and this comes straight from Google - "a pet name, nickname, or term of endearment — often a shortened form of a word or name". For example, Micheal might be called Mike or Robert might be called Bob. This happens in a lot of languages and our PMS should probably incorporate this. For now, I've only found lists of hypocoristics in English, Spanish and Portuguese, though I have no way of knowing if they are actually correct and/or useful.
+An idea that I have not implemented is using hypocoristics. Hypocoristics are - and this comes straight from Google - "a pet name, nickname, or term of endearment — often a shortened form of a word or name". For example, Micheal might be called Mike or Robert might be called Bob. This happens in a lot of languages and our PMS should probably incorporate this. For now, I've only found/compiled lists (I can't remember the sources at this point) of hypocoristics in English, Spanish and Portuguese [(See .txt files on GitHub)](https://github.com/UnravelSports/hypocoristics), though I have no way of knowing if they are actually correct and/or useful.
 
 <br>
 ### The Funnel
