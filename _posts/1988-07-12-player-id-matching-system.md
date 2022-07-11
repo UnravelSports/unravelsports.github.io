@@ -1,6 +1,6 @@
 ## 🔬 Designing a Player ID Matching System
 
-This blog came about as a reaction to a Twitter thread (see below) started by [@FC_rstats](https://twitter.com/FC_rstats). One of the ideas brought up in that thread, and the discussion that followed (by [Sam Gregory](https://twitter.com/GregorydSam/status/1542109972791808000) and [Koen Vossen](https://twitter.com/mr_le_fox/status/1542112502489747456)) was the creation of an (open-source) approach to Player ID matching across multiple data providers.
+This blog came about as a reaction to a Twitter thread (see below) started by [@FC_rstats](https://twitter.com/FC_rstats). One of the ideas brought up in that thread, and the discussion that followed (between [Sam Gregory](https://twitter.com/GregorydSam/status/1542109972791808000) and [Koen Vossen](https://twitter.com/mr_le_fox/status/1542112502489747456)) was the creation of an (open-source) approach to Player ID matching across multiple data providers.
 
 <blockquote class="twitter-tweet tw-align-center" data-theme="dark"><p lang="en" dir="ltr">Football analytics 💡:<br><br>People are building great open source packages but there is little to no coordination and therefore no interoperability<br><br>There needs to be a broader plan so these little lego peices naturally fit together <br><br>A broader plan can attract funding <br><br>Who&#39;s in?</p>&mdash; FC rSTATS (@FC_rstats) <a href="https://twitter.com/FC_rstats/status/1542106006209134592?ref_src=twsrc%5Etfw">June 29, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -22,9 +22,9 @@ To properly use `cosine_similarity()` - part of `sklearn.metrics.pairwise` - and
 3. [Removing double spaces using regex](https://stackoverflow.com/questions/43071415/remove-multiple-blanks-in-dataframe)
 4. Lower case all characters
 
-Then, we'll initialize a [Term Frequency–Inverse Document Frequency (or TF-IDF for short)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) vectorizer and fit it to the complete set of names (for example all player names, or all team names). These TF-IDFs are normally used to describe amounts of text greater than two or three words so, we'll initialize `TfidfVectorizer()` with a custom `analyzer` that will split the names up into _n_ letter "words" or sub-strings. This will ensure we increase the "surface area" of our matching algorithm, by giving it more to compare to. 
+Then, we'll initialize a [Term Frequency–Inverse Document Frequency (or TF-IDF for short)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) vectorizer and fit it to the complete set of names (for example all player names, or all team names). These TF-IDFs are normally used to describe amounts of text greater than two or three words so, we'll initialize `TfidfVectorizer()` with a custom `analyzer` that will split the names up into _n_ letter "words" or sub-strings. This will ensure we increase the "surface area" of our matching algorithm, by giving it more to compare to. Fitting a is done to assign frequently occuring parts of names with a lower weight than more unique parts of names. 
 
-In my implementation _n_ = 3, thus turning names into 3 letter sub-strings. This is done to assign frequently occuring parts of names lower with a lower weight. 
+##### In my implementation _n_ = 3, thus turning names into 3 letter sub-strings. 
 
 For example, when fitting the vectorizor on team names this means that "fc" will have a lower importance (due to its relatively high occurance frequency within a dataset of team names) compared to a "liv", "erp" and "ool" or "bar", "cel" and "ona" - the 3 letter _ngrams_ from Liverpool and Barcelona respectively.
 
