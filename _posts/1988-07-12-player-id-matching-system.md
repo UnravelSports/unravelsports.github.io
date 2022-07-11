@@ -1,6 +1,6 @@
 ## 🔬 Designing a Player ID Matching System
 
-This blog came about as a reaction to a Twitter thread (see below) started by [@FC_rstats](https://twitter.com/FC_rstats). One of the ideas brought up in that thread and the discussion that followed (by [Sam Gregory](https://twitter.com/GregorydSam/status/1542109972791808000) and [Koen Vossen](https://twitter.com/mr_le_fox/status/1542112502489747456) was the creation of an (open-source) approach to Player ID matching across multiple data providers.
+This blog came about as a reaction to a Twitter thread (see below) started by [@FC_rstats](https://twitter.com/FC_rstats). One of the ideas brought up in that thread and the discussion that followed (by [Sam Gregory](https://twitter.com/GregorydSam/status/1542109972791808000) and [Koen Vossen](https://twitter.com/mr_le_fox/status/1542112502489747456)) was the creation of an (open-source) approach to Player ID matching across multiple data providers.
 
 <blockquote class="twitter-tweet tw-align-center" data-theme="dark"><p lang="en" dir="ltr">Football analytics 💡:<br><br>People are building great open source packages but there is little to no coordination and therefore no interoperability<br><br>There needs to be a broader plan so these little lego peices naturally fit together <br><br>A broader plan can attract funding <br><br>Who&#39;s in?</p>&mdash; FC rSTATS (@FC_rstats) <a href="https://twitter.com/FC_rstats/status/1542106006209134592?ref_src=twsrc%5Etfw">June 29, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -17,12 +17,16 @@ We'll first go over the basics of string similarity matching using [Cosine Simil
 To do any kind of similarity matching we're going to make use of an approximate string matching technique. I propose the use of the Cosine Similarity to measure the similarity between sets of words (ie. the player or team names). I've also experimented briefly with a fuzzy matching algorithm [FuzzyWuzzy](https://pypi.org/project/fuzzywuzzy/), but I found the cosine similarity to give better results.
 
 To properly use `cosine_similarity()`, and to ensure better matching, we're first going to standardize our set of names by:
-1. [Removing any accents and using only letters from the Latin alphabet](https://stackoverflow.com/questions/45497312/how-to-apply-a-function-with-argument-to-a-pandas-dataframe)
+1. [Removing any accents and using only letters from the Roman/Latin alphabet](https://stackoverflow.com/questions/45497312/how-to-apply-a-function-with-argument-to-a-pandas-dataframe)
 2. [Removing any non-alphanumeric charaters, like dashes, using regex](https://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python)
 3. [Removing double spaces using regex](https://stackoverflow.com/questions/43071415/remove-multiple-blanks-in-dataframe)
 4. Lower case all characters
 
-Then, we'll initialize a [Term Frequency–Inverse Document Frequency (or TF-IDF for short)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) vectorizer and fit it to the complete set of names (for example all player names, or all team names). Because these TF-IDFs are normally used to describe amounts of text greater than two or three words, we'll initialize `TfidfVectorizer()` with a custom `analyzer` that will split the names up into _n_ letter "words". This will ensure we increase the "surface area" of our matching algorithm, by giving it more (partial) words to compare to. In my implementation _n_ = 3, thus turning names into 3 letter parts. We do this simply to weight frequently occuring (parts of) names lower. For example, when fitting the vectorizor on team names this means that "FC" will have a lower importance (due to its relatively high occurance frequency within a dataset of team names) compared to a "word" like "liv", "erp" and "ool" or "bar", "cel" and "ona" - the 3 letter _ngrams_ from Liverpool and Barcelona respectively.
+Then, we'll initialize a [Term Frequency–Inverse Document Frequency (or TF-IDF for short)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) vectorizer and fit it to the complete set of names (for example all player names, or all team names). These TF-IDFs are normally used to describe amounts of text greater than two or three words so, we'll initialize `TfidfVectorizer()` with a custom `analyzer` that will split the names up into _n_ letter "words" or sub-strings. This will ensure we increase the "surface area" of our matching algorithm, by giving it more to compare to. 
+
+In my implementation _n_ = 3, thus turning names into 3 letter sub-strings. This is done to assign frequently occuring parts of names lower with a lower weight. 
+
+For example, when fitting the vectorizor on team names this means that "fc" will have a lower importance (due to its relatively high occurance frequency within a dataset of team names) compared to a "liv", "erp" and "ool" or "bar", "cel" and "ona" - the 3 letter _ngrams_ from Liverpool and Barcelona respectively.
 
 ```python
 def ngrams(string, n=3):
