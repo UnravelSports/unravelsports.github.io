@@ -2,8 +2,7 @@
 
 I have years of industry experience conducting football analytics research, developing state-of-the-art analytics models,
 designing end-user centered custom and novel data visualizations, and building & integrating data analytics into day-to-day work flows
- at club and federation since 2017, having consulted for Premier League Club AFC Bournemouth
- and working for/with the U.S. Soccer Federation since 2018.
+ at club and federation since 2017.
 
 Below is an overview of some of my public work including football analytics research, a proof-of-concept multi-platform mobile/tablet app, data visualizations and interviews.
 
