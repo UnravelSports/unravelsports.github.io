@@ -1,3 +1,5 @@
+![WWC19 Photo](/imgs/wwc2019.png){: style="width:30%; float:right;"}
+
 <b>UnravelSports</b> is a Sports Data Analytics Research & Engineering Consultancy run by Joris Bekkers.
 
 I have years of industry experience conducting football analytics research, developing state-of-the-art analytics models,
