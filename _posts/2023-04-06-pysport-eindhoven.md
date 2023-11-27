@@ -1,4 +1,4 @@
-## 🔬 PySport Meet-up: Rendering Football Data in 3D with Rust and Bevy
+## 🔬 Rendering Football Data in 3D with Rust and Bevy
 
 
 ![3D Screenshot](/imgs/3D-rs2.png){: style="width:30%; float:right;"}
