@@ -1,11 +1,9 @@
 ## 🔬 PySport Meet-up: Rendering Football Data in 3D with Rust and Bevy
 
 
-![3D Screenshot](/imgs/3D-rs.png){: style="width:30%; float:right;"}
+![3D Screenshot](/imgs/3D-rs2.png){: style="width:30%; float:right;"}
 
 On April 6th 2023 during the inaugural [PySport](https://twitter.com/pysportorg?lang=en) Meet-up in Eindhoven I presented a way to render football tracking data in 3D using the Rust programming language and Bevy, a game engine built in Rust.
-
-![3D Screenshot 2](/imgs/3D-pov.png){: style="width:30%; float:right;"}
 
 The purpose of this project was to learn more about 3D rendering to prepare for the eventual availability of 3D bose-pose data in sports.
 
