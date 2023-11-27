@@ -17,13 +17,13 @@ Groundhopmap.com is an interactive map to query football matches wherever you wa
 
 🌍 Currently it supports leagues in:
 - ![belgium flag](/imgs/svg/belgium.svg) Belgium
-- 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿 England
-- 🇫🇷 France
-- 🇩🇪 Germany
-- 🇬🇷 Greece
-- 🇮🇹 Italy
-- 🇳🇱 Netherlands
-- 🇵🇹 Portugal
-- 🇪🇸 Spain
-- 🏴󠁧󠁢󠁳󠁣󠁴󠁿󠁧󠁢󠁳󠁣󠁴󠁿 Scotland
-- 🇹🇷 Turkey
+- ![England flag](/imgs/svg/england.svg)󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢 England
+- ![France flag](/imgs/svg/france.svg) France
+- ![Germany flag](/imgs/svg/germany.svg) Germany
+- ![Greece flag](/imgs/svg/greece.svg) Greece
+- ![Italy flag](/imgs/svg/italy.svg) Italy
+- ![Netherlands flag](/imgs/svg/netherlands.svg) Netherlands
+- ![Portugal flag](/imgs/svg/portugal.svg) Portugal
+- ![Spain flag](/imgs/svg/spain.svg) Spain
+- ![Scotland flag](/imgs/svg/scotland.svg) Scotland
+- ![Turkey flag](/imgs/svg/turkey.svg) Turkey
