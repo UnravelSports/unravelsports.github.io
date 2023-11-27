@@ -15,11 +15,8 @@ Groundhopmap.com is an interactive map to query football matches wherever you wa
     <figcaption>Drawing tools and auto-updating cover shadows</figcaption>
 </figure>
 
-
-
-
 🌍 Currently it supports leagues in:
-- 🇧🇪 Belgium
+- ![belgium flag](/imgs/svg/belgium.svg) Belgium
 - 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿 England
 - 🇫🇷 France
 - 🇩🇪 Germany
