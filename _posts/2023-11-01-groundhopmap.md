@@ -1,6 +1,6 @@
 ## 📱 Groundhopmap.com
 
-In October of 2023, after a couple of months of work and a couple of months of waiting for the new football season to start, I finally released my latest project:
+In October 2023, after a couple of months of work and a couple of months of waiting for the new football season to start, I finally released my latest project:
 
 [www.GroundhopMap.com](www.groundhopmap.com) 
 
