@@ -99,18 +99,20 @@ def tti_pressing_intensity(p1, p2, v1, v2, reaction_time, max_velocity):
 Now that we have the Time to Intercept from each defending player to each attacking player (and the ball) we convert this into probabilities by passing it through a [Sigmoid function](https://github.com/Friends-of-Tracking-Data-FoTD/LaurieOnTracking/blob/master/Metrica_PitchControl.py#L161). This now gives us the chance a defending player will reach an attacking player or the ball within some amount of time given their current direction and speed.
 
 #### Total Pressure on a Player
-This final step enables us to consolidate the probabilities into a single value for each player, allowing us to determine the total pressure exerted on each attacking player. The total **Pressing Intensity** on player $j$ is calculated as:
+This final step enables us to consolidate the probabilities into a single value for each player, allowing us to determine the total pressure exerted on each attacking player. The total **Pressing Intensity** on player $$j$$ is calculated as:
+<br>
 $$
 1 - \prod_{i=1}^{11} \left( 1 - p_{i,j} \right)
 $$
-where $p_{i,j}$ is the probability that player $i$ will intercept player $j$ within $t=1.5s$. (We are very naively assuming all these probabilities are independent.)
+<br>
+where $$p_{i,j}$$ is the probability that player $$i$$ will intercept player $$j$$ within $$t=1.5s$$. (We are very naively assuming all these probabilities are independent.)
 
 -----
 ### Model Improvements
 We need to make some improvements to be able to practically use this model. One of the main issues with this implementation is that there is no distinguishing factor between an attacking player moving towards a defending player, or (what we are actually looking for) a defending player moving towards an attacking player. 
 
 #### Active Pressing
-To account for this we introduce an _Active Pressing_ speed threshold such that any chance of intercepting an attacking player ($p_{i,j}$) is set to zero when a defending players' speed is below this threshold. Figure 3 shows the unfiltered pressing intensity for a snapshot of tracking data, and Figure 4 shows the same situation with the noise filtered out through this speed threshold.
+To account for this we introduce an _Active Pressing_ speed threshold such that any chance of intercepting an attacking player ($$p_{i,j}$$) is set to zero when a defending players' speed is below this threshold. Figure 3 shows the unfiltered pressing intensity for a snapshot of tracking data, and Figure 4 shows the same situation with the noise filtered out through this speed threshold.
 
 <figure>    
     <p><img src="/imgs/pr.png" width="600" class="center-img"></p>
