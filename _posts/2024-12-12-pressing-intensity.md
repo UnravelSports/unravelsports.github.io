@@ -9,7 +9,7 @@ Below is a non-exhaustive list of different approaches that could be used to mea
 - Space Occupation Gain (SOG) ([Fernandez & Bornn, 2018](https://www.researchgate.net/publication/324942294_Wide_Open_Spaces_A_statistical_technique_for_measuring_space_creation_in_professional_soccer))
 
 <figure>    
-    <p><img src="imgs/space-lost.png" width="600" alt="Space Lost" class="center-img"></p>
+    <p><img src="/imgs/space-lost.png" width="600" alt="Space Lost" class="center-img"></p>
     <figcaption>Figure 1. A version of SOG using Spearman's Pitch Control. Space lost by the Red player in the bottom of the center circle to the Blue team over a span of 0.2 seconds. 
     </figcaption>    
 </figure>
@@ -19,7 +19,7 @@ Below is a non-exhaustive list of different approaches that could be used to mea
 Below is an animation of what this pressing metric, simply coined **Pressing Intensity**, looks like during a build-up phase. Each column lists a player on the team in possession, the column surrounded by dashed lines indicates the player in possession of the ball and each row represents a player in the team applying pressure. 
 
 <figure>    
-    <p><img src="imgs/gif/pressing-intensity-2.gif" width="600" alt="Pressing Intensity Animation" class="center-img"></p>
+    <p><img src="/imgs/gif/pressing-intensity-2.gif" width="600" alt="Pressing Intensity Animation" class="center-img"></p>
     <figcaption>Figure 2. Pressing Intensity during a build up.
     </figcaption>    
 </figure>
@@ -113,12 +113,12 @@ We need to make some improvements to be able to practically use this model. One 
 To account for this we introduce an _Active Pressing_ speed threshold such that any chance of intercepting an attacking player ($p_{i,j}$) is set to zero when a defending players' speed is below this threshold. Figure 3 shows the unfiltered pressing intensity for a snapshot of tracking data, and Figure 4 shows the same situation with the noise filtered out through this speed threshold.
 
 <figure>    
-    <p><img src="imgs/pr.png" width="600" class="center-img"></p>
+    <p><img src="/imgs/pr.png" width="600" class="center-img"></p>
     <figcaption>Figure 3. Unfiltered Pressing Intensity.
     </figcaption>    
 </figure>
 <figure>    
-    <p><img src="imgs/active.png" width="600" class="center-img"></p>
+    <p><img src="/imgs/active.png" width="600" class="center-img"></p>
     <figcaption>Figure 4. Filtered Pressing Intensity with a speed threshold set at 2 m/s.
     </figcaption>    
 </figure>
@@ -128,7 +128,7 @@ An issue with this approach is shown in Figure 5. The model assumes an infinite 
 
 This limitation could be addressed by introducing a _Pressing Intensity_ along the sidelines, acting opposite and equal to the force exerted by the attacking player(s) moving toward it.
 <figure>    
-    <p><img src="imgs/pb.png" width="600" class="center-img"></p>
+    <p><img src="/imgs/pb.png" width="600" class="center-img"></p>
     <figcaption>Figure 5. No pressure in the system - eventhough we would expect it - because players are being forced toward the sideline, but are impossible to catch up.
     </figcaption>    
 </figure>
@@ -146,13 +146,13 @@ An example of this is shown in Figure 7. This implementation can be extended fur
 It might be good to note that at some point doing these types of calculations will simply converge back to our more complex Pitch Control calculations. 
 
 <figure>    
-    <p><img src="imgs/purpendicular.png" width="400" class="center-img"></p>
+    <p><img src="/imgs/purpendicular.png" width="400" class="center-img"></p>
     <figcaption>Figure 6. A simple sketch of the closest point (in orange) for the pressing player (in red) to block passing options of the Blue team.
     </figcaption>    
 </figure>
 
 <figure>    
-    <p><img src="imgs/pass-lanes.png" width="600" class="center-img"></p>
+    <p><img src="/imgs/pass-lanes.png" width="600" class="center-img"></p>
     <figcaption>Figure 7. An example of pressing passing lanes, instead of players. In this example t=1 second.
     </figcaption>    
 </figure>
@@ -161,7 +161,7 @@ It might be good to note that at some point doing these types of calculations wi
 Because _Pressing Intensity_ is measured at the individual tracking frame level we can start thinking about ways to measure smart pressing, or efficient pressing, by considering the amount of energy expensed during an out of possession sequence in the form of Metabolic Power ([Floodlight](https://floodlight.readthedocs.io/en/latest/_modules/floodlight/models/kinetics.html#MetabolicPowerModel)). Figure 8 (on the left) shows a players' _Pressing Intensity_ on the ball carrier, where dashed lines indicating a change in ball carrier. On the right we show his metabolic power expensed during this same time frame.
 
 <figure>    
-    <p><img src="imgs/mp.png" width="800" class="center-img"></p>
+    <p><img src="/imgs/mp.png" width="800" class="center-img"></p>
     <figcaption>Figure 8. An example of pressing passing lanes, instead of players. In this example t=1 second.
     </figcaption>    
 </figure>
