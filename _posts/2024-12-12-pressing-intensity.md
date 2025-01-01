@@ -3,8 +3,9 @@
 <div class="text-paperclip"> ⚠️ 
 <br>
 When using the ideas in this work, please reference:
+<br><br>
 Bekkers, Joris. (2024). "Pressing Intensity: An Intuitive Measure for Pressing in Soccer." In Submission.
-<br>
+<br><br>
 This post will be updated with a link to the paper after it has become available.
 </div>
 
