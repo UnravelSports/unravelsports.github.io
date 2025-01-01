@@ -12,6 +12,7 @@
   --clr-primary-font: rgba(255, 255, 255, 1); // white
   --clr-fields: rgba(98, 106, 103, 1);
   --clr-windows: #010001;
+  --clr-warn: #921020;
 }
 
 
@@ -167,6 +168,15 @@ nav.site-nav {
   color: var(--clr-bg);
   padding: 10px;
   background-color: var(--clr-white);
+  border-radius: 5px;
+  border-width: 1px;
+  margin: 25px;
+}
+
+.text-warn {
+  color: var(--clr-bg);
+  padding: 10px;
+  background-color: var(--clr-warn);
   border-radius: 5px;
   border-width: 1px;
   margin: 25px;

@@ -1,5 +1,13 @@
 ## 🔬 An Intuitive Measure for Pressing
 
+<div class="text-warn"> ⚠️ 
+<br>
+When using the ideas in this work, please reference:
+Bekkers, Joris. (2024). "Pressing Intensity: An Intuitive Measure for Pressing in Soccer." In Submission.
+<br>
+This post will be updated with a link to the paper after it has become available.
+</div>
+
 For a long time I've had the aim to develop an intuitive measure for pressing that can be used by coaches, assistants and (data) analysts to identify and analyze pressing situations, compute advanced derived metrics (e.g. moving out from under pressure after receival), and analyze specific in-game situations related to pressing. This approach should utilize positional tracking data to determine the amount of pressure from every defensive player to every attacking player at the individual frame level. It should not be too simple (e.g. counting players near the player in possession), it should not require any ("black box") prediction models or an un-godly amount of manual annotation, it should be relatively easy to explain, and it should be logically summable (e.g. not _n_ players in a radius around another player equals _n_ pressure).
 
 Below is a non-exhaustive list of different approaches that could be used to measure pressing, but did not meet all of the above criteria.
