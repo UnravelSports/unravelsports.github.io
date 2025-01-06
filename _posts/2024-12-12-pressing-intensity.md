@@ -173,7 +173,7 @@ Because _Pressing Intensity_ is measured at the individual tracking frame level 
 
 <figure>    
     <p><img src="/imgs/mp.png" width="800" class="center-img"></p>
-    <figcaption>Figure 8. An example of pressing passing lanes, instead of players. In this example t=1 second.
+    <figcaption>Figure 8. Pressing Intensity (left) and Metabolic Power (right)
     </figcaption>    
 </figure>
 
