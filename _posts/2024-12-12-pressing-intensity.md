@@ -1,14 +1,5 @@
 ## 🔬 An Intuitive Measure for Pressing
 
-<div class="text-paperclip"> ⚠️ Please reference:
-<br><br>
-Bekkers, Joris. (2024). "Pressing Intensity: An Intuitive Measure for Pressing in Soccer." In Submission.
-<br><br>
-This post will be updated with a link to the paper after it has become available.
-</div>
-
------
-
 For a long time I've had the aim to develop an intuitive measure for pressing that can be used by coaches, assistants and (data) analysts to identify and analyze pressing situations, compute advanced derived metrics (e.g. moving out from under pressure after receival), and analyze specific in-game situations related to pressing. This approach should utilize positional tracking data to determine the amount of pressure from every defensive player to every attacking player at the individual frame level. It should not be too simple (e.g. counting players near the player in possession), it should not require any ("black box") prediction models or an un-godly amount of manual annotation, it should be relatively easy to explain, and it should be logically summable (e.g. not _n_ players in a radius around another player equals _n_ pressure).
 
 Below is a non-exhaustive list of different approaches that could be used to measure pressing, but did not meet all of the above criteria.
@@ -103,6 +94,15 @@ def tti_pressing_intensity(p1, p2, v1, v2, reaction_time, max_velocity):
 
     return t
 ```
+-----
+<div class="text-paperclip"> ⚠️ Please reference:
+<br><br>
+Bekkers, Joris. (2024). "Pressing Intensity: An Intuitive Measure for Pressing in Soccer." In Submission.
+<br><br>
+This post will be updated with a link to the paper after it has become available.
+</div>
+
+-----
 
 #### Probability to Intercept the Opponent
 Now that we have the Time to Intercept from each defending player to each attacking player (and the ball) we convert this into probabilities by passing it through a [Sigmoid function](https://github.com/Friends-of-Tracking-Data-FoTD/LaurieOnTracking/blob/master/Metrica_PitchControl.py#L161). This now gives us the chance a defending player will reach an attacking player or the ball within some amount of time given their current direction and speed.
