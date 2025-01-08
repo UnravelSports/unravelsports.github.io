@@ -38,6 +38,18 @@ import numpy as np
 
 def tti_pressing_intensity(p1, p2, v1, v2, reaction_time, max_velocity):
     """
+    BSD 3-Clause License
+
+    Copyright (c) 2025 [UnravelSports]
+
+    See: https://opensource.org/licenses/BSD-3-Clause
+
+    This project includes code and contributions from:
+        - Joris Bekkers (UnravelSports)
+
+    Permission is hereby granted to redistribute this software under the BSD 3-Clause License, with proper attribution
+    ----------
+
     Calculate the Time-to-Intercept (TTI) pressing intensity for a group of players.
 
     This function estimates the time required for Player 1 to press Player 2 based on their
