@@ -107,11 +107,10 @@ def tti_pressing_intensity(p1, p2, v1, v2, reaction_time, max_velocity):
     return t
 ```
 -----
-<div class="text-paperclip"> ⚠️ Please reference:
-<br><br>
-Bekkers, Joris. (2024). "Pressing Intensity: An Intuitive Measure for Pressing in Soccer." In Submission.
-<br><br>
-This post will be updated with a link to the paper after it has become available.
+<div class="text-paperclip">
+  ⚠️ Please reference:<br><br>
+  Bekkers, Joris. (2024). "Pressing Intensity: An Intuitive Measure for Pressing in Soccer." 
+  <a href="https://arxiv.org/pdf/2501.04712" target="_blank">ArXiv PDF</a>
 </div>
 
 -----
