@@ -9,14 +9,6 @@ designing end-user centered custom and novel data visualizations, and building &
 Below is an overview of some of my public work including football analytics research, a proof-of-concept multi-platform mobile/tablet app, data visualizations and interviews.
 
 <br>
-For inquiries feel free to contact me on the links below.
-
-<a href="https://twitter.com/unravelsports" class="fa fa-twitter"></a>
-<a href="https://www.linkedin.com/in/joris-bekkers-33138288" class="fa fa-linkedin"></a>
-
-And check out my Python package below:
-
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=UnravelSports&repo=unravelsports&theme=dracula)](https://github.com/UnravelSports/unravelsports)
 
 <html lang="en">
 <head>
@@ -53,11 +45,15 @@ And check out my Python package below:
 <body>
   <div class="container">
     <div class="left">
-      <p>Left content aligned to the left.</p>
+      For inquiries feel free to contact me on the links below.
+      <a href="https://twitter.com/unravelsports" class="fa fa-twitter"></a>
+      <a href="https://www.linkedin.com/in/joris-bekkers-33138288" class="fa fa-linkedin"></a>
     </div>
     <div class="right">
-      <p>Right content aligned to the right.</p>
-    </div>
+      And check out my Python package below:
+      <br><br>
+      <a href="https://github.com/UnravelSports/unravelsports">
+        <img src="https://github-readme-stats.vercel.app/api/pin/?username=UnravelSports&repo=unravelsports&theme=dracula" alt="GitHub Repository Card">
   </div>
 </body>
 </html>
