@@ -45,8 +45,8 @@ Below is an overview of some of my public work including football analytics rese
 <body>
   <div class="container">
     <div class="left">
-      Contact me on the links below:
-      <a href="https://www.linkedin.com/in/joris-bekkers-33138288" class="fa-linkedin">LinkedIn</a>
+      Contact me on the link below:
+      <a href="https://www.linkedin.com/in/joris-bekkers-33138288" class="fa fa-linkedin">LinkedIn</a>
     </div>
     <div class="right">
       And check out my Python package below:
@@ -57,6 +57,8 @@ Below is an overview of some of my public work including football analytics rese
   </div>
 </body>
 </html>
+
+
 
 ------
 
