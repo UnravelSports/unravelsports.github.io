@@ -54,6 +54,7 @@ Below is an overview of some of my public work including football analytics rese
       <br><br>
       <a href="https://github.com/UnravelSports/unravelsports">
         <img src="https://github-readme-stats.vercel.app/api/pin/?username=UnravelSports&repo=unravelsports&theme=dracula" alt="GitHub Repository Card">
+      </div>
   </div>
 </body>
 </html>
