@@ -45,13 +45,11 @@ Below is an overview of some of my public work including football analytics rese
 <body>
   <div class="container">
     <div class="left">
-      For inquiries feel free to contact me on the links below.
-      <a href="https://twitter.com/unravelsports" class="fa fa-twitter"></a>
+      Contact me on the links below.
       <a href="https://www.linkedin.com/in/joris-bekkers-33138288" class="fa fa-linkedin"></a>
     </div>
     <div class="right">
       And check out my Python package below:
-      <br><br>
       <a href="https://github.com/UnravelSports/unravelsports">
         <img src="https://github-readme-stats.vercel.app/api/pin/?username=UnravelSports&repo=unravelsports&theme=dracula" alt="GitHub Repository Card">
       </div>
