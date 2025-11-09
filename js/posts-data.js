@@ -30,7 +30,7 @@ const postsData = [
     id: "2025-06-07-pydata-london",
     filename: "2025-06-07-pydata-london.md",
     date: "2025-06-07",
-    title: "🎙️ GraphEPV at PyData London 2025",
+    title: "🎙️ PyData London: Graph Expected Possession Value using Graph Neural Networks",
     category: "media",
     emoji: "🎙️",
     excerpt: "Presentation at PyData London 2025 on Graph Expected Possession Value using Graph Neural Networks.",
@@ -120,10 +120,14 @@ const postsData = [
     id: "2023-04-06-pysport-eindhoven",
     filename: "2023-04-06-pysport-eindhoven.md",
     date: "2023-04-06",
-    title: "🔬 Rendering Football Data in 3D with Rust and Bevy",
-    category: "projects",
+    title: "🔬 PySport: Rendering Football Data in 3D with Rust and Bevy",
+    category: "media",
+    categories: ["media", "projects"],
     emoji: "💻",
-    excerpt: "Using Rust and the Bevy game engine to render football tracking data in 3D for advanced visualization."
+    excerpt: "Using Rust and the Bevy game engine to render football tracking data in 3D for advanced visualization.",
+    githubUrl: "https://github.com/UnravelSports/rs-football-3d",
+    youtubeUrl: "https://www.youtube.com/watch?v=VwatoPOKIl8",
+    hideReadMore: true
   },
   {
     id: "2023-03-27-athletic-interview",
@@ -267,7 +271,7 @@ const categories = {
     name: "Talks & Media",
     emoji: "🎙️",
     description: "Presentations, podcasts, and interviews",
-    count: 8
+    count: 9
   },
   research: {
     name: "Research",
