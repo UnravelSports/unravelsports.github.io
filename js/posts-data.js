@@ -30,12 +30,13 @@ const postsData = [
     id: "2025-06-07-pydata-london",
     filename: "2025-06-07-pydata-london.md",
     date: "2025-06-07",
-    title: "🎙️ GraphEPV at PyData London 2025",
+    title: "🎙️ PyData London: Graph Expected Possession Value using Graph Neural Networks",
     category: "media",
     emoji: "🎙️",
     excerpt: "Presentation at PyData London 2025 on Graph Expected Possession Value using Graph Neural Networks.",
     youtubeUrl: "https://www.youtube.com/watch?v=PUXU3SokbW0",
-    hideReadMore: true
+    hideReadMore: true,
+    featured: true
   },
   {
     id: "2025-04-30-aims-cameroon",
@@ -82,7 +83,8 @@ const postsData = [
     excerpt: "An intuitive measure for pressing that can be used by coaches, assistants and (data) analysts to identify and analyze pressing situations, compute advanced derived metrics (e.g. moving out from under pressure after receival), and analyze specific in-game situations related to pressing using positional tracking data.",
     paperUrl: "https://arxiv.org/pdf/2501.04712",
     githubUrl: "https://github.com/UnravelSports/unravelsports",
-    hideReadMore: true
+    hideReadMore: true,
+    featured: true
   },
   {
     id: "2024-12-23-bside-rats-podcast",
@@ -100,12 +102,13 @@ const postsData = [
     id: "2024-08-24-unravelsports-package",
     filename: "2024-08-24-unravelsports-package.md",
     date: "2024-08-24",
-    title: "🌀 pip install unravelsports",
+    title: "🌀 𝚙𝚒𝚙 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 𝚞𝚗𝚛𝚊𝚟𝚎𝚕𝚜𝚙𝚘𝚛𝚝𝚜",
     category: "package",
     emoji: "🌀",
-    excerpt: "Release of the open-source unravelsports Python package for converting football tracking data into graphs for Graph Neural Networks.",
+    excerpt: "The unravelsports package aims to aid researchers, professionals and enthusiasts by turning raw sports data into meaningful information and actionable insights. It offers Graph Neural Network architecture, Pressing Intensity and Position Label detection.",
     githubUrl: "https://github.com/UnravelSports/unravelsports",
-    hideReadMore: true
+    hideReadMore: true,
+    featured: true
   },
   {
     id: "2023-11-01-groundhopmap",
@@ -120,10 +123,15 @@ const postsData = [
     id: "2023-04-06-pysport-eindhoven",
     filename: "2023-04-06-pysport-eindhoven.md",
     date: "2023-04-06",
-    title: "🔬 Rendering Football Data in 3D with Rust and Bevy",
-    category: "projects",
+    title: "🔬 PySport: Rendering Football Data in 3D with Rust and Bevy",
+    category: "media",
+    categories: ["media", "projects"],
     emoji: "💻",
-    excerpt: "Using Rust and the Bevy game engine to render football tracking data in 3D for advanced visualization."
+    excerpt: "Using Rust and the Bevy game engine to render football tracking data in 3D for advanced visualization.",
+    githubUrl: "https://github.com/UnravelSports/rs-football-3d",
+    youtubeUrl: "https://www.youtube.com/watch?v=VwatoPOKIl8",
+    hideReadMore: true,
+    featured: true
   },
   {
     id: "2023-03-27-athletic-interview",
@@ -134,7 +142,8 @@ const postsData = [
     emoji: "🎙️",
     excerpt: "Interview with The Athletic about our presentation at the 2023 MIT Sloan Sports Analytics Conference.",
     articleUrl: "https://www.nytimes.com/athletic/4330768/2023/03/27/sloan-conference-counter-attack-bekkers/",
-    hideReadMore: true
+    hideReadMore: true,
+    featured: true
   },
   {
     id: "2023-03-02-ssac23",
@@ -146,6 +155,7 @@ const postsData = [
     excerpt: "Gender-specific Graph Neural Networks modeling the likelihood of counterattack success, trained on 20,863 frames of counterattacking sequences from MLS, NWSL and international women's soccer. Finalist at the 𝐌𝐈𝐓 𝐒𝐥𝐨𝐚𝐧 𝐒𝐩𝐨𝐫𝐭𝐬 𝐀𝐧𝐚𝐥𝐲𝐭𝐢𝐜𝐬 𝐂𝐨𝐧𝐟𝐞𝐫𝐞𝐧𝐜𝐞 𝐑𝐞𝐬𝐞𝐚𝐫𝐜𝐡 𝐏𝐚𝐩𝐞𝐫 𝐂𝐨𝐦𝐩𝐞𝐭𝐢𝐭𝐢𝐨𝐧 𝟐𝟎𝟐𝟑.",
     paperUrl: "https://arxiv.org/pdf/2411.17450",
     githubUrl: "https://github.com/USSoccerFederation/ussf_ssac_23_soccer_gnn",
+    youtubeUrl: "https://www.youtube.com/watch?v=3ozD-fvQmOg",
     hideReadMore: true
   },
   {
@@ -257,6 +267,12 @@ const postsData = [
 
 // Category definitions with display names and counts
 const categories = {
+  featured: {
+    name: "Featured",
+    emoji: "⭐",
+    description: "Highlighted posts and key contributions",
+    count: 5
+  },
   package: {
     name: "Python Package",
     emoji: "🌀",
@@ -267,7 +283,7 @@ const categories = {
     name: "Talks & Media",
     emoji: "🎙️",
     description: "Presentations, podcasts, and interviews",
-    count: 8
+    count: 9
   },
   research: {
     name: "Research",
@@ -286,6 +302,10 @@ const categories = {
 // Helper functions
 function getPostsByCategory(category) {
   return postsData.filter(post => {
+    // Handle featured filter separately
+    if (category === 'featured') {
+      return post.featured === true;
+    }
     // Support both single category and multiple categories
     if (post.categories && Array.isArray(post.categories)) {
       return post.categories.includes(category);

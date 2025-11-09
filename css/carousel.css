@@ -97,6 +97,75 @@
   box-shadow: 0 10px 30px rgba(230, 182, 17, 0.2);
 }
 
+/* Featured Card Styling */
+.post-card-featured {
+  border: 2px solid rgba(230, 182, 17, 0.8);
+  box-shadow: 0 0 15px rgba(230, 182, 17, 0.15);
+  background: linear-gradient(
+    135deg,
+    rgba(230, 182, 17, 0.08) 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(230, 182, 17, 0.08) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.post-card-featured::before {
+  content: '⭐';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 1.2rem;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Shimmer effect layer - holographic style */
+.post-card-featured::after {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  background: linear-gradient(
+    var(--shimmer-angle, 45deg),
+    transparent 0%,
+    transparent 20%,
+    rgba(255, 255, 255, 0.2) 35%,
+    rgba(230, 182, 17, 0.4) 50%,
+    rgba(255, 255, 255, 0.2) 65%,
+    transparent 80%,
+    transparent 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.post-card-featured.shimmer-active::after {
+  animation: holoSweep 2.8s ease-out forwards;
+}
+
+@keyframes holoSweep {
+  0% {
+    opacity: 0;
+    transform: translate(var(--shimmer-start-x, -100%), var(--shimmer-start-y, 0));
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--shimmer-end-x, 100%), var(--shimmer-end-y, 0));
+  }
+}
+
+.post-card-featured:hover {
+  transform: translateY(-7px);
+  border-color: var(--clr-primary);
+  box-shadow: 0 8px 25px rgba(230, 182, 17, 0.25);
+}
+
 .post-card-emoji {
   font-size: 2rem;
   margin-bottom: 15px;

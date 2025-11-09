@@ -252,6 +252,63 @@ function createPostCard(post) {
   const card = document.createElement('div');
   card.className = 'post-card';
 
+  // Add featured class if post is featured
+  if (post.featured) {
+    card.classList.add('post-card-featured');
+
+    // Add holographic shimmer effect on hover
+    card.addEventListener('mouseenter', function(e) {
+      // Get mouse position relative to card center
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Calculate angle from center to cursor
+      const deltaX = x - centerX;
+      const deltaY = y - centerY;
+      const angleToCenter = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+
+      // The light band should be perpendicular to the direction from cursor to center
+      // Add 90 degrees to get perpendicular angle
+      const shimmerAngle = angleToCenter + 90;
+
+      // Calculate start and end positions for the sweep based on cursor direction
+      // The light should sweep across the card in the direction away from the cursor
+      // Increase distance to ensure full card coverage with the enlarged gradient layer
+      const distance = 200; // Sweep distance in percentage
+      const startX = -distance * Math.cos(angleToCenter * Math.PI / 180);
+      const startY = -distance * Math.sin(angleToCenter * Math.PI / 180);
+      const endX = distance * Math.cos(angleToCenter * Math.PI / 180);
+      const endY = distance * Math.sin(angleToCenter * Math.PI / 180);
+
+      // Set CSS variables for the gradient angle and animation positions
+      card.style.setProperty('--shimmer-angle', `${shimmerAngle}deg`);
+      card.style.setProperty('--shimmer-start-x', `${startX}%`);
+      card.style.setProperty('--shimmer-start-y', `${startY}%`);
+      card.style.setProperty('--shimmer-end-x', `${endX}%`);
+      card.style.setProperty('--shimmer-end-y', `${endY}%`);
+
+      // Force animation restart by removing and re-adding the class
+      card.classList.remove('shimmer-active');
+      // Trigger reflow to restart the animation
+      void card.offsetWidth;
+      card.classList.add('shimmer-active');
+
+      // Clear any existing timeout
+      if (card.shimmerTimeout) {
+        clearTimeout(card.shimmerTimeout);
+      }
+
+      // Remove class after animation completes
+      card.shimmerTimeout = setTimeout(() => {
+        card.classList.remove('shimmer-active');
+        card.shimmerTimeout = null;
+      }, 2800);
+    });
+  }
+
   // Determine the primary URL for cards without "Read more"
   // Prefer non-PDF URLs over paper URLs
   let primaryUrl = null;
