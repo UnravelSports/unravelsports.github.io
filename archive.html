@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse all posts from UnravelSports - Sports Data Analytics Research & Engineering Consultancy">
+  <meta name="author" content="Joris Bekkers">
+
+  <title>Archive | UnravelSports</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <style>
+    /* Archive Page Styles */
+    .site-header {
+      background: rgba(36, 38, 39, 0.95);
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(230, 182, 17, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-nav a {
+      color: var(--clr-white);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition-fast);
+    }
+
+    .main-nav a:hover {
+      color: var(--clr-primary);
+    }
+
+    .archive-container {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .archive-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .archive-title {
+      font-size: 3rem;
+      color: var(--clr-primary);
+      margin-bottom: 20px;
+    }
+
+    .archive-subtitle {
+      font-size: 1.2rem;
+      color: var(--clr-highlight);
+    }
+
+    /* Filter Buttons */
+    .filter-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+
+    .filter-button {
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--clr-white);
+      border: 1px solid rgba(230, 182, 17, 0.3);
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .filter-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--clr-primary);
+    }
+
+    .filter-button.active {
+      background: var(--clr-primary);
+      color: var(--clr-bg);
+      border-color: var(--clr-primary);
+    }
+
+    .filter-count {
+      opacity: 0.7;
+      font-size: 0.9em;
+    }
+
+    /* Posts Grid */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .archive-post-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      border: 1px solid rgba(230, 182, 17, 0.2);
+      transition: all var(--transition-normal);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .archive-post-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--clr-primary);
+      box-shadow: 0 10px 30px rgba(230, 182, 17, 0.2);
+    }
+
+    .post-category-badge {
+      display: inline-block;
+      font-size: 0.85rem;
+      padding: 5px 12px;
+      border-radius: 15px;
+      background: rgba(230, 182, 17, 0.1);
+      color: var(--clr-primary);
+      margin-bottom: 15px;
+      align-self: flex-start;
+    }
+
+    .archive-post-date {
+      font-size: 0.85rem;
+      color: var(--clr-highlight);
+      margin-bottom: 12px;
+    }
+
+    .archive-post-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--clr-white);
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .archive-post-excerpt {
+      font-size: 1rem;
+      color: var(--clr-white);
+      opacity: 0.8;
+      line-height: 1.6;
+      flex-grow: 1;
+      margin-bottom: 15px;
+    }
+
+    .archive-post-link {
+      color: var(--clr-primary) !important;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap var(--transition-fast);
+    }
+
+    .archive-post-link:link,
+    .archive-post-link:visited,
+    .archive-post-link:active {
+      color: var(--clr-primary) !important;
+    }
+
+    .archive-post-link:hover {
+      gap: 10px;
+      color: var(--clr-primary) !important;
+    }
+
+    .archive-post-link::after {
+      content: '→';
+      font-size: 1.2rem;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--clr-highlight);
+    }
+
+    .empty-state-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: rgba(36, 38, 39, 0.95);
+      padding: 40px 20px;
+      border-top: 1px solid rgba(230, 182, 17, 0.2);
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .footer-text {
+      color: var(--clr-highlight);
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .archive-title {
+        font-size: 2rem;
+      }
+
+      .posts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-buttons {
+        gap: 10px;
+      }
+
+      .filter-button {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+      }
+
+      .main-nav ul {
+        gap: 15px;
+      }
+
+      .main-nav a {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="archive.html?filter=research">🔬 Research</a></li>
+          <li><a href="archive.html?filter=package">🌀 Python Package</a></li>
+          <li><a href="archive.html?filter=media">🎙️ Talks & Media</a></li>
+          <li><a href="archive.html?filter=projects">💻 Tools & Projects</a></li>
+          <li><a href="archive.html">All Posts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="archive-container">
+    <header class="archive-header fade-in-up">
+      <h1 class="archive-title">Archive</h1>
+      <p class="archive-subtitle">Browse all posts by category</p>
+    </header>
+
+    <!-- Filter Buttons -->
+    <div class="filter-buttons fade-in-up" id="filter-buttons">
+      <!-- Dynamically generated -->
+    </div>
+
+    <!-- Posts Grid -->
+    <div class="posts-grid" id="posts-grid">
+      <!-- Dynamically generated -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p class="footer-text">
+        © 2025 UnravelSports | Joris Bekkers
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/posts-data.js"></script>
+  <script src="js/site.js"></script>
+
+  <script>
+    let currentFilter = 'all';
+
+    // Format date
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString('en-US', options);
+    }
+
+    // Create post card
+    function createPostCard(post) {
+      const categoryData = categories[post.category];
+      const card = document.createElement('div');
+      card.className = 'archive-post-card fade-in-up';
+      card.setAttribute('data-category', post.category);
+      card.onclick = () => window.location.href = `post.html?id=${post.id}`;
+
+      const titleWithoutEmoji = post.title
+        .replace(/^[\u{1F000}-\u{1FFFF}]/u, '')
+        .replace(/^[\u{2600}-\u{27BF}]/u, '')
+        .replace(/^[🌀🎙️🔬💻📱]\s*/, '')
+        .trim();
+
+      card.innerHTML = `
+        <div class="post-category-badge">${categoryData.emoji} ${categoryData.name}</div>
+        <div class="archive-post-date">${formatDate(post.date)}</div>
+        <h3 class="archive-post-title">${titleWithoutEmoji}</h3>
+        <p class="archive-post-excerpt">${post.excerpt}</p>
+        <a href="post.html?id=${post.id}" class="archive-post-link" onclick="event.stopPropagation();">Read more</a>
+      `;
+
+      return card;
+    }
+
+    // Render posts
+    function renderPosts(filter = 'all') {
+      const grid = document.getElementById('posts-grid');
+      grid.innerHTML = '';
+
+      let filteredPosts = filter === 'all'
+        ? postsData
+        : postsData.filter(post => post.category === filter);
+
+      if (filteredPosts.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📭</div>
+            <h3>No posts found</h3>
+            <p>Try selecting a different category.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filteredPosts.forEach(post => {
+        grid.appendChild(createPostCard(post));
+      });
+    }
+
+    // Setup filters
+    function setupFilters() {
+      const container = document.getElementById('filter-buttons');
+
+      // All posts button
+      const allButton = document.createElement('button');
+      allButton.className = 'filter-button active';
+      allButton.innerHTML = `
+        <span>All Posts</span>
+        <span class="filter-count">(${postsData.length})</span>
+      `;
+      allButton.onclick = () => filterPosts('all');
+      container.appendChild(allButton);
+
+      // Category buttons
+      Object.entries(categories).forEach(([key, data]) => {
+        const button = document.createElement('button');
+        button.className = 'filter-button';
+        button.setAttribute('data-filter', key);
+        button.innerHTML = `
+          <span>${data.emoji}</span>
+          <span>${data.name}</span>
+          <span class="filter-count">(${data.count})</span>
+        `;
+        button.onclick = () => filterPosts(key);
+        container.appendChild(button);
+      });
+    }
+
+    // Filter posts
+    function filterPosts(category) {
+      currentFilter = category;
+
+      // Update active button
+      document.querySelectorAll('.filter-button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      if (category === 'all') {
+        document.querySelector('.filter-button').classList.add('active');
+      } else {
+        document.querySelector(`[data-filter="${category}"]`).classList.add('active');
+      }
+
+      // Render filtered posts
+      renderPosts(category);
+
+      // Scroll to posts
+      document.getElementById('posts-grid').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      setupFilters();
+      renderPosts('all');
+
+      // Check URL for filter parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const filterParam = urlParams.get('filter');
+      if (filterParam && (filterParam === 'all' || categories[filterParam])) {
+        filterPosts(filterParam);
+      }
+    });
+  </script>
+</body>
+</html>
