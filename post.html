@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="UnravelSports - Sports Data Analytics">
+  <meta name="author" content="Joris Bekkers">
+
+  <title>Loading... | UnravelSports</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/carousel.css">
+
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <style>
+    /* Post Page Styles */
+    .post-container {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .post-header {
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 2px solid rgba(230, 182, 17, 0.2);
+    }
+
+    .post-title {
+      font-size: 2.5rem;
+      color: var(--clr-primary);
+      margin: 0 0 20px 0;
+      line-height: 1.2;
+    }
+
+    .post-meta {
+      display: flex;
+      gap: 20px;
+      color: var(--clr-highlight);
+      font-size: 0.95rem;
+      flex-wrap: wrap;
+    }
+
+    .post-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .post-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--clr-white);
+    }
+
+    .post-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      margin: 30px 0;
+    }
+
+    .post-content h2 {
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+    .post-content h3 {
+      margin-top: 40px;
+      margin-bottom: 15px;
+    }
+
+    .post-content pre {
+      position: relative;
+      background: var(--clr-windows);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      overflow-x: auto;
+      margin: 25px 0;
+    }
+
+    .post-content code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+
+    .post-content blockquote {
+      border-left: 4px solid var(--clr-primary);
+      padding-left: 20px;
+      margin: 25px 0;
+      font-style: italic;
+      color: var(--clr-highlight);
+    }
+
+    .post-content ul, .post-content ol {
+      margin: 20px 0;
+      padding-left: 30px;
+    }
+
+    .post-content li {
+      margin: 10px 0;
+    }
+
+    .post-content table {
+      width: 100%;
+      margin: 30px 0;
+    }
+
+    /* Share Section */
+    .post-share {
+      margin: 50px 0;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+
+    .share-title {
+      font-size: 1.2rem;
+      color: var(--clr-primary);
+      margin-bottom: 20px;
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .share-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: rgba(230, 182, 17, 0.1);
+      color: var(--clr-primary);
+      text-decoration: none;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(230, 182, 17, 0.3);
+      transition: all var(--transition-fast);
+      font-weight: 600;
+    }
+
+    .share-button:hover {
+      background: var(--clr-primary);
+      color: var(--clr-bg);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(230, 182, 17, 0.3);
+    }
+
+    /* Post Navigation */
+    .post-navigation {
+      display: flex;
+      gap: 20px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 2px solid rgba(230, 182, 17, 0.2);
+    }
+
+    .nav-post {
+      flex: 1;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(230, 182, 17, 0.2);
+      transition: all var(--transition-normal);
+      text-decoration: none;
+      display: block;
+    }
+
+    .nav-post:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--clr-primary);
+      transform: translateY(-3px);
+    }
+
+    .nav-label {
+      font-size: 0.85rem;
+      color: var(--clr-highlight);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav-title {
+      font-size: 1.1rem;
+      color: var(--clr-white);
+      font-weight: 600;
+    }
+
+    .nav-post.prev {
+      text-align: left;
+    }
+
+    .nav-post.next {
+      text-align: right;
+    }
+
+    /* Loading State */
+    .loading {
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .loading-spinner {
+      border: 4px solid rgba(230, 182, 17, 0.2);
+      border-top: 4px solid var(--clr-primary);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Error State */
+    .error-message {
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .error-message h2 {
+      color: var(--clr-warn);
+      margin-bottom: 20px;
+    }
+
+    .error-message p {
+      color: var(--clr-highlight);
+      margin-bottom: 30px;
+    }
+
+    .error-message a {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--clr-primary);
+      color: var(--clr-bg);
+      text-decoration: none;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+
+    .error-message a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(230, 182, 17, 0.3);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: rgba(36, 38, 39, 0.95);
+      padding: 40px 20px;
+      border-top: 1px solid rgba(230, 182, 17, 0.2);
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .footer-text {
+      color: var(--clr-highlight);
+      font-size: 0.9rem;
+    }
+
+    /* Post Carousel Section */
+    .post-carousel-section {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 2px solid rgba(230, 182, 17, 0.2);
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+
+    #post-carousel-container {
+      width: 100%;
+    }
+
+    /* Make post carousel cards slightly smaller */
+    .post-carousel-section .post-card {
+      flex: 0 0 280px;
+      min-height: 180px;
+    }
+
+    .post-carousel-section .post-card-title {
+      font-size: 1.05rem;
+    }
+
+    .post-carousel-section .post-card-excerpt {
+      font-size: 0.88rem;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .post-title {
+        font-size: 2rem;
+      }
+
+      .post-navigation {
+        flex-direction: column;
+      }
+
+      .share-buttons {
+        flex-direction: column;
+      }
+
+      .post-carousel-section {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      .post-carousel-section .post-card {
+        flex: 0 0 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Content -->
+  <main id="post-main">
+    <!-- Loading state -->
+    <div class="loading">
+      <div class="loading-spinner"></div>
+      <p>Loading post...</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p class="footer-text">
+        © 2025 UnravelSports | Joris Bekkers
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://platform.twitter.com/widgets.js" async></script>
+  <script src="js/posts-data.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/site.js"></script>
+
+  <script>
+    // Build carousel for all posts, centered on current post
+    function buildPostCarousel(currentIndex) {
+      const container = document.getElementById('post-carousel-container');
+      if (!container) return;
+
+      // Create carousel structure
+      const carouselContainer = document.createElement('div');
+      carouselContainer.className = 'carousel-container';
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'carousel-wrapper';
+
+      const track = document.createElement('div');
+      track.className = 'carousel-track';
+
+      // Add all posts
+      postsData.forEach(post => {
+        const card = createPostCard(post);
+        track.appendChild(card);
+      });
+
+      wrapper.appendChild(track);
+      carouselContainer.appendChild(wrapper);
+
+      // Previous button
+      const prevButton = document.createElement('button');
+      prevButton.className = 'carousel-control prev';
+      prevButton.innerHTML = '‹';
+      prevButton.setAttribute('aria-label', 'Previous posts');
+      carouselContainer.appendChild(prevButton);
+
+      // Next button
+      const nextButton = document.createElement('button');
+      nextButton.className = 'carousel-control next';
+      nextButton.innerHTML = '›';
+      nextButton.setAttribute('aria-label', 'Next posts');
+      carouselContainer.appendChild(nextButton);
+
+      container.appendChild(carouselContainer);
+
+      // Initialize carousel - pass the container element
+      const carousel = new Carousel(carouselContainer);
+
+      // Calculate position to center the current post
+      // Show current post in the middle with one post visible on each side
+      if (currentIndex >= 0) {
+        // Use setTimeout to ensure DOM is ready and carousel is initialized
+        setTimeout(() => {
+          const cardsToShow = carousel.cardsToShow || 3;
+
+          // Calculate scroll position to center current post
+          let scrollPosition = currentIndex;
+
+          // If we can show multiple cards, try to center the current one
+          if (cardsToShow > 1) {
+            scrollPosition = Math.max(0, currentIndex - Math.floor(cardsToShow / 2));
+          }
+
+          // Make sure we don't scroll past the end
+          scrollPosition = Math.min(scrollPosition, carousel.maxIndex);
+
+          carousel.goToSlide(scrollPosition);
+        }, 100);
+      }
+    }
+
+    // Load and render post
+    document.addEventListener('DOMContentLoaded', async () => {
+      const postId = getQueryParam('id');
+      const main = document.getElementById('post-main');
+
+      if (!postId) {
+        main.innerHTML = `
+          <div class="error-message">
+            <h2>Post Not Found</h2>
+            <p>No post ID was provided in the URL.</p>
+            <a href="index.html">Back to Home</a>
+          </div>
+        `;
+        return;
+      }
+
+      // Load post
+      const result = await loadAndRenderPost(postId);
+
+      if (result.error) {
+        main.innerHTML = `
+          <div class="error-message">
+            <h2>Error Loading Post</h2>
+            <p>${result.message}</p>
+            <a href="index.html">Back to Home</a>
+          </div>
+        `;
+        return;
+      }
+
+      // Update page title and meta
+      document.title = `${result.post.title} | UnravelSports`;
+      updateMetaTags(result.post);
+
+      // Get adjacent posts for navigation
+      const { prev, next } = getAdjacentPosts(postId);
+
+      // Build post HTML
+      const categoryData = categories[result.post.category];
+
+      // Remove emoji from title for display
+      const titleWithoutEmoji = result.post.title
+        .replace(/^[\u{1F000}-\u{1FFFF}]/u, '')
+        .replace(/^[\u{2600}-\u{27BF}]/u, '')
+        .replace(/^[🌀🎙️🔬💻📱]\s*/, '')
+        .trim();
+
+      main.innerHTML = `
+        <article class="post-container">
+          <header class="post-header">
+            <h1 class="post-title">${titleWithoutEmoji}</h1>
+            <div class="post-meta">
+              <div class="post-meta-item">
+                <span>📅</span>
+                <time datetime="${result.post.date}">${formatPostDate(result.post.date)}</time>
+              </div>
+              <div class="post-meta-item">
+                <span>👤</span>
+                <span>Joris Bekkers</span>
+              </div>
+              <div class="post-meta-item">
+                <span>📖</span>
+                <span>${getReadingTime(result.html)}</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="post-content">
+            ${result.html}
+          </div>
+
+          <div class="post-carousel-section">
+            <div id="post-carousel-container"></div>
+          </div>
+        </article>
+      `;
+
+      // Initialize enhancements
+      initializeSyntaxHighlighting();
+      setupExternalLinks();
+      setupShareButtons();
+      initializeTwitterEmbeds();
+
+      // Build carousel centered on current post
+      const currentPostIndex = postsData.findIndex(p => p.id === postId);
+      buildPostCarousel(currentPostIndex);
+    });
+  </script>
+</body>
+</html>

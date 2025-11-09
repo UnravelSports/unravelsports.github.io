@@ -1,0 +1,459 @@
+/* UnravelSports Main Stylesheet */
+/* Consolidated from existing styles + new enhancements */
+
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap');
+
+/* ==================== */
+/* CSS Variables */
+/* ==================== */
+:root {
+  --clr-primary: #E6B611; /* yellow/gold */
+  --clr-secondary: #757558; /* yellowish grey */
+  --clr-bg: #242627; /* dark blackish */
+  --clr-highlight: #9A9083; /* goldish brown */
+  --clr-white: #FFFFFF;
+  --clr-primary-font: #FFFFFF;
+  --clr-fields: #626A67;
+  --clr-windows: #010001; /* pure black for code */
+  --clr-warn: #921020; /* red */
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  /* Border radius */
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-lg: 15px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease-out;
+  --transition-normal: 0.3s ease-out;
+}
+
+/* ==================== */
+/* Reset & Base Styles */
+/* ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Titillium Web', sans-serif;
+  background: var(--clr-bg);
+  color: var(--clr-primary-font);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* ==================== */
+/* Typography */
+/* ==================== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--clr-primary);
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h2.post-title, h2#blogs {
+  font-size: 32px;
+}
+
+h1.post-title.p-name {
+  color: var(--clr-primary);
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  opacity: 0.85;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+p {
+  font-size: 1.15em;
+  color: var(--clr-primary-font);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ==================== */
+/* Links */
+/* ==================== */
+a {
+  transition: var(--transition-fast);
+  color: var(--clr-primary);
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+a:link, a.post-link:link {
+  color: var(--clr-primary);
+}
+
+a:visited, a.post-link:visited {
+  color: var(--clr-highlight);
+}
+
+a:hover, a:active, a.post-link:hover {
+  color: var(--clr-primary);
+  opacity: 1;
+}
+
+a.page-link:link, a.page-link:visited {
+  color: var(--clr-white);
+}
+
+a.page-link:hover {
+  color: var(--clr-primary);
+}
+
+/* ==================== */
+/* Images & Media */
+/* ==================== */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+img.site-logo {
+  max-width: 100px;
+}
+
+.center-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+.center-img-2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center-vid {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure {
+  margin: var(--spacing-md) 0;
+}
+
+figcaption {
+  color: var(--clr-highlight);
+  margin-bottom: 35px;
+  margin-top: -5px;
+  text-align: center;
+}
+
+/* ==================== */
+/* Code Blocks */
+/* ==================== */
+pre, code {
+  background-color: var(--clr-windows);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  font-family: 'Courier New', monospace;
+}
+
+pre {
+  padding: var(--spacing-sm);
+  overflow-x: auto;
+}
+
+/* ==================== */
+/* Tables */
+/* ==================== */
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  margin: var(--spacing-md) auto;
+}
+
+table th, table td {
+  padding: 10px 15px;
+}
+
+table th {
+  background-color: var(--clr-windows);
+  border: 1px solid #dedede;
+  border-bottom-color: #c9c9c9;
+  color: var(--clr-primary);
+}
+
+table tr:nth-child(even) {
+  background-color: var(--clr-white);
+  color: var(--clr-windows);
+}
+
+table tr:nth-child(odd) {
+  background-color: var(--clr-windows);
+  color: var(--clr-white);
+}
+
+/* ==================== */
+/* Layout Containers */
+/* ==================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+/* ==================== */
+/* Navigation */
+/* ==================== */
+nav.site-nav {
+  background-color: var(--clr-highlight);
+}
+
+.menu-icon {
+  color: var(--clr-primary);
+}
+
+div.trigger {
+  background-color: var(--clr-bg);
+}
+
+/* ==================== */
+/* Special Text Boxes */
+/* ==================== */
+.text-quote {
+  font-style: italic;
+  color: var(--clr-highlight);
+  margin: 25px;
+  padding: var(--spacing-sm);
+  border-left: 4px solid var(--clr-highlight);
+}
+
+.text-paperclip {
+  color: var(--clr-bg);
+  padding: var(--spacing-sm);
+  background-color: var(--clr-white);
+  border-radius: var(--radius-sm);
+  margin: 25px 0;
+}
+
+.text-warn {
+  color: var(--clr-bg);
+  padding: var(--spacing-sm);
+  background-color: var(--clr-warn);
+  border-radius: var(--radius-sm);
+  margin: 25px 0;
+}
+
+.paperclip-link:link {
+  color: var(--clr-primary);
+}
+
+.paperclip-link:visited, .paperclip-link:active {
+  color: var(--clr-fields);
+}
+
+.paperclip-link:hover {
+  color: var(--clr-highlight);
+}
+
+/* ==================== */
+/* Post Meta */
+/* ==================== */
+span.post-meta {
+  color: var(--clr-highlight);
+  font-size: 0.9em;
+}
+
+/* ==================== */
+/* Social Icons */
+/* ==================== */
+.fa {
+  padding: 15px;
+  font-size: 30px;
+  width: 25px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  transition: var(--transition-fast);
+  color: var(--clr-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.fa-twitter, .fa-linkedin {
+  background: var(--clr-primary-font);
+  color: var(--clr-primary-font);
+}
+
+.fa:hover, .fa-twitter:hover, .fa-linkedin:hover {
+  background: var(--clr-primary);
+  color: var(--clr-primary-font);
+  text-decoration: none;
+}
+
+a.fa.fa-twitter::before, a.fa.fa-linkedin::before {
+  color: var(--clr-primary);
+}
+
+/* ==================== */
+/* Share Links */
+/* ==================== */
+div.share-links {
+  margin-bottom: 20px;
+  text-align: right;
+  margin-left: auto;
+  margin-right: 0;
+  color: var(--clr-highlight);
+  fill: var(--clr-highlight);
+}
+
+/* ==================== */
+/* Post Navigation */
+/* ==================== */
+hr {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border: none;
+  border-top: 1px solid var(--clr-highlight);
+  opacity: 0.3;
+}
+
+.post_navi {
+  display: flex;
+  margin: var(--spacing-lg) 0;
+}
+
+.post_navi-label {
+  font-size: 0.8em;
+  opacity: 0.5;
+  color: var(--clr-highlight);
+}
+
+.post_navi .post_navi-item {
+  padding: 0 2.2em;
+  width: 50%;
+  position: relative;
+  color: inherit !important;
+}
+
+.post_navi .nav_prev {
+  text-align: left;
+}
+
+.post_navi .nav_next {
+  text-align: right;
+}
+
+.post_navi .nav_prev .post_navi-arrow {
+  left: 0;
+}
+
+.post_navi .nav_next .post_navi-arrow {
+  right: 0;
+}
+
+.post_navi .post_navi-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5em;
+  opacity: 0.3;
+}
+
+/* ==================== */
+/* Utilities */
+/* ==================== */
+.text-center {
+  text-align: center;
+}
+
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+
+/* ==================== */
+/* Animations */
+/* ==================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.fade-in-delay-1 {
+  animation: fadeIn 0.6s ease-out 0.2s both;
+}
+
+.fade-in-delay-2 {
+  animation: fadeIn 0.6s ease-out 0.4s both;
+}
+
+.fade-in-delay-3 {
+  animation: fadeIn 0.6s ease-out 0.6s both;
+}
+
+/* ==================== */
+/* Responsive */
+/* ==================== */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .container, .wrapper {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .post_navi .post_navi-item {
+    padding: 0 1em;
+  }
+}

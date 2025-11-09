@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="UnravelSports - Sports Data Analytics Research & Engineering Consultancy. Explore research papers, Python packages, talks, and interactive tools for football analytics.">
+  <meta name="author" content="Joris Bekkers">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://unravelsports.github.io/">
+  <meta property="og:title" content="UnravelSports - Sports Data Analytics">
+  <meta property="og:description" content="Sports Data Analytics Research & Engineering Consultancy">
+
+  <title>UnravelSports - Sports Data Analytics</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/carousel.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <style>
+    /* Hero Section Styles */
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(36, 38, 39, 1) 0%, rgba(36, 38, 39, 0.95) 50%, rgba(54, 56, 57, 1) 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(230, 182, 17, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 50%, rgba(230, 182, 17, 0.05) 0%, transparent 50%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.6;
+      }
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 30px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.2s forwards;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--clr-primary);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.4s forwards;
+      text-shadow: 0 2px 10px rgba(230, 182, 17, 0.3);
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--clr-highlight);
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.6s forwards;
+      line-height: 1.6;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.8s forwards;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 1s forwards;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 15px 35px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: var(--radius-md);
+      transition: all var(--transition-normal);
+      cursor: pointer;
+    }
+
+    .cta-primary {
+      background: var(--clr-primary);
+      color: var(--clr-bg);
+      border: 2px solid var(--clr-primary);
+    }
+
+    .cta-primary:hover {
+      background: transparent;
+      color: var(--clr-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(230, 182, 17, 0.3);
+    }
+
+    .cta-secondary {
+      background: transparent;
+      color: var(--clr-primary);
+      border: 2px solid var(--clr-primary);
+    }
+
+    .cta-secondary:hover {
+      background: var(--clr-primary);
+      color: var(--clr-bg);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(230, 182, 17, 0.3);
+    }
+
+    /* Hero Social Links */
+    .hero-social {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 1.2s forwards;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(230, 182, 17, 0.3);
+      border-radius: var(--radius-md);
+      color: var(--clr-primary) !important;
+      text-decoration: none;
+      transition: all var(--transition-normal);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .social-link:link,
+    .social-link:visited,
+    .social-link:active {
+      color: var(--clr-primary) !important;
+    }
+
+    .social-link:hover {
+      background: rgba(230, 182, 17, 0.1);
+      border-color: var(--clr-primary);
+      color: var(--clr-primary) !important;
+      transform: translateY(-2px);
+    }
+
+    .social-link svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* All Posts Carousel Section */
+    .latest-section {
+      margin-bottom: 80px;
+    }
+
+    /* Main Content */
+    .main-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: rgba(36, 38, 39, 0.95);
+      padding: 40px 20px;
+      border-top: 1px solid rgba(230, 182, 17, 0.2);
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--clr-highlight);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--clr-primary);
+    }
+
+    .footer-text {
+      color: var(--clr-highlight);
+      font-size: 0.9rem;
+    }
+
+    /* Mobile Vertical Grid */
+    .mobile-posts-grid {
+      display: none;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .hero-description {
+        font-size: 1rem;
+      }
+
+      .hero-social {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .social-link {
+        justify-content: center;
+      }
+
+      .filter-button {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+      }
+
+      /* Hide carousel on mobile */
+      .latest-section .carousel-container {
+        display: none !important;
+      }
+
+      /* Show vertical grid on mobile */
+      .mobile-posts-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+      }
+
+      .mobile-post-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-md);
+        padding: 20px;
+        border: 1px solid rgba(230, 182, 17, 0.2);
+        transition: all var(--transition-normal);
+        cursor: pointer;
+      }
+
+      .mobile-post-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--clr-primary);
+        transform: translateY(-2px);
+      }
+
+      .mobile-post-card .post-card-date {
+        font-size: 0.85rem;
+        color: var(--clr-highlight);
+        margin-bottom: 10px;
+      }
+
+      .mobile-post-card .post-card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--clr-white);
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+
+      .mobile-post-card .post-card-excerpt {
+        font-size: 0.9rem;
+        color: var(--clr-white);
+        opacity: 0.8;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .mobile-post-card .post-card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+    /* Filter Buttons */
+    .filter-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-button {
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--clr-white);
+      border: 1px solid rgba(230, 182, 17, 0.3);
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+    }
+
+    .filter-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--clr-primary);
+    }
+
+    .filter-button.active {
+      background: var(--clr-primary);
+      color: var(--clr-bg);
+      border-color: var(--clr-primary);
+    }
+
+    .filter-count {
+      opacity: 0.7;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">UnravelSports</h1>
+      <p class="hero-subtitle">Sports Data Analytics Research & Engineering Consultancy</p>
+      <p class="hero-description">
+        UnravelSports is an independent sports data analytics consultancy founded by Joris Bekkers, specializing in analytics research, technical consulting, and software engineering. I work with sports organizations, startups, and data providers to develop advanced analytical solutions and production-ready software. With nearly 10 years of experience in cutting-edge football analytics, I specialize in on-ball event data, positional tracking data, and skeletal tracking data. Browse my portfolio below to see my work in action.
+      </p>
+      <div class="hero-social">
+        <a href="https://www.linkedin.com/in/joris-bekkers-33138288/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/UnravelSports" target="_blank" rel="noopener" class="social-link" title="GitHub">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+        <a href="mailto:joris_at_unravelsports_dot_com" class="social-link" title="[first_name] at unravelsports dot com">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+          </svg>
+          <span>Email</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Filter Buttons -->
+    <div class="filter-buttons" id="filter-buttons">
+      <!-- Dynamically generated -->
+    </div>
+
+    <!-- Filtered Carousel -->
+    <section class="latest-section" id="filtered-carousel-section">
+      <!-- Filtered carousel will be dynamically inserted here -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://github.com/UnravelSports" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/joris-bekkers-33138288/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:joris_at_unravelsports_dot_com">Contact</a>
+      </div>
+      <p class="footer-text">
+        © 2025 UnravelSports | Joris Bekkers
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/posts-data.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/site.js"></script>
+
+  <script>
+    let currentFilter = 'all';
+    let currentCarousel = null;
+
+    // Build filtered carousel
+    function buildFilteredCarousel(filter = 'all') {
+      const section = document.getElementById('filtered-carousel-section');
+      section.innerHTML = '';
+
+      // Get posts based on filter
+      const posts = filter === 'all' ? postsData : getPostsByCategory(filter);
+
+      // Create carousel for desktop/tablet
+      const carouselDiv = document.createElement('div');
+      carouselDiv.className = 'category-section visible';
+
+      const carouselContainer = document.createElement('div');
+      carouselContainer.className = 'carousel-container';
+
+      // Previous button
+      const prevButton = document.createElement('button');
+      prevButton.className = 'carousel-control prev';
+      prevButton.innerHTML = '‹';
+      prevButton.setAttribute('aria-label', 'Previous');
+      carouselContainer.appendChild(prevButton);
+
+      // Carousel wrapper and track
+      const wrapper = document.createElement('div');
+      wrapper.className = 'carousel-wrapper';
+
+      const track = document.createElement('div');
+      track.className = 'carousel-track';
+
+      // Add posts without category badges
+      posts.forEach(post => {
+        const card = createPostCard(post);
+        track.appendChild(card);
+      });
+
+      wrapper.appendChild(track);
+      carouselContainer.appendChild(wrapper);
+
+      // Next button
+      const nextButton = document.createElement('button');
+      nextButton.className = 'carousel-control next';
+      nextButton.innerHTML = '›';
+      nextButton.setAttribute('aria-label', 'Next');
+      carouselContainer.appendChild(nextButton);
+
+      carouselDiv.appendChild(carouselContainer);
+
+      // Add indicators
+      const cardsToShow = window.innerWidth >= 1200 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+      const indicatorsContainer = document.createElement('div');
+      indicatorsContainer.className = 'carousel-indicators';
+      const maxIndex = Math.max(0, posts.length - cardsToShow);
+      for (let i = 0; i <= maxIndex; i++) {
+        const indicator = document.createElement('button');
+        indicator.className = 'carousel-indicator';
+        if (i === 0) indicator.classList.add('active');
+        indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        indicatorsContainer.appendChild(indicator);
+      }
+      carouselContainer.appendChild(indicatorsContainer);
+
+      section.appendChild(carouselDiv);
+
+      // Create mobile grid
+      const mobileGrid = document.createElement('div');
+      mobileGrid.className = 'mobile-posts-grid';
+
+      posts.forEach(post => {
+        const card = createPostCard(post);
+        card.classList.add('mobile-post-card');
+        mobileGrid.appendChild(card);
+      });
+
+      section.appendChild(mobileGrid);
+
+      // Reinitialize carousels
+      setTimeout(() => {
+        initCarousels();
+      }, 50);
+    }
+
+    // Setup filter buttons
+    function setupFilters() {
+      const container = document.getElementById('filter-buttons');
+      container.innerHTML = '';
+
+      // All posts button
+      const allButton = document.createElement('button');
+      allButton.className = 'filter-button active';
+      allButton.innerHTML = `
+        <span>All Posts</span>
+        <span class="filter-count">(${postsData.length})</span>
+      `;
+      allButton.onclick = () => filterPosts('all');
+      container.appendChild(allButton);
+
+      // Category buttons
+      const categoryOrder = ['research', 'package', 'media', 'projects'];
+      categoryOrder.forEach(categoryKey => {
+        const data = categories[categoryKey];
+        const button = document.createElement('button');
+        button.className = 'filter-button';
+        button.setAttribute('data-filter', categoryKey);
+        button.innerHTML = `
+          <span>${data.emoji}</span>
+          <span>${data.name}</span>
+          <span class="filter-count">(${data.count})</span>
+        `;
+        button.onclick = () => filterPosts(categoryKey);
+        container.appendChild(button);
+      });
+    }
+
+    // Filter posts
+    function filterPosts(category) {
+      currentFilter = category;
+
+      // Update active button
+      document.querySelectorAll('.filter-button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      if (category === 'all') {
+        document.querySelector('.filter-button').classList.add('active');
+      } else {
+        document.querySelector(`[data-filter="${category}"]`).classList.add('active');
+      }
+
+      // Rebuild carousel
+      buildFilteredCarousel(category);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      setupFilters();
+      buildFilteredCarousel('all');
+    });
+  </script>
+</body>
+</html>
