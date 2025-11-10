@@ -23,6 +23,45 @@
   <link rel="icon" type="image/png" href="assets/logo.png">
 
   <style>
+    /* Site Header */
+    .site-header {
+      background: rgba(36, 38, 39, 0.95);
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(230, 182, 17, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-nav a {
+      color: var(--clr-white);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition-fast);
+    }
+
+    .main-nav a:hover {
+      color: var(--clr-primary);
+    }
+
     /* Post Page Styles */
     .post-container {
       max-width: 900px;
@@ -317,18 +356,83 @@
         flex-direction: column;
       }
 
+      .main-nav ul {
+        gap: 15px;
+      }
+
+      .main-nav a {
+        font-size: 0.9rem;
+      }
+
+      /* Mobile Carousel - Show 2.5 cards vertically */
       .post-carousel-section {
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .post-carousel-section .carousel-wrapper {
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: calc(2.5 * 220px);
+        scroll-snap-type: y mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(230, 182, 17, 0.5) rgba(255, 255, 255, 0.1);
+      }
+
+      .post-carousel-section .carousel-wrapper::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .post-carousel-section .carousel-wrapper::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+      }
+
+      .post-carousel-section .carousel-wrapper::-webkit-scrollbar-thumb {
+        background: rgba(230, 182, 17, 0.5);
+        border-radius: 3px;
+      }
+
+      .post-carousel-section .carousel-wrapper::-webkit-scrollbar-thumb:hover {
+        background: rgba(230, 182, 17, 0.7);
+      }
+
+      .post-carousel-section .carousel-track {
+        flex-direction: column;
+        transform: none !important;
+        gap: 15px;
       }
 
       .post-carousel-section .post-card {
-        flex: 0 0 260px;
+        flex: 0 0 auto;
+        width: 100%;
+        min-height: 200px;
+        scroll-snap-align: start;
+      }
+
+      .post-carousel-section .carousel-control {
+        display: none;
+      }
+
+      .post-carousel-section .carousel-container {
+        padding: 0;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="archive.html">All Posts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <!-- Main Content -->
   <main id="post-main">

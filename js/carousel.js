@@ -408,7 +408,7 @@ function createPostCard(post) {
   }
 
   // Determine if "Read more" should be shown
-  const readMoreLink = post.hideReadMore ? '' : `<a href="post.html?id=${post.id}" class="post-card-link" onclick="event.stopPropagation();" target="_blank" rel="noopener">Read more</a>`;
+  const readMoreLink = post.hideReadMore ? '' : `<a href="post.html?id=${post.id}" class="post-card-link" onclick="event.stopPropagation();">Read more</a>`;
 
   card.innerHTML = `
     <div class="post-card-date">${formatDate(post.date)}</div>
