@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wide Open Gazes: Quantifying Visual Exploratory Behavior in Soccer">
+  <meta name="author" content="Joris Bekkers">
+
+  <title>Wide Open Gazes | UnravelSports</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../css/style.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../../assets/logo.png">
+
+  <style>
+    /* Site Header */
+    .site-header {
+      background: rgba(36, 38, 39, 0.95);
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(230, 182, 17, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-nav a {
+      color: var(--clr-white);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition-fast);
+    }
+
+    .main-nav a:hover {
+      color: var(--clr-primary);
+    }
+
+    /* Page Container */
+    .video-page-container {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    /* Page Title */
+    .page-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--clr-primary);
+      margin: 0 0 20px 0;
+      line-height: 1.3;
+    }
+
+    /* GitHub Link */
+    .github-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(230, 182, 17, 0.3);
+      border-radius: var(--radius-md);
+      color: var(--clr-primary) !important;
+      text-decoration: none;
+      transition: all var(--transition-normal);
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0 auto 60px;
+      width: fit-content;
+      justify-content: center;
+    }
+
+    .github-link:link,
+    .github-link:visited,
+    .github-link:active {
+      color: var(--clr-primary) !important;
+    }
+
+    .github-link:hover {
+      background: rgba(230, 182, 17, 0.1);
+      border-color: var(--clr-primary);
+      color: var(--clr-primary) !important;
+      transform: translateY(-2px);
+    }
+
+    .github-link svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* Video Section */
+    .video-section {
+      margin-bottom: 50px;
+    }
+
+    .video-title {
+      text-align: center;
+      font-size: 1.4rem;
+      color: var(--clr-white);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .video-wrapper {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .video-wrapper video {
+      display: block;
+      margin: 0 auto;
+      max-width: 70%;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: rgba(36, 38, 39, 0.95);
+      padding: 40px 20px;
+      border-top: 1px solid rgba(230, 182, 17, 0.2);
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .footer-text {
+      color: var(--clr-highlight);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .page-title {
+        font-size: 1.8rem;
+      }
+
+      .video-title {
+        font-size: 1.2rem;
+      }
+
+      .video-wrapper video {
+        max-width: 95%;
+      }
+
+      .main-nav ul {
+        gap: 15px;
+      }
+
+      .main-nav a {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <nav class="main-nav">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../archive.html">All Posts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="video-page-container">
+    <h1 class="page-title">
+      Wide Open Gazes: Quantifying Visual<br>
+      Exploratory Behavior in Soccer with Pose<br>
+      Enhanced Positional Data
+    </h1>
+
+    <a href="https://github.com/USSoccerFederation/ssac26_visual_exploratory_behavior" target="_blank" rel="noopener" class="github-link" title="GitHub">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+      </svg>
+      <span>GitHub</span>
+    </a>
+
+    <!-- Video 1: Vision Map -->
+    <section class="video-section">
+      <h2 class="video-title">Vision Map</h2>
+      <div class="video-wrapper">
+        <video src="../../imgs/videos/Vision Map.mp4" controls preload="metadata">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <!-- Video 2: Pitch Value -->
+    <section class="video-section">
+      <h2 class="video-title">Pitch Value</h2>
+      <div class="video-wrapper">
+        <video src="../../imgs/videos/Pitch Value.mp4" controls preload="metadata">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <!-- Video 3: Imminent Pitch Control Attack -->
+    <section class="video-section">
+      <h2 class="video-title">Imminent Pitch Control Attack</h2>
+      <div class="video-wrapper">
+        <video src="../../imgs/videos/Imminent Pitch Control Attack.mp4" controls preload="metadata">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <!-- Video 4: Imminent Pitch Value Attack -->
+    <section class="video-section">
+      <h2 class="video-title">Imminent Pitch Value Attack</h2>
+      <div class="video-wrapper">
+        <video src="../../imgs/videos/Imminent Pitch Value Attack.mp4" controls preload="metadata">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <!-- Video 5: Observed Pitch Value -->
+    <section class="video-section">
+      <h2 class="video-title">Observed Pitch Value</h2>
+      <div class="video-wrapper">
+        <video src="../../imgs/videos/Observed Pitch Value.mp4" controls preload="metadata">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p class="footer-text">
+        © 2025 UnravelSports | Joris Bekkers
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
