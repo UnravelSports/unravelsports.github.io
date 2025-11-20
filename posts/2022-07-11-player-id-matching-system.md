@@ -69,7 +69,7 @@ To get the correct amount of teams, and the correct team names per season we sho
 #### 2. Team Matching
 Now that we have matched the competitions and seasons we can use the cosine similarity approach for team matching. Here we have the added benefit of filtering by competition name and season. This gives us a significantly reduced search space, going from thousands of options to approximately 20 per competition per season. In turn this means we can decrease the similarity threshold for automatic matching. Or, and this is one of the ideas I came up with when writing this blog, we can try some other approach where we assign each team in one dataset a team in another dataset by using the Hungarian algorithm, maximizing the total cosine similarity in the cosine similarity matrix.
 
-Below is some example code showing how to match two lists of Portuguese team names from the '21/22 season using the Hungarian algorithm (`linear_sum_assignment` in Scipy). These particular names come from [Clubelo.com](http://clubelo.com/POR) and [Transfermarkt.com](https://www.transfermarkt.com/liga-portugal/startseite/wettbewerb/PO1/plus/?saison_id=2021). 
+Below is some example code showing how to match two lists of Portuguese team names from the '21/22 season using the Hungarian algorithm (`linear_sum_assignment` in Scipy). These particular names come from [Clubelo.com](https://clubelo.com/POR) and [Transfermarkt.com](https://www.transfermarkt.com/liga-portugal/startseite/wettbewerb/PO1/plus/?saison_id=2021). 
 
 ```python
 from scipy.optimize import linear_sum_assignment
