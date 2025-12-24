@@ -1,0 +1,508 @@
+/* NAC Breda Avondje Stats - Dark Theme */
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap');
+
+/* ==================== */
+/* CSS Variables */
+/* ==================== */
+:root {
+    --clr-primary: #E6B611; /* yellow/gold */
+    --clr-secondary: #757558; /* yellowish grey */
+    --clr-bg: #242627; /* dark blackish */
+    --clr-highlight: #9A9083; /* goldish brown */
+    --clr-white: #FFFFFF;
+    --clr-primary-font: #FFFFFF;
+    --clr-fields: #626A67;
+    --clr-windows: #010001; /* pure black for code */
+    --clr-warn: #921020; /* red */
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    /* Border radius */
+    --radius-sm: 5px;
+    --radius-md: 10px;
+    --radius-lg: 15px;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease-out;
+    --transition-normal: 0.3s ease-out;
+}
+
+/* ==================== */
+/* Reset & Base Styles */
+/* ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Titillium Web', sans-serif;
+    background: var(--clr-bg);
+    color: var(--clr-primary-font);
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* ==================== */
+/* Container */
+/* ==================== */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ==================== */
+/* Header */
+/* ==================== */
+header {
+    background: var(--clr-windows);
+    border-radius: var(--radius-md);
+    padding: 32px;
+    margin-bottom: 32px;
+    border: 1px solid rgba(154, 144, 131, 0.2);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--clr-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--clr-highlight);
+    margin-bottom: 24px;
+}
+
+/* ==================== */
+/* Controls */
+/* ==================== */
+.controls {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 250px;
+}
+
+.sort-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-box label {
+    font-weight: 500;
+    color: var(--clr-highlight);
+    white-space: nowrap;
+}
+
+input[type="text"],
+select {
+    padding: 12px 16px;
+    border: 2px solid var(--clr-fields);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-family: 'Titillium Web', sans-serif;
+    transition: var(--transition-fast);
+    background: var(--clr-bg);
+    color: var(--clr-primary-font);
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--clr-primary);
+    box-shadow: 0 0 0 3px rgba(230, 182, 17, 0.2);
+}
+
+input[type="text"] {
+    width: 100%;
+}
+
+select {
+    cursor: pointer;
+    min-width: 180px;
+}
+
+select option {
+    background: var(--clr-bg);
+    color: var(--clr-primary-font);
+}
+
+.filter-box {
+    display: flex;
+    align-items: center;
+}
+
+.filter-box label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: var(--clr-highlight);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--clr-primary);
+}
+
+/* ==================== */
+/* Main content */
+/* ==================== */
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ==================== */
+/* Stint row */
+/* ==================== */
+.stint-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    background: var(--clr-windows);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    border: 1px solid rgba(154, 144, 131, 0.2);
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+    overflow: hidden;
+}
+
+.stint-row:hover {
+    transform: translateY(-2px);
+    border-color: var(--clr-primary);
+}
+
+/* ==================== */
+/* Coach card */
+/* ==================== */
+.coach-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+}
+
+.coach-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-highlight) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 3px solid var(--clr-primary);
+    transition: var(--transition-normal);
+    overflow: hidden;
+}
+
+.stint-row:hover .coach-avatar {
+    transform: scale(1.05);
+}
+
+.coach-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.coach-avatar svg {
+    width: 60px;
+    height: 60px;
+    color: var(--clr-windows);
+}
+
+.coach-info {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+}
+
+.coach-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--clr-primary);
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+
+.stadium-name {
+    font-size: 0.9rem;
+    color: var(--clr-white);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.stint-period {
+    font-size: 0.85rem;
+    color: var(--clr-highlight);
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.stint-stats {
+    font-size: 0.8rem;
+    color: var(--clr-secondary);
+    font-weight: 400;
+}
+
+/* ==================== */
+/* Chart container */
+/* ==================== */
+.chart-container {
+    position: relative;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.chart-container canvas {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+}
+
+/* ==================== */
+/* Messages */
+/* ==================== */
+.error,
+.no-results {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--clr-highlight);
+    font-size: 1.1rem;
+}
+
+.error {
+    color: var(--clr-warn);
+}
+
+/* ==================== */
+/* Animations */
+/* ==================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stint-row {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* ==================== */
+/* Custom scrollbar */
+/* ==================== */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--clr-bg);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--clr-fields);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--clr-highlight);
+}
+
+/* ==================== */
+/* Responsive design */
+/* ==================== */
+@media (max-width: 1024px) {
+    .stint-row {
+        grid-template-columns: 180px 1fr;
+        gap: 24px;
+        padding: 20px;
+    }
+
+    .coach-avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .coach-avatar svg {
+        width: 50px;
+        height: 50px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+
+    header {
+        padding: 24px;
+        margin-bottom: 24px;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .stint-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+        overflow: visible;
+    }
+
+    .coach-card {
+        padding-bottom: 16px;
+        border-bottom: 2px solid var(--clr-fields);
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .coach-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .coach-avatar svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .coach-info {
+        text-align: left;
+    }
+
+    .chart-container {
+        height: 200px;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box,
+    .sort-box {
+        width: 100%;
+    }
+
+    .sort-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .sort-box label {
+        margin-bottom: 8px;
+    }
+
+    select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .coach-name {
+        font-size: 1.1rem;
+    }
+
+    .stint-period,
+    .stint-stats {
+        font-size: 0.75rem;
+    }
+
+    .chart-container {
+        height: 180px;
+    }
+
+    header {
+        padding: 20px;
+    }
+
+    .stint-row {
+        padding: 16px;
+    }
+
+    .coach-avatar {
+        width: 70px;
+        height: 70px;
+    }
+
+    .coach-avatar svg {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* ==================== */
+/* Print styles */
+/* ==================== */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .controls {
+        display: none;
+    }
+
+    .stint-row {
+        page-break-inside: avoid;
+        border: 1px solid #333;
+        margin-bottom: 20px;
+    }
+
+    .stint-row:hover {
+        transform: none;
+    }
+}
