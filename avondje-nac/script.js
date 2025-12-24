@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Load and parse CSV data
 async function loadAndProcessData() {
     // Load game data
-    const response = await fetch('data/avondje.csv');
+    const response = await fetch('data/avondje2.csv');
     const csvText = await response.text();
     const games = parseCSV(csvText);
 
@@ -76,28 +76,27 @@ function parseCSVLine(line) {
     return values;
 }
 
-// Group games by coach stint
+// Group games by coach stint and period
 function groupByStint(games, stats) {
     const stintMap = new Map();
 
     games.forEach(game => {
-        const stintKey = `${game.stint_id}_${game.coach}`;
+        // Group by stint_id, coach, AND period to separate different day types
+        const stintKey = `${game.stint_id}_${game.coach}_${game.period}`;
 
         if (!stintMap.has(stintKey)) {
-            // Convert game start_date from DD/MM/YYYY to YYYY-MM-DD for matching
-            const gameStartParts = game.start_date.split('/');
-            const gameStartFormatted = `${gameStartParts[2]}-${gameStartParts[1]}-${gameStartParts[0]}`;
-
             // Find matching stats by period, coach, and start_date
+            // start_date is already in YYYY-MM-DD format in avondje2.csv
             const periodStats = stats.find(stat =>
                 stat.period === game.period &&
                 stat.coach === game.coach &&
-                stat.start_date === gameStartFormatted
+                stat.start_date === game.start_date
             );
 
             stintMap.set(stintKey, {
                 stintId: game.stint_id,
                 coach: game.coach,
+                period: game.period,
                 startDate: game.start_date,
                 endDate: game.end_date,
                 games: [],
@@ -131,7 +130,8 @@ function groupByStint(games, stats) {
             awayGoals: awayGoals,
             homeExGoals: homeExGoals,
             awayExGoals: awayExGoals,
-            performanceDiff: performanceDiff
+            performanceDiff: performanceDiff,
+            period: game.period
         });
     });
 
@@ -148,8 +148,14 @@ function groupByStint(games, stats) {
     return stints;
 }
 
-// Parse date string (DD/MM/YYYY) to Date object
+// Parse date string (YYYY-MM-DD or DD/MM/YYYY) to Date object
 function parseDate(dateStr) {
+    // Check if date is in YYYY-MM-DD format (contains -)
+    if (dateStr.includes('-')) {
+        const [year, month, day] = dateStr.split('-');
+        return new Date(year, month - 1, day);
+    }
+    // Otherwise DD/MM/YYYY format (contains /)
     const [day, month, year] = dateStr.split('/');
     return new Date(year, month - 1, day);
 }
@@ -280,6 +286,9 @@ function createBarChart(canvasId, stint) {
             const xScale = chart.scales.x;
             const chartArea = chart.chartArea;
 
+            // Don't draw season labels on narrow screens
+            const showSeasonLabels = window.innerWidth > 768;
+
             ctx.save();
 
             // Helper function to get season string for a date
@@ -301,14 +310,16 @@ function createBarChart(canvasId, stint) {
             ctx.lineTo(chartArea.left, chartArea.bottom);
             ctx.stroke();
 
-            // Add season label at the start
-            const firstGameDate = parseDate(games[0].date);
-            const startSeason = getSeasonString(firstGameDate);
-            ctx.font = '10px Titillium Web';
-            ctx.fillStyle = 'rgba(154, 144, 131, 0.5)';
-            ctx.textBaseline = 'top';
-            ctx.textAlign = 'left';
-            ctx.fillText(`${startSeason} >`, chartArea.left + 5, chartArea.bottom + 5);
+            // Add season label at the start (only on wider screens)
+            if (showSeasonLabels) {
+                const firstGameDate = parseDate(games[0].date);
+                const startSeason = getSeasonString(firstGameDate);
+                ctx.font = '10px Titillium Web';
+                ctx.fillStyle = 'rgba(154, 144, 131, 0.5)';
+                ctx.textBaseline = 'top';
+                ctx.textAlign = 'left';
+                ctx.fillText(`${startSeason} >`, chartArea.left + 5, chartArea.bottom + 5);
+            }
 
             // Draw vertical line at the end of the chart
             ctx.beginPath();
@@ -316,11 +327,13 @@ function createBarChart(canvasId, stint) {
             ctx.lineTo(chartArea.right, chartArea.bottom);
             ctx.stroke();
 
-            // Add season label at the end
-            const lastGameDate = parseDate(games[games.length - 1].date);
-            const endSeason = getSeasonString(lastGameDate);
-            ctx.textAlign = 'right';
-            ctx.fillText(`< ${endSeason}`, chartArea.right - 5, chartArea.bottom + 5);
+            // Add season label at the end (only on wider screens)
+            if (showSeasonLabels) {
+                const lastGameDate = parseDate(games[games.length - 1].date);
+                const endSeason = getSeasonString(lastGameDate);
+                ctx.textAlign = 'right';
+                ctx.fillText(`< ${endSeason}`, chartArea.right - 5, chartArea.bottom + 5);
+            }
 
             // Draw vertical lines for season separators (July 1st)
             games.forEach((game, index) => {
@@ -345,34 +358,36 @@ function createBarChart(canvasId, stint) {
                         ctx.lineTo(separatorX, chartArea.bottom);
                         ctx.stroke();
 
-                        // Add season labels at the bottom
-                        // Determine the season years based on the crossing date
-                        let seasonStartYear, seasonEndYear;
-                        if (gameDate.getMonth() >= 6) { // July or later
-                            seasonStartYear = gameDate.getFullYear();
-                            seasonEndYear = gameDate.getFullYear() + 1;
-                        } else {
-                            seasonStartYear = gameDate.getFullYear() - 1;
-                            seasonEndYear = gameDate.getFullYear();
+                        // Add season labels at the bottom (only on wider screens)
+                        if (showSeasonLabels) {
+                            // Determine the season years based on the crossing date
+                            let seasonStartYear, seasonEndYear;
+                            if (gameDate.getMonth() >= 6) { // July or later
+                                seasonStartYear = gameDate.getFullYear();
+                                seasonEndYear = gameDate.getFullYear() + 1;
+                            } else {
+                                seasonStartYear = gameDate.getFullYear() - 1;
+                                seasonEndYear = gameDate.getFullYear();
+                            }
+                            const prevSeasonStart = seasonStartYear - 1;
+                            const prevSeasonEnd = seasonStartYear;
+
+                            // Format as 2-digit years
+                            const prevSeason = `${String(prevSeasonStart).slice(-2)}/${String(prevSeasonEnd).slice(-2)}`;
+                            const newSeason = `${String(seasonStartYear).slice(-2)}/${String(seasonEndYear).slice(-2)}`;
+
+                            ctx.font = '10px Titillium Web';
+                            ctx.fillStyle = 'rgba(154, 144, 131, 0.5)';
+                            ctx.textBaseline = 'top';
+
+                            // Draw previous season label (left of line) with left arrow
+                            ctx.textAlign = 'right';
+                            ctx.fillText(`< ${prevSeason}`, separatorX - 5, chartArea.bottom + 5);
+
+                            // Draw new season label (right of line) with right arrow
+                            ctx.textAlign = 'left';
+                            ctx.fillText(`${newSeason} >`, separatorX + 5, chartArea.bottom + 5);
                         }
-                        const prevSeasonStart = seasonStartYear - 1;
-                        const prevSeasonEnd = seasonStartYear;
-
-                        // Format as 2-digit years
-                        const prevSeason = `${String(prevSeasonStart).slice(-2)}/${String(prevSeasonEnd).slice(-2)}`;
-                        const newSeason = `${String(seasonStartYear).slice(-2)}/${String(seasonEndYear).slice(-2)}`;
-
-                        ctx.font = '10px Titillium Web';
-                        ctx.fillStyle = 'rgba(154, 144, 131, 0.5)';
-                        ctx.textBaseline = 'top';
-
-                        // Draw previous season label (left of line) with left arrow
-                        ctx.textAlign = 'right';
-                        ctx.fillText(`< ${prevSeason}`, separatorX - 5, chartArea.bottom + 5);
-
-                        // Draw new season label (right of line) with right arrow
-                        ctx.textAlign = 'left';
-                        ctx.fillText(`${newSeason} >`, separatorX + 5, chartArea.bottom + 5);
                     }
                 }
             });
@@ -509,11 +524,37 @@ function createBarChart(canvasId, stint) {
 function applyFilters() {
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
     const minGamesEnabled = document.getElementById('minGamesFilter').checked;
+    const dayType = document.getElementById('dayTypeSelect').value;
 
     filteredStints = allStints.filter(stint => {
         const matchesSearch = stint.coach.toLowerCase().includes(searchTerm);
         const matchesMinGames = !minGamesEnabled || stint.games.length >= 10;
-        return matchesSearch && matchesMinGames;
+
+        // Filter by day type based on period field
+        let matchesDayType = true;
+        if (dayType === 'avondje_nac') {
+            // Include both avondje_nac_rat and avondje_nac_bea
+            matchesDayType = stint.games.some(game =>
+                game.period === 'avondje_nac_rat' || game.period === 'avondje_nac_bea'
+            );
+        } else if (dayType === 'sunday') {
+            // Include sunday games
+            matchesDayType = stint.games.some(game =>
+                game.period && game.period.includes('sunday')
+            );
+        } else if (dayType === 'weekday') {
+            // Include weekday games (doordeweeks)
+            matchesDayType = stint.games.some(game =>
+                game.period && game.period.includes('weekday')
+            );
+        } else if (dayType === 'pre') {
+            // Include pre_avondje games
+            matchesDayType = stint.games.some(game =>
+                game.period && game.period.startsWith('pre_')
+            );
+        }
+
+        return matchesSearch && matchesMinGames && matchesDayType;
     });
 
     const sortBy = document.getElementById('sortSelect').value;
@@ -530,6 +571,10 @@ function setupEventListeners() {
     // Sort functionality
     const sortSelect = document.getElementById('sortSelect');
     sortSelect.addEventListener('change', applyFilters);
+
+    // Day type filter
+    const dayTypeSelect = document.getElementById('dayTypeSelect');
+    dayTypeSelect.addEventListener('change', applyFilters);
 
     // Min games filter
     const minGamesFilter = document.getElementById('minGamesFilter');
