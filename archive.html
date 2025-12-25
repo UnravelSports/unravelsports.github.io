@@ -369,7 +369,7 @@
 
       let filteredPosts = filter === 'all'
         ? postsData
-        : postsData.filter(post => post.category === filter);
+        : getPostsByCategory(filter);
 
       if (filteredPosts.length === 0) {
         grid.innerHTML = `
