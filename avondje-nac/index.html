@@ -11,9 +11,28 @@
     <div class="container">
         <header>
             <h1>50 Jaar Avondje NAC Stats</h1>
-            <p class="subtitle">Onderstaande grafieken tonen de <strong style="color: #E6B611;">Avondje NAC</strong>-prestaties van iedere (voormalig) NAC Breda coach per werkperiode voor de Eredivisie. De prestaties zijn gemeten als het verschil tussen het gerealiseerde en het verwachte doelsaldo, rekening houdend met teamsterkte.</p>
-            <p class="subtitle"><strong style="color: #E6B611;">Bob Maaskant</strong> is de beste <strong style="color: #E6B611;">Avondje NAC</strong>-coach aan de <strong style="color: #FFFFFF;">Beatrixstraat</strong> en <strong style="color: #E6B611;">Carl Hoefkens</strong> is de beste <strong style="color: #E6B611;">Avondje NAC</strong>-coach in het <strong style="color: #FFFFFF;">Rat Verleghstadion</strong>.</p>
-            <p class="subtitle" style="text-align: right;">Door: <a href="https://unravelsports.com" target="_blank" style="color: #E6B611; text-decoration: none;">Joris Bekkers</a>. Data: <a href="https://www.clubelo.com" target="_blank" style="color: #757558; text-decoration: none;">www.clubelo.com</a>.</p>
+            <p class="subtitle">Het <strong style="color: #E6B611;">Avondje NAC</strong> bestaat 50 jaar! Om dit te vieren heb ik alle Eredivisie-wedstrijden van <strong style="color: #E6B611;">NAC Breda</strong> sinds begin jaren 60 geanalyseerd om te achterhalen welke coach het beste presteerde tijdens het <strong style="color: #E6B611;">Avondje NAC</strong>.</p>
+
+            <p class="subtitle">Door wedstrijdresultaten te vergelijken met de verwachtingen op basis van teamsterkte, kunnen we zien welke coaches echt het verschil maakten, welke juist tegenvielen, en of hun prestaties vooral op toeval berusten of niet.</p>
+            <p class="subtitle">En wat blijkt? <strong style="color: #FFFFFF;">Bob Maaskant</strong> is de beste <strong style="color: #E6B611;">Avondje NAC</strong>-coach aan de <strong style="color: #FFFFFF;">Beatrixstraat</strong> en <strong style="color: #FFFFFF;">Carl Hoefkens</strong> is de beste <strong style="color: #E6B611;">Avondje NAC</strong>-coach in het <strong style="color: #FFFFFF;">Rat Verleghstadion</strong>.</p>
+
+            <p class="subtitle">Oordeel zelf op basis van de onderstaande grafieken, of <a href="#" id="readMoreBtn" style="color: #E6B611; text-decoration: none; font-weight: 600;">lees meer over de methodologie</a>.</p>
+
+            <div id="expandedInfo" class="expanded-info hidden">
+                <p class="subtitle">Om de beste <strong style="color: #E6B611;">Avondje NAC</strong>-coach van de afgelopen 50 jaar te bepalen, gebruik ik informatie van <a href="https://www.clubelo.com" target="_blank" style="color: #757558; text-decoration: none;">www.clubelo.com</a>. Deze site bevat historische wedstrijduitslagen van alle Europese competities terug tot midden jaren 50. Met behulp van deze data is een voorspelmodel gemaakt dat de uitslag van iedere wedstrijd voorspelt middels een Elo-ranking (ook wel bekend uit het schaken).</p>
+                
+                <p class="subtitle">Deze wedstrijdvoorspellingen bevatten de winst-, verlies- of gelijkspelkans voor iedere wedstrijd, gebaseerd op de rating van beide teams op het moment van spelen en een thuisvoordeelfactor die per competitie per seizoen wordt bepaald. Daarnaast voorspelt het model ook het gemiddelde aantal te verwachten doelpunten voor en tegen per wedstrijd, op basis van de teamrating op dat moment.</p>
+                
+                <p class="subtitle">Uiteindelijk beoordelen we de prestaties van iedere coach door te kijken naar het verschil in gescoorde en tegendoelpunten ten opzichte van de voorspelde aantallen op basis van teamsterkte, we noemen dit de Doelsaldo Prestatie (DSP). Wanneer NAC per saldo meer doelpunten scoorde dan verwacht én minder tegendoelpunten kreeg dan verwacht, dan is de staaf in de onderstaande grafieken <strong style="color: #E6B611;">geel</strong>. Wanneer er onder verwachting werd gepresteerd, is de staaf <strong style="color: #921020;">rood</strong>.</p>
+                
+                <div class="example-box">
+                    <p class="subtitle"><strong>Ter verduidelijking:</strong> op 12 november 1977 speelde NAC tegen FC Amsterdam. NAC had een teamsterkte (Elo) van 1634 (inclusief 123 thuisvoordeelpunten), FC Amsterdam van 1466. Deze rating resulteerde in 1.76 verwachte NAC doelpunten en 0.85 verwachte doelpunten tegen. Deze voorspelling bevat alleen informatie van <em>voor</em> 12 november 1977. Het uiteindelijke wedstrijdresultaat was 3 – 2. NAC scoorde daarmee 1.24 doelpunten meer dan verwacht, maar kreeg ook 1.15 doelpunten meer tegen dan verwacht. Per saldo komt dit neer op een resultaat van <strong style="color: #E6B611;">+0.09</strong> DSP.</p>
+                </div>
+                
+                <p class="subtitle">Omdat de meeste coaches maar tussen de 10 en 20 <strong style="color: #E6B611;">Avondje NAC</strong>-wedstrijden hebben gecoacht, vergelijken we hun prestaties met die van andere coaches in vergelijkbare situaties (zelfde stadion, zelfde dag-categorie) middels een statistische toets. Zo kunnen we beter inschatten of een coach echt beter of slechter presteerde, of dat het vooral toeval was. We geven de kans op toeval visueel weer: meer gevulde vakjes (bv. <span class="inline-sig-square filled"></span><span class="inline-sig-square filled"></span><span class="inline-sig-square filled"></span><span class="inline-sig-square filled"></span><span class="inline-sig-square filled"></span>) betekenen minder kans op toeval en een daadwerkelijk verschil in prestaties, terwijl lege vakjes (bv. <span class="inline-sig-square empty"></span><span class="inline-sig-square empty"></span><span class="inline-sig-square empty"></span><span class="inline-sig-square empty"></span><span class="inline-sig-square empty"></span>) wijzen op een prestatie die grotendeels door toeval verklaard kan worden.</p>
+            </div>
+
+            <p class="subtitle" style="text-align: right; margin-top: 16px;">Door: <a href="https://unravelsports.com" target="_blank" style="color: #E6B611; text-decoration: none;">Joris Bekkers</a>.</p>
 
             <div class="controls">
                 <div class="search-box">
@@ -42,6 +61,7 @@
                         <option value="sunday">Zondag</option>
                         <option value="weekday">Doordeweeks</option>
                         <option value="pre">Voor het Avondje</option>
+                        <option value="alles">Alles</option>
                     </select>
                 </div>
 

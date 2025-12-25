@@ -220,11 +220,13 @@ function createCoachCard(stint) {
         avgGDColor = stint.avgGDvsXGD > 0 ? '#E6B611' : '#921020'; // Yellow if positive, red if negative
     }
 
-    const avgP = stint.avgPValue !== null ? stint.avgPValue.toFixed(3) : 'N/A';
-    const avgPColor = (stint.avgPValue !== null && stint.avgPValue < 0.05) ? '#E6B611' : 'inherit'; // Yellow if p < 0.05
+    const significanceHtml = createSignificanceIndicator(stint.avgPValue);
 
     // Create coach image filename from coach name (preserve spaces, use .png extension)
     const coachImagePath = `img/coach/${stint.coach}.png`;
+
+    // Always show category name in wedstrijden line
+    const wedstrijdenText = `${stint.games.length} wedstrijden ${getCategoryName(stint.period)}`;
 
     card.innerHTML = `
         <div class="coach-avatar">
@@ -238,12 +240,50 @@ function createCoachCard(stint) {
             <h2 class="coach-name">${stint.coach}</h2>
             <p class="stadium-name">${stint.stadium}</p>
             <p class="stint-period">${formatDate(stint.startDate)} - ${formatDate(stint.endDate)}</p>
-            <p class="stint-stats">${stint.games.length} wedstrijden</p>
-            <p class="stint-stats">Gem.: <span style="color: ${avgGDColor};">${avgGD}</span> (p=<span style="color: ${avgPColor};">${avgP}</span>)</p>
+            <p class="stint-stats">${wedstrijdenText}</p>
+            <p class="stint-stats">Gem DSP.: <span class="dsp-value" style="color: ${avgGDColor};">${avgGD}</span> ${significanceHtml}</p>
         </div>
     `;
 
     return card;
+}
+
+// Get human-readable category name
+function getCategoryName(period) {
+    if (period === 'avondje_nac_rat' || period === 'avondje_nac_bea') return 'Avondje NAC';
+    if (period.includes('sunday')) return 'Zondag';
+    if (period.includes('weekday')) return 'Doordeweeks';
+    if (period.startsWith('pre_')) return 'Voor het Avondje';
+    return '';
+}
+
+// Get number of filled squares based on p-value (traditional thresholds)
+function getSignificanceSquares(pValue) {
+    if (pValue === null) return null;
+    if (pValue < 0.02) return 5;
+    if (pValue < 0.10) return 4;
+    if (pValue < 0.25) return 3;
+    if (pValue < 0.50) return 2;
+    if (pValue < 0.75) return 1;
+    return 0;
+}
+
+// Generate HTML for significance indicator squares
+function createSignificanceIndicator(pValue) {
+    const numFilled = getSignificanceSquares(pValue);
+
+    if (numFilled === null) {
+        return '<span class="significance-na">N/A</span>';
+    }
+
+    let squaresHtml = '<span class="significance-squares">';
+    for (let i = 0; i < 5; i++) {
+        const filled = i < numFilled;
+        squaresHtml += `<span class="sig-square ${filled ? 'filled' : 'empty'}"></span>`;
+    }
+    squaresHtml += '</span>';
+
+    return squaresHtml;
 }
 
 // Create chart container
@@ -437,40 +477,60 @@ function createBarChart(canvasId, stint) {
                     display: false
                 },
                 tooltip: {
-                    backgroundColor: 'rgba(1, 0, 1, 0.95)',
-                    borderColor: '#E6B611',
-                    borderWidth: 1,
-                    padding: 12,
-                    titleFont: {
-                        size: 14,
-                        weight: 'bold',
-                        family: 'Titillium Web'
-                    },
-                    bodyFont: {
-                        size: 13,
-                        family: 'Titillium Web'
-                    },
-                    footerFont: {
-                        size: 11,
-                        family: 'Titillium Web'
-                    },
-                    titleColor: '#E6B611',
-                    bodyColor: '#FFFFFF',
-                    footerColor: '#9A9083',
-                    displayColors: false,
-                    callbacks: {
-                        title: (items) => {
-                            const game = games[items[0].dataIndex];
-                            return `vs ${game.away}`;
-                        },
-                        label: (item) => {
-                            const game = games[item.dataIndex];
-                            return `Score: ${game.homeGoals} : ${game.awayGoals}`;
-                        },
-                        footer: (items) => {
-                            const game = games[items[0].dataIndex];
-                            return formatDate(game.date);
+                    enabled: false,
+                    external: function(context) {
+                        // Tooltip Element
+                        let tooltipEl = document.getElementById('chartjs-tooltip');
+
+                        // Create element on first render
+                        if (!tooltipEl) {
+                            tooltipEl = document.createElement('div');
+                            tooltipEl.id = 'chartjs-tooltip';
+                            tooltipEl.style.background = 'rgba(1, 0, 1, 0.95)';
+                            tooltipEl.style.border = '1px solid #E6B611';
+                            tooltipEl.style.borderRadius = '4px';
+                            tooltipEl.style.color = 'white';
+                            tooltipEl.style.opacity = '1';
+                            tooltipEl.style.pointerEvents = 'none';
+                            tooltipEl.style.position = 'absolute';
+                            tooltipEl.style.transform = 'translate(-50%, 0)';
+                            tooltipEl.style.transition = 'all .1s ease';
+                            tooltipEl.style.padding = '12px';
+                            tooltipEl.style.fontFamily = 'Titillium Web';
+                            document.body.appendChild(tooltipEl);
                         }
+
+                        // Hide if no tooltip
+                        const tooltipModel = context.tooltip;
+                        if (tooltipModel.opacity === 0) {
+                            tooltipEl.style.opacity = '0';
+                            return;
+                        }
+
+                        // Set Text
+                        if (tooltipModel.body) {
+                            const dataIndex = tooltipModel.dataPoints[0].dataIndex;
+                            const game = games[dataIndex];
+                            const dsp = game.performanceDiff;
+                            const dspFormatted = dsp > 0 ? `+${dsp.toFixed(2)}` : dsp.toFixed(2);
+                            const dspColor = dsp > 0 ? '#E6B611' : '#921020';
+
+                            const innerHtml = `
+                                <div style="font-size: 14px; font-weight: bold; color: #E6B611; margin-bottom: 4px;">vs ${game.away}</div>
+                                <div style="font-size: 13px; color: #FFFFFF; margin-bottom: 2px;">Score: ${game.homeGoals} : ${game.awayGoals}</div>
+                                <div style="font-size: 13px; color: #FFFFFF; margin-bottom: 4px;">DSP: <span style="font-weight: bold; color: ${dspColor};">${dspFormatted}</span></div>
+                                <div style="font-size: 11px; color: #9A9083;">${formatDate(game.date)}</div>
+                            `;
+
+                            tooltipEl.innerHTML = innerHtml;
+                        }
+
+                        const position = context.chart.canvas.getBoundingClientRect();
+
+                        // Display, position, and set styles for font
+                        tooltipEl.style.opacity = '1';
+                        tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+                        tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
                     }
                 }
             },
@@ -532,7 +592,10 @@ function applyFilters() {
 
         // Filter by day type based on period field
         let matchesDayType = true;
-        if (dayType === 'avondje_nac') {
+        if (dayType === 'alles') {
+            // Show all categories - no filtering
+            matchesDayType = true;
+        } else if (dayType === 'avondje_nac') {
             // Include both avondje_nac_rat and avondje_nac_bea
             matchesDayType = stint.games.some(game =>
                 game.period === 'avondje_nac_rat' || game.period === 'avondje_nac_bea'
@@ -579,6 +642,17 @@ function setupEventListeners() {
     // Min games filter
     const minGamesFilter = document.getElementById('minGamesFilter');
     minGamesFilter.addEventListener('change', applyFilters);
+
+    // Read more button
+    const readMoreBtn = document.getElementById('readMoreBtn');
+    const expandedInfo = document.getElementById('expandedInfo');
+    let isExpanded = false;
+
+    readMoreBtn.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        expandedInfo.classList.toggle('hidden');
+        readMoreBtn.textContent = isExpanded ? 'lees minder' : 'lees over de methodologie';
+    });
 
     // Responsive chart resize
     window.addEventListener('resize', debounce(() => {
