@@ -711,10 +711,25 @@ function setupEventListeners() {
     const expandedInfo = document.getElementById('expandedInfo');
     let isExpanded = false;
 
-    readMoreBtn.addEventListener('click', () => {
+    readMoreBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default anchor behavior
         isExpanded = !isExpanded;
         expandedInfo.classList.toggle('hidden');
         readMoreBtn.textContent = isExpanded ? 'lees minder' : 'lees over de methodologie';
+
+        // Auto-scroll to expanded section when opening
+        if (isExpanded) {
+            // Small timeout to allow DOM to update after classList.toggle
+            setTimeout(() => {
+                const elementPosition = expandedInfo.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - 80; // 80px offset from top
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
     });
 
     // Responsive chart resize
