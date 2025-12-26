@@ -1,7 +1,10 @@
 // Global variables
 let allStints = [];
+let allStintsCombined = []; // Stores "Alle Wedstrijden" grouped data
 let filteredStints = [];
 let charts = {};
+let rawGames = [];
+let rawStats = [];
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async () => {
@@ -20,17 +23,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Load and parse CSV data
 async function loadAndProcessData() {
     // Load game data
-    const response = await fetch('data/avondje2.csv');
+    const response = await fetch('data/avondje4.csv');
     const csvText = await response.text();
-    const games = parseCSV(csvText);
+    rawGames = parseCSV(csvText);
 
     // Load stats data
-    const statsResponse = await fetch('data/stats.csv');
+    const statsResponse = await fetch('data/stats4.csv');
     const statsText = await statsResponse.text();
-    const stats = parseCSV(statsText);
+    rawStats = parseCSV(statsText);
 
     // Group games by stint and merge with stats
-    allStints = groupByStint(games, stats);
+    // Create both grouped by period and grouped by all
+    allStints = groupByStint(rawGames, rawStats, false);
+    allStintsCombined = groupByStint(rawGames, rawStats, true);
     filteredStints = [...allStints];
 }
 
@@ -77,18 +82,22 @@ function parseCSVLine(line) {
 }
 
 // Group games by coach stint and period
-function groupByStint(games, stats) {
+function groupByStint(games, stats, groupByAll = false) {
     const stintMap = new Map();
 
     games.forEach(game => {
         // Group by stint_id, coach, AND period to separate different day types
-        const stintKey = `${game.stint_id}_${game.coach}_${game.period}`;
+        // If groupByAll is true, only group by stint_id and coach (combine all periods)
+        const stintKey = groupByAll
+            ? `${game.stint_id}_${game.coach}`
+            : `${game.stint_id}_${game.coach}_${game.period}`;
 
         if (!stintMap.has(stintKey)) {
             // Find matching stats by period, coach, and start_date
-            // start_date is already in YYYY-MM-DD format in avondje2.csv
+            // When groupByAll is true, look for "all" period in stats
+            const lookupPeriod = groupByAll ? 'all' : game.period;
             const periodStats = stats.find(stat =>
-                stat.period === game.period &&
+                stat.period === lookupPeriod &&
                 stat.coach === game.coach &&
                 stat.start_date === game.start_date
             );
@@ -96,7 +105,7 @@ function groupByStint(games, stats) {
             stintMap.set(stintKey, {
                 stintId: game.stint_id,
                 coach: game.coach,
-                period: game.period,
+                period: groupByAll ? 'all' : game.period,
                 startDate: game.start_date,
                 endDate: game.end_date,
                 games: [],
@@ -104,32 +113,42 @@ function groupByStint(games, stats) {
                 avgGDvsXGD: periodStats ? parseFloat(periodStats.coach_avg_GD_vs_xGD) : null,
                 avgPValue: periodStats ? (
                     (parseFloat(periodStats.period_p_value) +
-                     parseFloat(periodStats.stadium_p_value) +
-                     parseFloat(periodStats.day_type_p_value)) / 3
+                     parseFloat(periodStats.day_type_p_value)) / 2
                 ) : null
             });
         }
 
-        const homeGoals = parseInt(game.HomeGoals);
-        const awayGoals = parseInt(game.AwayGoals);
-        const homeExGoals = parseFloat(game.HomeExGoals);
-        const awayExGoals = parseFloat(game.AwayExGoals);
+        const nacGoals = parseInt(game.NACGoals);
+        const oppGoals = parseInt(game.OppGoals);
+        const nacExGoals = parseFloat(game.NACExGoals);
+        const oppExGoals = parseFloat(game.OppExGoals);
 
-        // Calculate: ((HomeGoals - HomeExGoals) - (AwayGoals - AwayExGoals))
-        const performanceDiff = (homeGoals - homeExGoals) - (awayGoals - awayExGoals);
+        // Calculate: ((NACGoals - NACExGoals) - (OppGoals - OppExGoals))
+        const performanceDiff = (nacGoals - nacExGoals) - (oppGoals - oppExGoals);
+
+        // Determine opponent - if NAC is away (Breda in Away column), opponent is Home, otherwise opponent is Away
+        const opponent = game.Away === 'Breda' ? game.Home : game.Away;
 
         // Determine stadium from period
         if (!stintMap.get(stintKey).stadium) {
-            stintMap.get(stintKey).stadium = game.period.includes('_rat') ? 'Rat Verlegh' : 'Beatrixstraat';
+            if (groupByAll) {
+                stintMap.get(stintKey).stadium = 'Alle Wedstrijden';
+            } else if (game.period === 'uit') {
+                stintMap.get(stintKey).stadium = 'Uit';
+            } else {
+                stintMap.get(stintKey).stadium = game.period.includes('_rat') ? 'Rat Verlegh' : 'Beatrixstraat';
+            }
         }
 
         stintMap.get(stintKey).games.push({
             date: game.Date,
-            away: game.Away,
-            homeGoals: homeGoals,
-            awayGoals: awayGoals,
-            homeExGoals: homeExGoals,
-            awayExGoals: awayExGoals,
+            away: opponent,
+            homeGoals: parseInt(game.HomeGoals),
+            awayGoals: parseInt(game.AwayGoals),
+            nacGoals: nacGoals,
+            oppGoals: oppGoals,
+            homeExGoals: nacExGoals,
+            awayExGoals: oppExGoals,
             performanceDiff: performanceDiff,
             period: game.period
         });
@@ -214,10 +233,17 @@ function createCoachCard(stint) {
     // Format stats with proper rounding and + sign for positive values
     let avgGD = 'N/A';
     let avgGDColor = 'inherit';
-    if (stint.avgGDvsXGD !== null) {
-        const value = stint.avgGDvsXGD.toFixed(2);
-        avgGD = stint.avgGDvsXGD > 0 ? `+${value}` : value;
-        avgGDColor = stint.avgGDvsXGD > 0 ? '#E6B611' : '#921020'; // Yellow if positive, red if negative
+
+    // Use avgGDvsXGD from stats CSV if available, otherwise calculate from games
+    let avgGDValue = stint.avgGDvsXGD;
+    if (avgGDValue === null && stint.avgPerformance !== undefined) {
+        avgGDValue = stint.avgPerformance;
+    }
+
+    if (avgGDValue !== null && avgGDValue !== undefined) {
+        const value = avgGDValue.toFixed(2);
+        avgGD = avgGDValue > 0 ? `+${value}` : value;
+        avgGDColor = avgGDValue > 0 ? '#E6B611' : '#921020'; // Yellow if positive, red if negative
     }
 
     const significanceHtml = createSignificanceIndicator(stint.avgPValue);
@@ -226,7 +252,15 @@ function createCoachCard(stint) {
     const coachImagePath = `img/coach/${stint.coach}.png`;
 
     // Always show category name in wedstrijden line
-    const wedstrijdenText = `${stint.games.length} wedstrijden ${getCategoryName(stint.period)}`;
+    const categoryName = getCategoryName(stint.period);
+    let wedstrijdenText;
+    if (categoryName === 'Uit') {
+        wedstrijdenText = `${stint.games.length} uit wedstrijden`;
+    } else if (categoryName === 'Alle Wedstrijden') {
+        wedstrijdenText = `${stint.games.length} wedstrijden`;
+    } else {
+        wedstrijdenText = `${stint.games.length} wedstrijden ${categoryName}`;
+    }
 
     card.innerHTML = `
         <div class="coach-avatar">
@@ -241,7 +275,7 @@ function createCoachCard(stint) {
             <p class="stadium-name">${stint.stadium}</p>
             <p class="stint-period">${formatDate(stint.startDate)} - ${formatDate(stint.endDate)}</p>
             <p class="stint-stats">${wedstrijdenText}</p>
-            <p class="stint-stats">Gem DSP.: <span class="dsp-value" style="color: ${avgGDColor};">${avgGD}</span> ${significanceHtml}</p>
+            <p class="stint-stats">Gem DSP: <span class="dsp-value" style="color: ${avgGDColor};">${avgGD}</span> ${significanceHtml}</p>
         </div>
     `;
 
@@ -250,7 +284,9 @@ function createCoachCard(stint) {
 
 // Get human-readable category name
 function getCategoryName(period) {
+    if (period === 'all') return 'Alle Wedstrijden';
     if (period === 'avondje_nac_rat' || period === 'avondje_nac_bea') return 'Avondje NAC';
+    if (period === 'uit') return 'Uit';
     if (period.includes('sunday')) return 'Zondag';
     if (period.includes('weekday')) return 'Doordeweeks';
     if (period.startsWith('pre_')) return 'Voor het Avondje';
@@ -260,12 +296,12 @@ function getCategoryName(period) {
 // Get number of filled squares based on p-value (traditional thresholds)
 function getSignificanceSquares(pValue) {
     if (pValue === null) return null;
-    if (pValue < 0.02) return 5;
-    if (pValue < 0.10) return 4;
-    if (pValue < 0.25) return 3;
-    if (pValue < 0.50) return 2;
-    if (pValue < 0.75) return 1;
-    return 0;
+    if (pValue < 0.075) return 5;
+    if (pValue < 0.125) return 4;
+    if (pValue < 0.33) return 3;
+    if (pValue < 0.67) return 2;
+    if (pValue < 1.00) return 1;
+    return 1;  // Changed from 0 to 1 - minimum is now 1 filled square
 }
 
 // Generate HTML for significance indicator squares
@@ -276,10 +312,19 @@ function createSignificanceIndicator(pValue) {
         return '<span class="significance-na">N/A</span>';
     }
 
+    // Color based on number of filled squares (all filled squares use same color)
+    const colors = ['#921020', '#A53718', '#AF4A14', '#B85D10', '#DEAA00'];
+    const fillColor = colors[numFilled - 1]; // Index 0 = 1 square, Index 4 = 5 squares
+
     let squaresHtml = '<span class="significance-squares">';
     for (let i = 0; i < 5; i++) {
-        const filled = i < numFilled;
-        squaresHtml += `<span class="sig-square ${filled ? 'filled' : 'empty'}"></span>`;
+        if (i < numFilled) {
+            // All filled squares use the SAME color based on numFilled
+            squaresHtml += `<span class="sig-square filled" style="background-color: ${fillColor}; border-color: ${fillColor};"></span>`;
+        } else {
+            // Empty square
+            squaresHtml += `<span class="sig-square empty"></span>`;
+        }
     }
     squaresHtml += '</span>';
 
@@ -515,8 +560,11 @@ function createBarChart(canvasId, stint) {
                             const dspFormatted = dsp > 0 ? `+${dsp.toFixed(2)}` : dsp.toFixed(2);
                             const dspColor = dsp > 0 ? '#E6B611' : '#921020';
 
+                            // Use @ for away games (uit), vs for home games
+                            const vsOrAt = game.period === 'uit' ? '@' : 'vs';
+
                             const innerHtml = `
-                                <div style="font-size: 14px; font-weight: bold; color: #E6B611; margin-bottom: 4px;">vs ${game.away}</div>
+                                <div style="font-size: 14px; font-weight: bold; color: #E6B611; margin-bottom: 4px;">${vsOrAt} ${game.away}</div>
                                 <div style="font-size: 13px; color: #FFFFFF; margin-bottom: 2px;">Score: ${game.homeGoals} : ${game.awayGoals}</div>
                                 <div style="font-size: 13px; color: #FFFFFF; margin-bottom: 4px;">DSP: <span style="font-weight: bold; color: ${dspColor};">${dspFormatted}</span></div>
                                 <div style="font-size: 11px; color: #9A9083;">${formatDate(game.date)}</div>
@@ -586,13 +634,23 @@ function applyFilters() {
     const minGamesEnabled = document.getElementById('minGamesFilter').checked;
     const dayType = document.getElementById('dayTypeSelect').value;
 
-    filteredStints = allStints.filter(stint => {
+    // Determine which dataset to use
+    let sourceStints = allStints;
+    if (dayType === 'alle_wedstrijden') {
+        // Show only combined "Alle Wedstrijden" cards
+        sourceStints = allStintsCombined;
+    } else if (dayType === 'alles') {
+        // Show both individual categories AND combined cards
+        sourceStints = [...allStints, ...allStintsCombined];
+    }
+
+    filteredStints = sourceStints.filter(stint => {
         const matchesSearch = stint.coach.toLowerCase().includes(searchTerm);
         const matchesMinGames = !minGamesEnabled || stint.games.length >= 10;
 
         // Filter by day type based on period field
         let matchesDayType = true;
-        if (dayType === 'alles') {
+        if (dayType === 'alles' || dayType === 'alle_wedstrijden') {
             // Show all categories - no filtering
             matchesDayType = true;
         } else if (dayType === 'avondje_nac') {
@@ -614,6 +672,11 @@ function applyFilters() {
             // Include pre_avondje games
             matchesDayType = stint.games.some(game =>
                 game.period && game.period.startsWith('pre_')
+            );
+        } else if (dayType === 'uit') {
+            // Include uit games
+            matchesDayType = stint.games.some(game =>
+                game.period === 'uit'
             );
         }
 
