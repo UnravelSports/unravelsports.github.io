@@ -703,6 +703,22 @@ main {
 }
 
 /* ==================== */
+/* Footer */
+/* ==================== */
+.site-footer {
+    background: rgba(36, 38, 39, 0.95);
+    padding: 40px 20px;
+    border-top: 1px solid rgba(230, 182, 17, 0.2);
+    text-align: center;
+    margin-top: 80px;
+}
+
+.footer-text {
+    color: var(--clr-highlight);
+    font-size: 0.9rem;
+}
+
+/* ==================== */
 /* Print styles */
 /* ==================== */
 @media print {
@@ -723,5 +739,9 @@ main {
 
     .stint-row:hover {
         transform: none;
+    }
+
+    .site-footer {
+        display: none;
     }
 }
