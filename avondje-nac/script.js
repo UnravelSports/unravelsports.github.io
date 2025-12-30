@@ -246,6 +246,11 @@ function createCoachCard(stint) {
         avgGDColor = avgGDValue > 0 ? '#E6B611' : '#921020'; // Yellow if positive, red if negative
     }
 
+    // Calculate total DSP (sum of all performanceDiff values)
+    const totalDSP = stint.games.reduce((sum, game) => sum + game.performanceDiff, 0);
+    const totalDSPFormatted = totalDSP > 0 ? `+${totalDSP.toFixed(2)}` : totalDSP.toFixed(2);
+    const totalDSPColor = totalDSP > 0 ? '#E6B611' : '#921020';
+
     const significanceHtml = createSignificanceIndicator(stint.avgPValue);
 
     // Create coach image filename from coach name (preserve spaces, use .png extension)
@@ -275,6 +280,7 @@ function createCoachCard(stint) {
             <p class="stadium-name">${stint.stadium}</p>
             <p class="stint-period">${formatDate(stint.startDate)} - ${formatDate(stint.endDate)}</p>
             <p class="stint-stats">${wedstrijdenText}</p>
+            <p class="stint-stats">Totaal DSP: <span class="dsp-value" style="color: ${totalDSPColor};">${totalDSPFormatted}</span></p>
             <p class="stint-stats">Gem DSP: <span class="dsp-value" style="color: ${avgGDColor};">${avgGD}</span> ${significanceHtml}</p>
         </div>
     `;
@@ -750,6 +756,14 @@ function sortStints(sortBy) {
                 const lastNameA = a.coach.split(' ').pop();
                 const lastNameB = b.coach.split(' ').pop();
                 return lastNameA.localeCompare(lastNameB);
+            });
+            break;
+        case 'total_dsp':
+            // Sort by total DSP (sum of all performanceDiff values)
+            filteredStints.sort((a, b) => {
+                const totalDSPA = a.games.reduce((sum, game) => sum + game.performanceDiff, 0);
+                const totalDSPB = b.games.reduce((sum, game) => sum + game.performanceDiff, 0);
+                return totalDSPB - totalDSPA;
             });
             break;
         case 'performance':
