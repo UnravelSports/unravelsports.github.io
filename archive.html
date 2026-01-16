@@ -131,6 +131,12 @@
       font-size: 0.9em;
     }
 
+    .filter-button-img {
+      height: 1.2em;
+      width: auto;
+      vertical-align: middle;
+    }
+
     /* Posts Grid */
     .posts-grid {
       display: grid;
@@ -413,11 +419,19 @@
         const button = document.createElement('button');
         button.className = 'filter-button';
         button.setAttribute('data-filter', key);
-        button.innerHTML = `
-          <span>${data.emoji}</span>
-          <span>${data.name}</span>
-          <span class="filter-count">(${data.count})</span>
-        `;
+
+        if (key === 'package') {
+          button.innerHTML = `
+            <img src="imgs/unravelsports-5500x800.png" alt="unravelsports" class="filter-button-img">
+            <span class="filter-count">(${data.count})</span>
+          `;
+        } else {
+          button.innerHTML = `
+            <span>${data.emoji}</span>
+            <span>${data.name}</span>
+            <span class="filter-count">(${data.count})</span>
+          `;
+        }
         button.onclick = () => filterPosts(key);
         container.appendChild(button);
       });
