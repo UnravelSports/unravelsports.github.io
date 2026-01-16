@@ -117,6 +117,40 @@
       text-underline-offset: 4px;
     }
 
+    a.hero-code-link,
+    a.hero-code-link:link,
+    a.hero-code-link:visited {
+      font-family: monospace;
+      color: #0e6edb;
+      text-decoration: none;
+      text-shadow: 0 2px 10px rgba(14, 110, 219, 0.3);
+      transition: all var(--transition-fast);
+      opacity: 1;
+    }
+
+    a.hero-code-link:hover,
+    a.hero-code-link:active {
+      color: #0e6edb;
+      text-shadow: 0 2px 15px rgba(14, 110, 219, 0.5);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    a.hero-white-link,
+    a.hero-white-link:link,
+    a.hero-white-link:visited {
+      color: inherit;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      opacity: 1;
+    }
+
+    a.hero-white-link:hover,
+    a.hero-white-link:active {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
     .hero-subtitle {
       font-size: 1.5rem;
       color: var(--clr-highlight);
@@ -431,7 +465,7 @@
       <p class="hero-subtitle">Sports Data Analytics Research & Engineering Consultancy</p>
       <p class="hero-description">
         UnravelSports is an <strong class="hero-text">independent sports data analytics consultancy</strong> founded by Joris Bekkers, specializing in analytics research, technical consulting, strategic consulting, and software engineering. I have nearly <strong class="hero-text">10 years of experience in cutting-edge football analytics </strong>working with on-ball event data, positional tracking data, and skeletal tracking data. 
-        <br><br> I consult for sports organizations, startups, and data providers to develop advanced analytics solutions, production-ready software, research and development and to offer insights into all aspects of the football analytics landscape. Beyond client work, I advocate for open-source sports analytics as a co-founder of PySport, by maintaining the 𝚞𝚗𝚛𝚊𝚟𝚎𝚕𝚜𝚙𝚘𝚛𝚝𝚜 Python package and contributing to 𝚔𝚕𝚘𝚙𝚙𝚢.
+        <br><br> I consult for sports organizations, startups, and data providers to develop advanced analytics solutions, production-ready software, research and development and to offer insights into all aspects of the football analytics landscape. Beyond client work, I advocate for open-source sports analytics as a co-founder of <a href="https://pysport.org" target="_blank" rel="noopener" class="hero-white-link">PySport</a>, by maintaining the <a href="https://unravelsports.readthedocs.io/en/latest/" target="_blank" rel="noopener" class="hero-code-link">𝚞𝚗𝚛𝚊𝚟𝚎𝚕𝚜𝚙𝚘𝚛𝚝𝚜</a> Python package and contributing to <a href="https://kloppy.pysport.org" target="_blank" rel="noopener" class="hero-white-link" style="font-family: monospace;">𝚔𝚕𝚘𝚙𝚙𝚢</a>.
         <br><br>
         <a href="#main-content" class="hero-text-link" onclick="document.getElementById('main-content').scrollIntoView({behavior: 'smooth', block: 'start'}); return false;"><strong class="hero-text">Browse my portfolio</strong></a> to see my work in action, or get in touch via the options below.
       </p>
