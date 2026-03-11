@@ -30,7 +30,7 @@ const postsData = [
     id: "2025-06-07-pydata-london",
     filename: "2025-06-07-pydata-london.md",
     date: "2025-06-07",
-    title: "🎙️ PyData London: Graph Expected Possession Value using Graph Neural Networks",
+    title: "🎙️ Expected Possession Value using Graph Neural Networks at PyData London",
     category: "media",
     emoji: "🎙️",
     excerpt: "Presentation at PyData London 2025 on Graph Expected Possession Value using Graph Neural Networks.",

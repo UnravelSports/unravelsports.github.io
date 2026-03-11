@@ -48,6 +48,20 @@
       position: relative;
       overflow: hidden;
       background: linear-gradient(135deg, rgba(36, 38, 39, 1) 0%, rgba(36, 38, 39, 0.95) 50%, rgba(54, 56, 57, 1) 100%);
+      perspective: 1200px;
+      perspective-origin: 50% 100%;
+    }
+
+    #pitch-canvas {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotateX(55deg);
+      transform-style: preserve-3d;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+      image-rendering: crisp-edges;
     }
 
     .hero::before {
@@ -63,12 +77,8 @@
     }
 
     @keyframes pulse {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.6;
-      }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
     }
 
     .hero-content {
@@ -78,45 +88,50 @@
       z-index: 1;
     }
 
-    .hero-logo {
-      width: 150px;
-      height: 150px;
-      margin: 0 auto 30px;
-      opacity: 0;
-      animation: fadeInUp 0.8s ease-out 0.2s forwards;
-    }
-
     .hero-title {
       font-size: 3.5rem;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       color: var(--clr-primary);
       opacity: 0;
-      animation: fadeInUp 0.8s ease-out 0.4s forwards;
+      animation: fadeInUp 0.8s ease-out 0.2s forwards;
       text-shadow: 0 2px 10px rgba(230, 182, 17, 0.3);
     }
 
-    .hero-text {
-      font-size: 1.2rem;
-      font-weight: 40;
-      margin-bottom: 20px;
-      color: var(--clr-primary);
+    .hero-subtitle {
+      font-size: 1.4rem;
+      color: var(--clr-highlight);
+      margin-bottom: 40px;
       opacity: 0;
       animation: fadeInUp 0.8s ease-out 0.4s forwards;
-      text-shadow: 0 2px 10px rgba(230, 182, 17, 0.3);
+      line-height: 1.6;
     }
 
-    .hero-text-link {
-      text-decoration: none;
-      cursor: pointer;
-      transition: all var(--transition-fast);
+    /* About section — left-aligned text block */
+    .hero-about {
+      max-width: 650px;
+      margin: 0 auto 36px;
+      text-align: justify;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.6s forwards;
     }
 
-    .hero-text-link:hover .hero-text {
-      text-decoration: underline;
-      text-underline-offset: 4px;
+    .hero-about p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--clr-primary-font);
+      margin-bottom: 20px;
     }
 
+    .hero-about p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .hero-about strong {
+      color: var(--clr-primary);
+    }
+
+    /* Inline links */
     a.hero-code-link,
     a.hero-code-link:link,
     a.hero-code-link:visited {
@@ -125,7 +140,6 @@
       text-decoration: none;
       text-shadow: 0 2px 10px rgba(14, 110, 219, 0.3);
       transition: all var(--transition-fast);
-      opacity: 1;
     }
 
     a.hero-code-link:hover,
@@ -142,7 +156,6 @@
       color: inherit;
       text-decoration: none;
       transition: all var(--transition-fast);
-      opacity: 1;
     }
 
     a.hero-white-link:hover,
@@ -151,70 +164,28 @@
       text-underline-offset: 4px;
     }
 
-    .hero-subtitle {
-      font-size: 1.5rem;
-      color: var(--clr-highlight);
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeInUp 0.8s ease-out 0.6s forwards;
-      line-height: 1.6;
-    }
-
-    .hero-description {
-      font-size: 1.2rem;
-      line-height: 1.8;
-      margin-bottom: 40px;
+    /* Logo row — visually separated */
+    .hero-logos {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 28px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(230, 182, 17, 0.15);
       opacity: 0;
       animation: fadeInUp 0.8s ease-out 0.8s forwards;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
-    .hero-cta {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeInUp 0.8s ease-out 1s forwards;
+    .hero-logo-img {
+      height: 40px;
+      width: auto;
+      opacity: 0.85;
+      transition: opacity var(--transition-fast);
     }
 
-    .cta-button {
-      display: inline-block;
-      padding: 15px 35px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: var(--radius-md);
-      transition: all var(--transition-normal);
-      cursor: pointer;
-    }
-
-    .cta-primary {
-      background: var(--clr-primary);
-      color: var(--clr-bg);
-      border: 2px solid var(--clr-primary);
-    }
-
-    .cta-primary:hover {
-      background: transparent;
-      color: var(--clr-primary);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(230, 182, 17, 0.3);
-    }
-
-    .cta-secondary {
-      background: transparent;
-      color: var(--clr-primary);
-      border: 2px solid var(--clr-primary);
-    }
-
-    .cta-secondary:hover {
-      background: var(--clr-primary);
-      color: var(--clr-bg);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(230, 182, 17, 0.3);
+    .hero-logo-img:hover {
+      opacity: 1;
     }
 
     /* Hero Social Links */
@@ -222,7 +193,7 @@
       display: flex;
       gap: 20px;
       justify-content: center;
-      margin-top: 30px;
+      margin-top: 24px;
       opacity: 0;
       animation: fadeInUp 0.8s ease-out 1.2s forwards;
     }
@@ -328,16 +299,33 @@
 
     /* Responsive */
     @media screen and (max-width: 768px) {
+      .hero {
+        padding: 40px 20px;
+      }
+
       .hero-title {
         font-size: 2.5rem;
       }
 
       .hero-subtitle {
         font-size: 1.2rem;
+        margin-bottom: 30px;
       }
 
-      .hero-description {
+      .hero-about {
+        text-align: justify;
+      }
+
+      .hero-about p {
         font-size: 1rem;
+      }
+
+      .hero-logos {
+        gap: 20px;
+      }
+
+      .hero-logo-img {
+        height: 32px;
       }
 
       .hero-social {
@@ -410,6 +398,7 @@
         justify-content: space-between;
       }
     }
+
     /* Filter Buttons */
     .filter-buttons {
       display: flex;
@@ -460,15 +449,28 @@
 <body>
   <!-- Hero Section -->
   <section class="hero">
+    <canvas id="pitch-canvas"></canvas>
     <div class="hero-content">
       <h1 class="hero-title">UnravelSports</h1>
       <p class="hero-subtitle">Sports Data Analytics Research & Engineering Consultancy</p>
-      <p class="hero-description">
-        UnravelSports is an <strong class="hero-text">independent sports data analytics consultancy</strong> founded by Joris Bekkers, specializing in analytics research, technical consulting, strategic consulting, and software engineering. I have nearly <strong class="hero-text">10 years of experience in cutting-edge football analytics </strong>working with on-ball event data, positional tracking data, and skeletal tracking data. 
-        <br><br> I consult for sports organizations, startups, and data providers to develop advanced analytics solutions, production-ready software, research and development and to offer insights into all aspects of the football analytics landscape. Beyond client work, I advocate for open-source sports analytics as a co-founder of <a href="https://pysport.org" target="_blank" rel="noopener" class="hero-white-link">PySport</a>, by maintaining the <a href="https://unravelsports.readthedocs.io/en/latest/" target="_blank" rel="noopener" class="hero-code-link">𝚞𝚗𝚛𝚊𝚟𝚎𝚕𝚜𝚙𝚘𝚛𝚝𝚜</a> Python package and contributing to <a href="https://kloppy.pysport.org" target="_blank" rel="noopener" class="hero-white-link" style="font-family: monospace;">𝚔𝚕𝚘𝚙𝚙𝚢</a>.
-        <br><br>
-        <a href="#main-content" class="hero-text-link" onclick="document.getElementById('main-content').scrollIntoView({behavior: 'smooth', block: 'start'}); return false;"><strong class="hero-text">Browse my portfolio</strong></a> to see my work in action, or get in touch via the options below.
-      </p>
+
+      <div class="hero-about">
+        <p>
+          UnravelSports is an <strong>independent sports data analytics consultancy</strong> founded by Joris Bekkers, specializing in analytics research, technical consulting, strategic consulting, and software engineering, with nearly <strong>10 years of experience in cutting-edge football analytics</strong> working with on-ball event data, positional tracking data, and skeletal tracking data.
+        </p>
+        <p>
+          UnravelSports consults for sports organizations, startups, and data providers to develop advanced analytics solutions, production-ready software, research and development and to offer insights into all aspects of the football analytics landscape. 
+        </p>
+        <p>
+          Beyond client work, Joris advocates for open-source sports analytics as a co-founder of <a href="https://pysport.org" target="_blank" rel="noopener" class="hero-white-link">PySport</a>, maintaining the <a href="https://unravelsports.readthedocs.io/en/latest/" target="_blank" rel="noopener" class="hero-code-link">𝚞𝚗𝚛𝚊𝚟𝚎𝚕𝚜𝚙𝚘𝚛𝚝𝚜</a> and <a href="https://fast-forward.readthedocs.io/en/latest/" target="_blank" rel="noopener" class="hero-code-link">𝚏𝚊𝚜𝚝-𝚏𝚘𝚛𝚠𝚊𝚛𝚍</a> Python packages, and contributing to <a href="https://kloppy.pysport.org" target="_blank" rel="noopener" class="hero-white-link" style="font-family: monospace;">𝚔𝚕𝚘𝚙𝚙𝚢</a>.
+        </p>
+      </div>
+
+      <div class="hero-logos">
+        <a href="https://unravelsports.readthedocs.io/en/latest/" target="_blank" rel="noopener"><img src="imgs/unravelsports-5500x800.png" alt="unravelsports" class="hero-logo-img"></a>
+        <a href="https://fast-forward.readthedocs.io/en/latest/" target="_blank" rel="noopener"><img src="imgs/fastforward-gradient-logo-stroke.png" alt="Fast Forward" class="hero-logo-img"></a>
+      </div>
+
       <div class="hero-social">
         <a href="https://www.linkedin.com/in/joris-bekkers-33138288/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -514,7 +516,7 @@
         <a href="mailto:joris_at_unravelsports_dot_com">Contact</a>
       </div>
       <p class="footer-text">
-        © 2025 UnravelSports | Joris Bekkers
+        &copy; 2025 UnravelSports | Joris Bekkers
       </p>
     </div>
   </footer>
@@ -546,7 +548,7 @@
       // Previous button
       const prevButton = document.createElement('button');
       prevButton.className = 'carousel-control prev';
-      prevButton.innerHTML = '‹';
+      prevButton.innerHTML = '&lsaquo;';
       prevButton.setAttribute('aria-label', 'Previous');
       carouselContainer.appendChild(prevButton);
 
@@ -569,7 +571,7 @@
       // Next button
       const nextButton = document.createElement('button');
       nextButton.className = 'carousel-control next';
-      nextButton.innerHTML = '›';
+      nextButton.innerHTML = '&rsaquo;';
       nextButton.setAttribute('aria-label', 'Next');
       carouselContainer.appendChild(nextButton);
 
@@ -625,25 +627,18 @@
       container.appendChild(allButton);
 
       // Category buttons
-      const categoryOrder = ['featured', 'research', 'package', 'media', 'projects'];
+      const categoryOrder = ['featured', 'research', 'media', 'projects'];
       categoryOrder.forEach(categoryKey => {
         const data = categories[categoryKey];
         const button = document.createElement('button');
         button.className = 'filter-button';
         button.setAttribute('data-filter', categoryKey);
 
-        if (categoryKey === 'package') {
-          button.innerHTML = `
-            <img src="imgs/unravelsports-5500x800.png" alt="unravelsports" class="filter-button-img">
-            <span class="filter-count">(${data.count})</span>
-          `;
-        } else {
-          button.innerHTML = `
-            <span>${data.emoji}</span>
-            <span>${data.name}</span>
-            <span class="filter-count">(${data.count})</span>
-          `;
-        }
+        button.innerHTML = `
+          <span>${data.emoji}</span>
+          <span>${data.name}</span>
+          <span class="filter-count">(${data.count})</span>
+        `;
         button.onclick = () => filterPosts(categoryKey);
         container.appendChild(button);
       });
@@ -673,6 +668,129 @@
       setupFilters();
       filterPosts('featured');
     });
+  </script>
+
+  <!-- Pitch Animation (background) -->
+  <script>
+    (function() {
+      const PITCH_LENGTH = 105.0, PITCH_WIDTH = 68.0;
+      const HALF_LENGTH = 52.5, HALF_WIDTH = 34.0;
+      const PENALTY_AREA_LENGTH = 16.5, PENALTY_AREA_WIDTH = 40.32;
+      const GOAL_AREA_LENGTH = 5.5, GOAL_AREA_WIDTH = 18.32;
+      const PENALTY_SPOT_DISTANCE = 11.0;
+      const CENTER_CIRCLE_RADIUS = 9.15, PENALTY_ARC_RADIUS = 9.15;
+      const CORNER_ARC_RADIUS = 1.0;
+      const GOAL_WIDTH = 7.32, GOAL_DEPTH = 2.0;
+
+      const COLOR_PITCH_MARKING = '#F4F4F4';
+      const COLOR_HOME_TEAM = '#0E6EDB';
+      const COLOR_AWAY_TEAM = '#656159';
+      const COLOR_BALL = '#9A9083';
+      const GLOW_PITCH = 'rgba(244, 244, 244, 0.8)';
+      const GLOW_HOME = 'rgba(14, 110, 219, 0.8)';
+      const GLOW_AWAY = 'rgba(101, 97, 89, 0.8)';
+      const GLOW_BALL = 'rgba(154, 144, 131, 0.8)';
+
+      const SOURCE_FPS = 10;
+      const PLAYER_RADIUS = 1.0, BALL_RADIUS = 0.5;
+      const SCALE = 10;
+      const CANVAS_WIDTH = (PITCH_LENGTH + 2 * GOAL_DEPTH + 4) * SCALE;
+      const CANVAS_HEIGHT = (PITCH_WIDTH + 4) * SCALE;
+
+      const canvas = document.getElementById('pitch-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = CANVAS_WIDTH;
+      canvas.height = CANVAS_HEIGHT;
+
+      let matchData = null, frameIndex = 0, lastFrameTime = 0;
+
+      function toCanvas(px, py) {
+        return { x: CANVAS_WIDTH / 2 + px * SCALE, y: CANVAS_HEIGHT / 2 - py * SCALE };
+      }
+
+      function setGlow(color, blur) { ctx.shadowColor = color; ctx.shadowBlur = blur || 10; ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0; }
+      function clearGlow() { ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; }
+
+      function drawLine(x1, y1, x2, y2) { const p1 = toCanvas(x1, y1), p2 = toCanvas(x2, y2); ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke(); }
+      function drawArc(cx, cy, r, sa, ea) { const c = toCanvas(cx, cy); ctx.beginPath(); ctx.arc(c.x, c.y, r * SCALE, -sa, -ea, true); ctx.stroke(); }
+      function drawCircle(cx, cy, r) { const c = toCanvas(cx, cy); ctx.beginPath(); ctx.arc(c.x, c.y, r * SCALE, 0, Math.PI * 2); ctx.stroke(); }
+      function drawRect(x1, y1, x2, y2) { drawLine(x1, y1, x2, y1); drawLine(x2, y1, x2, y2); drawLine(x2, y2, x1, y2); drawLine(x1, y2, x1, y1); }
+      function drawFilledCircle(cx, cy, r) { const c = toCanvas(cx, cy); ctx.beginPath(); ctx.arc(c.x, c.y, r * SCALE, 0, Math.PI * 2); ctx.fill(); }
+
+      function drawPitch() {
+        setGlow(GLOW_PITCH, 15);
+        ctx.strokeStyle = COLOR_PITCH_MARKING; ctx.fillStyle = COLOR_PITCH_MARKING; ctx.lineWidth = 2;
+        drawRect(-HALF_LENGTH, -HALF_WIDTH, HALF_LENGTH, HALF_WIDTH);
+        drawLine(0, -HALF_WIDTH, 0, HALF_WIDTH);
+        drawCircle(0, 0, CENTER_CIRCLE_RADIUS);
+        drawFilledCircle(0, 0, 0.3);
+        drawRect(-HALF_LENGTH, -PENALTY_AREA_WIDTH / 2, -HALF_LENGTH + PENALTY_AREA_LENGTH, PENALTY_AREA_WIDTH / 2);
+        drawRect(-HALF_LENGTH, -GOAL_AREA_WIDTH / 2, -HALF_LENGTH + GOAL_AREA_LENGTH, GOAL_AREA_WIDTH / 2);
+        drawFilledCircle(-HALF_LENGTH + PENALTY_SPOT_DISTANCE, 0, 0.3);
+        const aiy = Math.sqrt(PENALTY_ARC_RADIUS ** 2 - (PENALTY_AREA_LENGTH - PENALTY_SPOT_DISTANCE) ** 2);
+        const aa = Math.asin(aiy / PENALTY_ARC_RADIUS);
+        drawArc(-HALF_LENGTH + PENALTY_SPOT_DISTANCE, 0, PENALTY_ARC_RADIUS, -aa, aa);
+        drawRect(HALF_LENGTH - PENALTY_AREA_LENGTH, -PENALTY_AREA_WIDTH / 2, HALF_LENGTH, PENALTY_AREA_WIDTH / 2);
+        drawRect(HALF_LENGTH - GOAL_AREA_LENGTH, -GOAL_AREA_WIDTH / 2, HALF_LENGTH, GOAL_AREA_WIDTH / 2);
+        drawFilledCircle(HALF_LENGTH - PENALTY_SPOT_DISTANCE, 0, 0.3);
+        drawArc(HALF_LENGTH - PENALTY_SPOT_DISTANCE, 0, PENALTY_ARC_RADIUS, Math.PI - aa, Math.PI + aa);
+        drawArc(-HALF_LENGTH, -HALF_WIDTH, CORNER_ARC_RADIUS, 0, Math.PI / 2);
+        drawArc(-HALF_LENGTH, HALF_WIDTH, CORNER_ARC_RADIUS, -Math.PI / 2, 0);
+        drawArc(HALF_LENGTH, -HALF_WIDTH, CORNER_ARC_RADIUS, Math.PI / 2, Math.PI);
+        drawArc(HALF_LENGTH, HALF_WIDTH, CORNER_ARC_RADIUS, Math.PI, Math.PI * 3 / 2);
+        ctx.lineWidth = 1.5;
+        drawLine(-HALF_LENGTH, -GOAL_WIDTH / 2, -HALF_LENGTH - GOAL_DEPTH, -GOAL_WIDTH / 2);
+        drawLine(-HALF_LENGTH - GOAL_DEPTH, -GOAL_WIDTH / 2, -HALF_LENGTH - GOAL_DEPTH, GOAL_WIDTH / 2);
+        drawLine(-HALF_LENGTH - GOAL_DEPTH, GOAL_WIDTH / 2, -HALF_LENGTH, GOAL_WIDTH / 2);
+        drawLine(HALF_LENGTH, -GOAL_WIDTH / 2, HALF_LENGTH + GOAL_DEPTH, -GOAL_WIDTH / 2);
+        drawLine(HALF_LENGTH + GOAL_DEPTH, -GOAL_WIDTH / 2, HALF_LENGTH + GOAL_DEPTH, GOAL_WIDTH / 2);
+        drawLine(HALF_LENGTH + GOAL_DEPTH, GOAL_WIDTH / 2, HALF_LENGTH, GOAL_WIDTH / 2);
+        clearGlow();
+      }
+
+      function drawPlayer(x, y, team) {
+        const pos = toCanvas(x, y);
+        setGlow(team === 'home' ? GLOW_HOME : GLOW_AWAY, 12);
+        ctx.beginPath(); ctx.arc(pos.x, pos.y, PLAYER_RADIUS * SCALE, 0, Math.PI * 2);
+        ctx.fillStyle = team === 'home' ? COLOR_HOME_TEAM : COLOR_AWAY_TEAM; ctx.fill();
+        clearGlow();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)'; ctx.lineWidth = 1; ctx.stroke();
+      }
+
+      function drawBall(x, y) {
+        const pos = toCanvas(x, y);
+        setGlow(GLOW_BALL, 15);
+        ctx.beginPath(); ctx.arc(pos.x, pos.y, BALL_RADIUS * SCALE, 0, Math.PI * 2);
+        ctx.fillStyle = COLOR_BALL; ctx.fill();
+        clearGlow();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)'; ctx.lineWidth = 1; ctx.stroke();
+      }
+
+      function drawFrame(index) {
+        if (!matchData) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawPitch();
+        const players = matchData.players[index];
+        const ball = matchData.ball[index];
+        for (const p of players) drawPlayer(p.x, p.y, p.team);
+        if (ball) drawBall(ball.x, ball.y);
+      }
+
+      function animate(timestamp) {
+        if (!matchData) { requestAnimationFrame(animate); return; }
+        if (timestamp - lastFrameTime >= 1000 / SOURCE_FPS) {
+          drawFrame(frameIndex);
+          frameIndex = (frameIndex + 1) % (matchData.players.length - 5);
+          lastFrameTime = timestamp;
+        }
+        requestAnimationFrame(animate);
+      }
+
+      fetch('pitch-animation/data/goal_sequence.json')
+        .then(r => r.json())
+        .then(data => { matchData = data; requestAnimationFrame(animate); })
+        .catch(e => console.error('Failed to load pitch animation data:', e));
+    })();
   </script>
 </body>
 </html>
