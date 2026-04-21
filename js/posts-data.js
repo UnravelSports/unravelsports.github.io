@@ -29,7 +29,7 @@ const postsData = [
     emoji: "🔬",
     excerpt: "Research on quantifying visual exploratory behavior in soccer using pose-enhanced positional data. Presented at the MIT Sloan Sports Analytics Conference 2025.",
     paperUrl: "https://arxiv.org/abs/2602.18519",
-    websiteUrl: "https://www.sloansportsconference.com/research-paper-competition",
+    youtubeUrl: "https://www.youtube.com/watch?v=z8er_Z4WZS0",
     hideReadMore: true,
     featured: true,
     featuredPin: 1,
