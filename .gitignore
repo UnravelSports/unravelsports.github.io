@@ -15,3 +15,17 @@ imgs/pitch_control_1.png
 ignore/
 ku-leuven/presentation.md
 ku-leuven/presentation.html
+
+# GraphEPV / PEICA is private. Never publish it, never add it to the carousel.
+/ssac/26/peica.html
+imgs/videos/5.mp4
+
+# Orphaned pages: nothing links to them and they duplicate index.html.
+/new.html
+/logo.html
+
+# Local-only: internal notes, scratch notebooks, agent config. Never ship.
+/notebooks/
+/.claude/
+/presentations
+/ku-leuven

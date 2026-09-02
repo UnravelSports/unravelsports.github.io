@@ -3,6 +3,50 @@
 
 const postsData = [
   {
+    id: "2026-08-29-ft-football-data-hiring",
+    filename: "",
+    date: "2026-08-29",
+    title: "🎙️ Football clubs' race for data creates bright spot in Britain labour market",
+    category: "media",
+    emoji: "🎙️",
+    excerpt: "Quoted in the Financial Times on the tripling of football clubs' share of UK hiring over five years, and on why clubs have moved beyond a single data scientist towards entire departments with dedicated data engineers.",
+    articleUrl: "https://www.ft.com/content/6249139a-6ca6-4888-86e2-f2f381e9b8a8",
+    hideReadMore: true,
+    thumbnail: true,
+    thumbnailPath: "imgs/thumbnails/FT.png",
+    thumbnailHeight: 20
+  },
+  {
+    id: "2026-07-16-odd-lots-podcast",
+    filename: "",
+    date: "2026-07-16",
+    title: "🎙️ Why Soccer Analytics Works Like Volatility Arbitrage Trading",
+    category: "media",
+    emoji: "🎙️",
+    excerpt: "Bloomberg's Odd Lots podcast, on football's late embrace of the moneyball revolution.",
+    spotifyUrl: "https://open.spotify.com/episode/3Oh5J9PtG5tl05DPC5cb13?si=e2b60613ce2b4fd3",
+    hideReadMore: true,
+    thumbnail: true,
+    thumbnailPath: "imgs/thumbnails/Bloomberg.png",
+    thumbnailHeight: 27
+
+  },
+  {
+    id: "2026-04-23-ku-leuven-liss",
+    filename: "",
+    date: "2026-04-23",
+    title: "🎙️ LISS Football Analytics Symposium at KU Leuven",
+    category: "media",
+    emoji: "🎙️",
+    excerpt: "Invited speaker at the KU Leuven LISS Football Analytics Symposium on machine learning and artificial intelligence in football analytics.",
+    websiteUrl: "https://www.kuleuven.be/liss/events/liss-football-analytics-symposium",
+    hideReadMore: true,
+    thumbnail: true,
+    thumbnailPath: "imgs/thumbnails/960px-KU_Leuven_logo.png",
+    thumbnailHeight: 27
+  
+  },
+  {
     id: "2025-03-01-fast-forward",
     filename: "",
     date: "2026-03-01",
@@ -62,7 +106,8 @@ const postsData = [
     websiteUrl: "https://rawcdn.githack.com/UnravelSports/keynotes/main/html/20250804-Federatia-Romana-de-Fotbal.html",
     hideReadMore: true,
     thumbnail: true,
-    thumbnailPath: "imgs/thumbnails/Romanian_Football_Federation_logo_(2019).svg"
+    thumbnailPath: "imgs/thumbnails/Romanian_Football_Federation_logo_(2019).svg",
+    thumbnailHeight: 40
   },
   {
     id: "2025-06-07-pydata-london",
@@ -88,7 +133,7 @@ const postsData = [
     websiteUrl: "https://rawcdn.githack.com/UnravelSports/keynotes/main/html/20250430-AIMS-Cameroon.html",
     hideReadMore: true,
     thumbnail: true,
-    thumbnailPath: "imgs/thumbnails/aimscm.png",
+    thumbnailPath: "imgs/thumbnails/aimscm-1.png",
     thumbnailHeight: 40
   },
   {
@@ -102,7 +147,7 @@ const postsData = [
     websiteUrl: "https://rawcdn.githack.com/UnravelSports/keynotes/main/html/20250408-Rice-University.html",
     hideReadMore: true,
     thumbnail: true,
-    thumbnailPath: "imgs/thumbnails/rice-university-logo-freelogovectors.net_.png",
+    thumbnailPath: "imgs/thumbnails/rice-university-logo-freelogovectors.net_-1.png",
     thumbnailHeight: 55
   },
   {
@@ -143,7 +188,8 @@ const postsData = [
     excerpt: "Podcast discussion about football analytics, data science, and the journey into professional sports analytics.",
     articleUrl: "https://www.bsiderats.nl/nieuws/een-tikkie-naar-het-zuiden-podcast-255",
     spotifyUrl: "https://open.spotify.com/episode/2ChWNgmPPgY7QtNDSmczHe?si=70a97e8b3a76442c",
-    hideReadMore: true
+    hideReadMore: true,
+    thumbnail: false
   },
   {
     id: "2024-08-24-unravelsports-package",
@@ -198,7 +244,7 @@ const postsData = [
     hideReadMore: true,
     thumbnail: true,
     thumbnailPath: "imgs/thumbnails/athletic.png",
-    thumbnailHeight: 27
+    thumbnailHeight: 20
   },
   {
     id: "2023-03-02-ssac23",
@@ -310,7 +356,8 @@ const postsData = [
     category: "projects",
     emoji: "💻",
     excerpt: "Improving pass maps using cluster analysis to better represent players' actual passing positions within a team.",
-    thumbnail: true
+    thumbnail: true,
+    thumbnailHeight: 50
   },
   {
     id: "2017-01-04-expected-pass-model",

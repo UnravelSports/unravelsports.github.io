@@ -43,6 +43,17 @@
   box-sizing: border-box;
 }
 
+/* Form controls do not inherit typography from body; without this they fall
+   back to the UA default (Arial), which is how the category filter row ended
+   up in a different typeface from every other label on the site. */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
 body {
   font-family: 'Titillium Web', sans-serif;
   background: var(--clr-bg);
