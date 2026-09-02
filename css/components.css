@@ -1,0 +1,818 @@
+/* ==========================================================================
+   UnravelSports — shared components
+   --------------------------------------------------------------------------
+   Single source of truth for the site's UI: site header, hero, logo bands,
+   category filters, carousel, post cards, social icons and the footer.
+
+   Before this file existed, .site-footer was authored four separate times
+   (index, archive, post, ssac/26/veb) and .site-header three times, so a change
+   to either meant editing every page by hand. Nothing here should be
+   redeclared in a page's inline <style>; put page-specific rules there only.
+
+   Sections are marked with the pages that use them. Some (hero, logo bands,
+   social rail, mobile grid, page shell) are currently only used by index.html
+   but live here so that all layout-level styling has one home. Note the
+   cross-page dependencies before deleting anything: archive.html's .fade-in-up
+   uses @keyframes fadeInUp, and post.html renders .post-card and
+   .carousel-control.
+
+   Design language: flat. Square corners, hairline rules, no drop shadows, and
+   small uppercase letterspaced labels. Colours come from the tokens in
+   style.css — do not hardcode hex values below.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. Shared primitives
+   ========================================================================== */
+
+/* Shared entrance animation. Used by the hero on index.html AND by
+   .fade-in-up on archive.html, so it is a primitive, not hero-specific. */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* The small uppercase label used for band headings and card dates. */
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clr-highlight);
+}
+
+/* Respect a reduced-motion preference. The hero runs an infinite background
+   pulse and staggered entrance animations, and the carousel animates its
+   transform; none of that should fire for users who asked for stillness.
+   Entrances are forced to their finished state rather than merely disabled,
+   because the elements start at opacity:0 and would otherwise stay invisible. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* .category-section starts at opacity:0 and is revealed by a JS-added
+     .visible class, so it still needs forcing. The hero elements use
+     animation-fill-mode:both and are already visible without their
+     animation, so they do not. */
+  .category-section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   2. Site header
+   Used by archive.html, post.html and ssac/26/veb.html.
+   ========================================================================== */
+
+.site-header {
+  background: rgba(36, 38, 39, 0.95);
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(230, 182, 17, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  color: var(--clr-white);
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 1;
+  transition: color var(--transition-fast);
+}
+
+.main-nav a:hover { color: var(--clr-primary); }
+
+
+/* ==========================================================================
+   3. Hero (index.html)
+   ========================================================================== */
+
+.hero {
+  /* No min-height. It used to be 60vh, but align-items:center then hands any
+     spare height back as slack above and below the content, which makes the
+     gap to the band below unpredictable and viewport-dependent. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px 40px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg,
+              rgba(36, 38, 39, 1) 0%,
+              rgba(36, 38, 39, 0.95) 50%,
+              rgba(54, 56, 57, 1) 100%);
+  perspective: 1200px;
+  perspective-origin: 50% 100%;
+}
+
+#pitch-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(55deg);
+  transform-style: preserve-3d;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+  image-rendering: crisp-edges;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(230, 182, 17, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(230, 182, 17, 0.05) 0%, transparent 50%);
+  animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.6; }
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--clr-primary);
+  text-shadow: 0 2px 10px rgba(230, 182, 17, 0.3);
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.hero-subtitle {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: var(--clr-highlight);
+  margin-bottom: 40px;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-about {
+  max-width: 650px;
+  /* No bottom margin on desktop: the 40px of clearance to the band below is
+     set by the hero's own bottom padding, in one place. */
+  margin: 0 auto;
+  text-align: justify;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.hero-about p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--clr-primary-font);
+  margin-bottom: 20px;
+}
+
+.hero-about p:last-of-type { margin-bottom: 0; }
+.hero-about strong { color: var(--clr-primary); }
+
+/* ==========================================================================
+   4. Social icons — fixed rail (desktop) and inline row (narrow screens)
+   ========================================================================== */
+
+/* style.css sets `a:visited { color: var(--clr-highlight) }` at specificity
+   (0,1,1), which outranks a bare .social-icon at (0,1,0). Without !important
+   these turn muted grey once visited, which on a dark background reads as
+   missing rather than styled. */
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(230, 182, 17, 0.25);
+  color: var(--clr-primary) !important;
+  opacity: 1;
+  transition: all var(--transition-normal);
+}
+
+.social-icon:link,
+.social-icon:visited,
+.social-icon:active { color: var(--clr-primary) !important; }
+
+.social-icon:hover {
+  background: rgba(230, 182, 17, 0.12);
+  border-color: var(--clr-primary);
+  color: var(--clr-primary) !important;
+  transform: translateY(-2px);
+}
+
+.social-icon svg { fill: currentColor; }
+
+.social-rail {
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(18, 19, 20, 0.94);
+  backdrop-filter: blur(10px);
+  padding: 12px 10px;
+  border: 1px solid rgba(230, 182, 17, 0.38);
+  border-radius: 26px;
+  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.5);
+}
+
+/* Narrow screens drop the fixed rail and use an inline row under the about
+   text instead. Two copies live in the DOM rather than one being moved by JS;
+   display:none keeps the inactive copy out of the tab order and the
+   accessibility tree, so nothing is announced twice.
+
+   Deliberately no fadeInUp entrance on the inline row: the other hero blocks
+   start at opacity:0 and depend on the animation finishing to become visible,
+   and this row is the only way to reach the social links on a phone. */
+.hero-social-inline { display: none; }
+
+@media screen and (max-width: 1100px) {
+  .social-rail { display: none; }
+
+  .hero-about { margin-bottom: 36px; }
+
+  .hero-social-inline {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    opacity: 1;
+  }
+}
+
+
+/* ==========================================================================
+   5. Logo bands — "Featured in" and "Open source"
+   Every logo height lives here, so retuning a mark is a one-line change.
+   ========================================================================== */
+
+.logo-band {
+  background: rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(230, 182, 17, 0.15);
+  border-bottom: 1px solid rgba(230, 182, 17, 0.15);
+  padding: 26px 20px 28px;
+}
+
+.logo-band-row {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+/* Stacked rows are each centred on their own axis, so a wide row and a narrow
+   one do not pull each other off centre the way a side-by-side split does. */
+.logo-band-row + .logo-band-row {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(230, 182, 17, 0.12);
+}
+
+.logo-band-label {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.logo-band-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 44px;
+  flex-wrap: wrap;
+}
+
+.logo-band-row-packages .logo-band-logos { gap: 52px; }
+
+/* The item is an <a>, so style.css's `a { opacity: 0.85 }` applies to it.
+   Opacity multiplies down the tree, so without this the images render at
+   0.85 x 0.6 = 0.51 rather than the 0.6 authored below, and hover animates
+   two layers at different speeds. */
+.logo-band-item {
+  opacity: 1;
+  display: block;
+}
+
+/* display:block matters. Left inline, these sit on the text baseline and the
+   line box adds ~8px of descender space beneath them, which made the Open
+   source band taller than Featured in at identical logo heights. */
+.logo-band-item img {
+  display: block;
+  width: auto;
+  opacity: 0.6;
+  transition: opacity var(--transition-normal);
+}
+
+.logo-band-item:hover img { opacity: 1; }
+
+/* Per-logo optical sizing. These are not equal heights on purpose: a 7:1
+   wordmark and a 3:1 mark look badly mismatched at the same height. */
+.logo-ft        img { height: 23px; }
+.logo-bloomberg img { height: 21px; filter: invert(1); }  /* black artwork */
+.logo-athletic  img { height: 20px; }
+.logo-vice      img { height: 23px; }
+.logo-sloan     img { height: 30px; }
+
+.logo-unravelsports img { height: 30px; opacity: 0.85; }
+.logo-fastforward   img { height: 30px; opacity: 0.85; }
+
+@media screen and (max-width: 768px) {
+  .logo-band { padding: 20px 20px 22px; }
+  .logo-band-logos { gap: 22px 28px; }
+  .logo-band-row-packages .logo-band-logos { gap: 30px; }
+
+  .logo-ft        img { height: 19px; }
+  .logo-bloomberg img { height: 17px; }
+  .logo-athletic  img { height: 16px; }
+  .logo-vice      img { height: 19px; }
+  .logo-sloan     img { height: 24px; }
+  .logo-unravelsports img { height: 24px; }
+  .logo-fastforward   img { height: 24px; }
+}
+
+
+/* ==========================================================================
+   6. Category filters
+   Shared by index.html and archive.html.
+   ========================================================================== */
+
+.filter-buttons {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 0 20px;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clr-highlight);
+  transition: all var(--transition-fast);
+}
+
+.filter-button:hover { color: var(--clr-white); }
+
+.filter-button.active {
+  color: var(--clr-primary);
+  border-bottom-color: var(--clr-primary);
+}
+
+.filter-count {
+  font-size: 0.85em;
+  opacity: 0.55;
+}
+
+
+/* ==========================================================================
+   7. Carousel
+   ========================================================================== */
+
+.category-section {
+  margin: 20px 0 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.category-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.carousel-container {
+  position: relative;
+  padding: 0 60px;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+  transition: transform 0.4s ease-out;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid rgba(230, 182, 17, 0.3);
+  border-radius: 0;
+  color: var(--clr-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--transition-fast);
+}
+
+.carousel-control:hover {
+  background: rgba(230, 182, 17, 0.1);
+  border-color: var(--clr-primary);
+  transform: translateY(-50%);
+}
+
+.carousel-control.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.carousel-control.prev { left: 0; }
+.carousel-control.next { right: 0; }
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.carousel-indicator {
+  width: 26px;
+  height: 2px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.carousel-indicator.active { background: var(--clr-primary); }
+.carousel-indicator:hover:not(.active) { background: rgba(255, 255, 255, 0.4); }
+
+.carousel-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--clr-highlight);
+  font-style: italic;
+}
+
+
+/* ==========================================================================
+   8. Post cards
+   Used by the index carousel, the archive grid and the post.html footer rail.
+   ========================================================================== */
+
+.post-card {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  height: 380px;
+  padding: 26px 24px;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  border: 1px solid rgba(230, 182, 17, 0.18);
+  border-radius: 0;
+  transition: all var(--transition-normal);
+}
+
+.post-card:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(230, 182, 17, 0.55);
+}
+
+.post-card-featured {
+  position: relative;
+  background: none;
+  border: 1px solid rgba(230, 182, 17, 0.55);
+}
+
+.post-card-featured:hover { border-color: var(--clr-primary); }
+
+/* Typeset tag rather than the old corner emoji. */
+.post-card-featured::before {
+  content: 'Featured';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 3px 9px;
+  background: var(--clr-primary);
+  color: var(--clr-bg);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.post-card-date {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clr-highlight);
+  margin-bottom: 12px;
+}
+
+.post-card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--clr-white);
+  margin-bottom: 10px;
+}
+
+.post-card-excerpt {
+  flex-grow: 1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--clr-white);
+  opacity: 0.7;
+  margin-bottom: 15px;
+}
+
+.post-card-thumbnail {
+  flex-shrink: 0;
+  width: auto;
+  height: 80px;
+}
+
+.post-card-thumbnail img,
+.post-card-thumbnail video {
+  height: 80px;
+  width: auto;
+  display: block;
+  border-radius: 0;
+}
+
+.post-card-thumbnail-spotify {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: rgba(30, 215, 96, 0.15);
+  color: #1DB954;
+  border-radius: 0;
+}
+
+.post-card-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  min-height: 32px;
+}
+
+.post-card-footer:empty { display: none; }
+.post-card-footer:has(.post-card-links:only-child) { justify-content: flex-end; }
+
+.post-card-footer-right {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.post-card-link,
+.post-card-link:link,
+.post-card-link:visited,
+.post-card-link:active {
+  color: var(--clr-primary) !important;
+  opacity: 0.9;
+}
+
+.post-card-link {
+  display: inline-flex;
+  align-self: flex-end;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.post-card-link:hover { opacity: 1; gap: 8px; }
+
+.post-card-link::after {
+  content: '→';
+  font-size: 1.2rem;
+  transition: transform var(--transition-fast);
+}
+
+.post-card:hover .post-card-link::after { transform: translateX(3px); }
+
+.post-card-links {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.post-card-icon-link,
+.post-card-icon-link:link,
+.post-card-icon-link:visited {
+  color: var(--clr-primary) !important;
+  opacity: 0.8;
+}
+
+.post-card-icon-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 0;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.post-card-icon-link:hover {
+  opacity: 1;
+  background: rgba(230, 182, 17, 0.1);
+}
+
+.post-card-icon-link svg { display: block; }
+
+
+/* ==========================================================================
+   9. Mobile post grid (replaces the carousel below 768px)
+   ========================================================================== */
+
+.mobile-posts-grid { display: none; }
+
+/* Cards narrow before the carousel switches to 2-up, matching the old
+   carousel.css breakpoint. */
+@media screen and (max-width: 1024px) {
+  .post-card { flex: 0 0 280px; }
+}
+
+@media screen and (max-width: 768px) {
+  /* Scoped to .latest-section on purpose. post.html also renders a carousel
+     and keeps it on mobile (scrolling vertically), so hiding every
+     .carousel-container here would blank the related-posts rail. */
+  .latest-section .carousel-container { display: none !important; }
+
+  .mobile-posts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .mobile-post-card {
+    height: auto;
+    flex: none;
+    padding: 20px;
+  }
+}
+
+
+/* ==========================================================================
+   10. Footer
+   ========================================================================== */
+
+.site-footer {
+  background: none;
+  border-top: 1px solid rgba(230, 182, 17, 0.15);
+  margin-top: 60px;
+  padding: 0;
+}
+
+/* When a logo band sits directly above the footer, the band's bottom border
+   already rules off the page. Drawing the footer's own border there too would
+   show two hairlines with a sliver of gap between them. */
+.logo-band + .site-footer {
+  margin-top: 0;
+  border-top: none;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--clr-highlight);
+  opacity: 0.55;
+}
+
+.footer-links {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.footer-links a {
+  color: var(--clr-highlight);
+  opacity: 1;
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover { color: var(--clr-primary); }
+
+
+/* ==========================================================================
+   11. Page shell
+   ========================================================================== */
+
+.main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  /* The vertical values set the clearance between the logo bands and the
+     carousel. The filter row's top margin and .category-section's bottom
+     margin are deliberately zero so this padding is the only thing
+     controlling it. */
+  padding: 40px 20px;
+}
+
+/* Reserve a gutter for the fixed social rail, which occupies the rightmost
+   78px of the viewport (60px wide plus an 18px inset) and sits at z-index 60.
+   Without this the carousel's next arrow renders directly underneath it
+   between roughly 1200px and 1511px wide — every common laptop width — and
+   the click lands on the LinkedIn icon instead of advancing the carousel.
+   Applied symmetrically so the carousel stays centred under the filter row. */
+@media screen and (min-width: 1101px) {
+  .main-content {
+    padding-left: 90px;
+    padding-right: 90px;
+  }
+}
+
+.latest-section { margin-bottom: 0; }
+
+
+/* ==========================================================================
+   12. Responsive
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+  .hero { padding: 40px 20px 30px; }
+  .hero-title { font-size: 2.5rem; }
+  .hero-subtitle { font-size: 1.2rem; }
+  .hero-about { text-align: justify; }
+  .hero-about p { font-size: 1rem; }
+
+  .filter-buttons { gap: 18px; }
+  .filter-button { font-size: 0.76rem; letter-spacing: 0.1em; }
+
+  .main-nav ul { gap: 15px; }
+  .main-nav a { font-size: 0.9rem; }
+}
