@@ -340,10 +340,27 @@
 
 .logo-band-item:hover img { opacity: 1; }
 
+/* Normalise every outlet mark to pure white. The source files disagree:
+   FT ships as rgb(220,224,223), MIT Sloan as rgb(249,249,249), the rest as
+   pure white, so untreated the row reads unevenly with FT noticeably dimmer.
+   brightness(0) crushes each opaque pixel to black and invert(1) lifts it to
+   white; alpha is untouched, so antialiasing survives.
+
+   This also makes the band immune to the colour of whatever asset is dropped
+   in later. A black wordmark previously needed its own invert(1), and when the
+   file was swapped for a white one that rule silently rendered it black. */
+.logo-ft img,
+.logo-bloomberg img,
+.logo-athletic img,
+.logo-vice img,
+.logo-sloan img {
+  filter: brightness(0) invert(1);
+}
+
 /* Per-logo optical sizing. These are not equal heights on purpose: a 7:1
    wordmark and a 3:1 mark look badly mismatched at the same height. */
 .logo-ft        img { height: 23px; }
-.logo-bloomberg img { height: 21px; filter: invert(1); }  /* black artwork */
+.logo-bloomberg img { height: 21px; }
 .logo-athletic  img { height: 20px; }
 .logo-vice      img { height: 23px; }
 .logo-sloan     img { height: 30px; }
