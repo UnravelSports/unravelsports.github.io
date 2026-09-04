@@ -24,9 +24,23 @@
 
   <title>UnravelSports - Sports Data Analytics</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Critical styles, inline so they apply at parse time with no network
+       round trip. Without these, any frame painted before the stylesheets
+       below arrive shows the UA defaults: a white page, an 8px white body
+       margin reading as a border, images at their natural size, and the hero
+       canvas at full size and full opacity. Each rule is restated in
+       css/style.css or components.css, which win once they load. -->
+  <style>html{background:#242627}body{margin:0}img{max-width:100%;height:auto}#pitch-canvas{position:absolute;opacity:0}</style>
+
+  <!-- Fonts. Self-hosted; the @font-face rules are in css/style.css. These
+       preloads start the three latin files at parse time, in parallel with the
+       stylesheets, instead of waiting for style.css to be fetched and parsed
+       before the font is even known about. crossorigin is required even
+       same-origin, because fonts are always fetched in CORS mode; without it
+       the file is downloaded twice. -->
+  <link rel="preload" as="font" type="font/woff2" href="fonts/titillium-web-400-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/titillium-web-600-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/titillium-web-700-latin.woff2" crossorigin>
 
   <!-- Stylesheets. All shared UI lives in components.css; this page adds none. -->
   <link rel="stylesheet" href="css/style.css">

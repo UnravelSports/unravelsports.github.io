@@ -20,17 +20,33 @@
   </script>
 
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Critical styles, inline so they apply at parse time with no network
+       round trip. Without these, a frame painted before the stylesheets below
+       arrive shows the UA defaults: a white page and an 8px white body margin
+       reading as a border, and images at their natural size. Each rule is
+       restated in css/style.css. -->
+  <style>html{background:#242627}body{margin:0}img{max-width:100%;height:auto}</style>
+
+  <!-- Fonts. Self-hosted; the @font-face rules are in css/style.css. These
+       preloads start the three latin files at parse time, in parallel with the
+       stylesheets, instead of waiting for style.css to be fetched and parsed
+       before the font is even known about. crossorigin is required even
+       same-origin, because fonts are always fetched in CORS mode; without it
+       the file is downloaded twice. -->
+  <link rel="preload" as="font" type="font/woff2" href="fonts/titillium-web-400-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/titillium-web-600-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/titillium-web-700-latin.woff2" crossorigin>
 
   <!-- Stylesheets. Header, footer and post cards come from components.css;
        only genuinely post-page-specific rules live in the <style> below. -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/components.css">
 
-  <!-- Syntax Highlighting -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <!-- Syntax highlighting theme. Served from here rather than cdnjs: as a
+       third-party stylesheet it blocked rendering on a fourth origin, for
+       856 bytes. Version-matched to the highlight.js in js/vendor/ loaded at
+       the end of the body; update the two together. -->
+  <link rel="stylesheet" href="js/vendor/highlight-atom-one-dark-11.9.0.min.css">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="imgs/350x350_transparant_square_white.png">
@@ -408,9 +424,14 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Scripts. marked and highlight.js are vendored in js/vendor/ rather than
+       loaded from jsdelivr and cdnjs. Post bodies are markdown rendered in the
+       browser, so marked being unreachable meant no article text at all: a
+       third-party outage took the content down, not just the styling.
+       Filenames carry their version; replacing one means replacing the file
+       and the reference together. -->
+  <script src="js/vendor/marked-11.0.0.min.js"></script>
+  <script src="js/vendor/highlight-11.9.0.min.js"></script>
   <script src="https://platform.twitter.com/widgets.js" async></script>
   <script src="js/posts-data.js"></script>
   <script src="js/carousel.js"></script>
