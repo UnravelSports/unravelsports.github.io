@@ -19,9 +19,22 @@
 
   <title>Wide Open Gazes | UnravelSports</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Critical styles, inline so they apply at parse time with no network
+       round trip. Without these, a frame painted before the stylesheets below
+       arrive shows the UA defaults: a white page and an 8px white body margin
+       reading as a border, and images at their natural size. Each rule is
+       restated in css/style.css. -->
+  <style>html{background:#242627}body{margin:0}img{max-width:100%;height:auto}</style>
+
+  <!-- Fonts. Self-hosted; the @font-face rules are in css/style.css. These
+       preloads start the three latin files at parse time, in parallel with the
+       stylesheets, instead of waiting for style.css to be fetched and parsed
+       before the font is even known about. crossorigin is required even
+       same-origin, because fonts are always fetched in CORS mode; without it
+       the file is downloaded twice. -->
+  <link rel="preload" as="font" type="font/woff2" href="../../fonts/titillium-web-400-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="../../fonts/titillium-web-600-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="../../fonts/titillium-web-700-latin.woff2" crossorigin>
 
   <!-- Stylesheets -->
   <!-- Header and footer come from components.css. -->

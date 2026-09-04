@@ -51,15 +51,17 @@
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 
   /* .category-section starts at opacity:0 and is revealed by a JS-added
-     .visible class, so it still needs forcing. The hero elements use
-     animation-fill-mode:both and are already visible without their
-     animation, so they do not. */
+     .visible class, so it still needs forcing. The hero elements only need
+     the delay reset above: zeroing duration alone is not enough, because
+     fill-mode:both holds them at the opacity:0 start frame for the whole
+     delay, so a staggered block stayed invisible for its offset. */
   .category-section {
     opacity: 1 !important;
     transform: none !important;
@@ -166,13 +168,25 @@
   z-index: 1;
 }
 
+/* Hero entrance. The three blocks below stagger in, and because they use
+   fill-mode `both` they sit at opacity:0 until their delay elapses. The
+   stagger was 0.2s/0.4s/0.6s over 0.8s, which left the hero completely blank
+   for the first 0.6s and not settled until 1.4s, while the logo band and
+   carousel underneath were already painted. On a reload that reads as a
+   broken page rather than as an entrance.
+
+   Now the title starts at 0s, so the hero is never empty, and the whole
+   sequence is done by 0.56s. The offsets are kept small but distinct: enough
+   to read as a stagger, not enough to look like content arriving late.
+   The shared @keyframes is deliberately untouched, since archive.html's
+   .fade-in-up uses it too. */
 .hero-title {
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 16px;
   color: var(--clr-primary);
   text-shadow: 0 2px 10px rgba(230, 182, 17, 0.3);
-  animation: fadeInUp 0.8s ease-out 0.2s both;
+  animation: fadeInUp 0.4s ease-out both;
 }
 
 .hero-subtitle {
@@ -180,7 +194,7 @@
   line-height: 1.6;
   color: var(--clr-highlight);
   margin-bottom: 40px;
-  animation: fadeInUp 0.8s ease-out 0.4s both;
+  animation: fadeInUp 0.4s ease-out 0.08s both;
 }
 
 .hero-about {
@@ -189,7 +203,7 @@
      set by the hero's own bottom padding, in one place. */
   margin: 0 auto;
   text-align: justify;
-  animation: fadeInUp 0.8s ease-out 0.6s both;
+  animation: fadeInUp 0.4s ease-out 0.16s both;
 }
 
 .hero-about p {
